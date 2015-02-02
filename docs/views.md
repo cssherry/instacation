@@ -3,24 +3,24 @@
 ## New Session
 ![new-session]
 
-## Feed Show (landing page)
-![feed-show]
+## User Show (landing page)
+![user-show1]
 
-## Blog Show
-![blog-show]
+## Other User Show
+![user-show2]
 
-## Post Show
-![post-show]
+## Album Show
+![album-show]
 
-## Post Form
-![post-form]
+## Photo Show
+![photo-show]
 
-## Search Results
-![search-results]
+## Location Show
+![location-show]
 
-[new-session]: ./wireframes/new_session.png
-[feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[new-session]: ./wireframes/new-session.png
+[user-show1]: ./wireframes/user-show1.png
+[user-show2]: ./wireframes/user-show2.png
+[album-show]: ./wireframes/album-show.png
+[photo-show]: ./wireframes/photo-show.png
+[location-show]: ./wireframes/location-show.png

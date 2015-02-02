@@ -6,7 +6,8 @@ column name | data type | details
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
-privacy     | string    | not null
+privacy     | boolean   | not null
+photo_id    | integer   | not null, foreign key (references thumbnail pic)
 
 ## followings
 column name | data type | details
@@ -20,8 +21,9 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
-title       | string    | not null
-body        | string    |
+album_id    | integer   | not null, foreign key (references album)
+caption     | string    |
+album_id    | integer   | default 0.0
 
 ## locations
 column name | data type | details
