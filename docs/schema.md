@@ -6,13 +6,14 @@ column name | data type | details
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
+privacy     | string    | not null
 
 ## followings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
+follow_type | string    | not null
+follow_id   | integer   | not null, foreign key (references users or locations)
 
 ## photos
 column name | data type | details
@@ -22,7 +23,7 @@ author_id   | integer   | not null, foreign key (references users)
 title       | string    | not null
 body        | string    |
 
-## tags
+## locations
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -32,13 +33,15 @@ label       | string    | not null, unique
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
+album_id    | integer   | not null, foreign key (references album)
+location_id | integer   | not null, foreign key (references location)
 
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-email           | string    | not null, unique
+first_name      | string    | not null, unique
+last_name       | string    | not null, unique
+username        | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique

@@ -2,20 +2,22 @@
 
 ## Rails
 ### Models
+* Following
 
 ### Controllers
-Api::PostsController (feed)
+* Followings (index)
 
 ### Views
-posts/feed.json.jbuilder
+* user/show.json.jbuilder
 
 ## Backbone
 ### Models
+* Following (parse from user)
 
 ### Collections
-* FeedPosts
 
 ### Views
-* FeedShow (composite view, contains PostShow subviews)
+* UserShow (composite view, contains FollowingItems subviews)
+* FollowingItems
 
 ## Gems/Libraries

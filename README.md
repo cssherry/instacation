@@ -12,7 +12,6 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 - [ ] Upload/delete photos
 - [ ] Tag albums with locations
 - [ ] Add captions to photos
-- [ ] Rearrange photos
 - [ ] View a user's page
 - [ ] Subscribe to users or locations
 - [ ] View a feed of subscribed users/locations
@@ -42,15 +41,15 @@ I will use Filepicker for uploading photos to the website. Then, a third party a
 [Details][phase-three]
 
 ### Phase 4: Subscribing to Users/Albums and Creating Feed (~1 day)
-Using the UserShow page, I'll add a set of views that include
+Users will be able to subscribe to other users and albums using polymorphic associations. On the UserShow page, I'll add a set of views that includes albums from the location and users subscribed.
 
 [Details][phase-four]
 
 ### Bonus Features
-- [ ] Use captions to create tags for photos
+- [ ] Map albums by location for exploring
 - [ ] Search for albums by location
 - [ ] Search for photos by caption
-- [ ] Map albums by location for exploring
+- [ ] Use captions to create tags for photos
 - [ ] Like albums or photos, display counter of how many likes there are
 - [ ] Comment on albums and photos, display counter of how many comments there are
 - [ ] Tag users in photos and albums

@@ -3,12 +3,13 @@
 ## Rails
 ### Models
 * Location
-* LocationTaggings
+* Tagging
 
 ### Controllers
 * Api::LocationsController (create, destroy, index, show)
 
 ### Views
+* locations/show.json.jbuilder
 
 ## Backbone
 ### Models
