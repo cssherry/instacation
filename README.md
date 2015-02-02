@@ -10,9 +10,9 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 - [ ] Create accounts and sessions
 - [ ] Create/delete albums
 - [ ] Upload/delete photos
-- [ ] Rearrange photos
 - [ ] Tag albums with locations
 - [ ] Add captions/tags to photos
+- [ ] Rearrange photos
 - [ ] View a user's page
 - [ ] Subscribe to users or locations
 - [ ] View a feed of subscribed users/locations
@@ -31,14 +31,12 @@ I'll create the user authentication framework that will allow people to sign up,
 
 [Details][phase-one]
 
-### Phase 2: JSON API and First Backbone Views (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
-models and collections that fetch data from those routes. By the end of this
-phase, the existing Rails views will have been ported over to Backbone.
+### Phase 2: Create Albums and Photos JSON API and Backbone Views (~2 days)
+I will create API routes for first albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
+### Phase 3: Editing and Tagging Albums (~1 day)
 I plan to use third-party libraries to add functionality to the `PostForm` and
 `PostShow` views in this phase. First I'll need to add a Markdown editor to the
 `PostForm`, and make sure that the Markdown is properly escaped and formatted in
@@ -47,7 +45,7 @@ users can add images to blog posts.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
+### Phase 4: Editing and Tagging Photos (~1 day)
 I'll start by adding a `feed` route that uses the `current_user`'s
 `subscribed_blogs` association to serve a list of blog posts ordered
 chronologically. On the Backbone side, I'll make a `FeedPosts` collection that
@@ -56,7 +54,7 @@ collection. Ultimately, this will be the page users see after logging in.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
+### Phase 5: Subscribing to Users/Albums and Creating Feed (~1 day)
 I'll need a `search` route that accepts a query in the params. The controller
 action will run two queries: one to find blogs where the `title` matches
 the search term, and another to find posts where one of their associated `Tag`s
@@ -71,6 +69,7 @@ that will display matching blogs in one column and matching posts in another.
 - [ ] Map albums by location for exploring
 - [ ] Like albums or photos, display counter of how many likes there are
 - [ ] Comment on albums and photos, display counter of how many comments there are
+- [ ] Tag users in photos and albums
 - [ ] Infinite scroll of albums and photos
 - [ ] Support for multiple open sessions
 - [ ] Alert user when albums/photos liked/commented
