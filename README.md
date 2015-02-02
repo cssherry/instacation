@@ -1,22 +1,21 @@
-# Flux-capacitr
+# Instacation
 
-[Heroku link][heroku]
+[Heroku link to be deployed][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: http://www.cssherry.com/
 
 ## Minimum Viable Product
-Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
+Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 
-- [x] Create accounts
-- [x] Create sessions (log in)
-- [x] Create blogs
-- [x] Create blog posts
-- [x] Tag blog posts
-- [x] View blogs and posts
-- [x] Subscribe to blogs
-- [x] View a feed of subscribed blogs
-- [x] Search for blogs by title
-- [x] Search for posts by tag
+- [ ] Create accounts and sessions
+- [ ] Create/delete albums
+- [ ] Upload/delete photos
+- [ ] Rearrange photos
+- [ ] Tag albums with locations
+- [ ] Add captions/tags to photos
+- [ ] View a user's page
+- [ ] Subscribe to users or locations
+- [ ] View a feed of subscribed users/locations
 
 ## Design Docs
 * [View Wireframes][views]
@@ -27,12 +26,8 @@ Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Basic Blogs and Posts (~1 day)
-I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs and
-posts using simple text forms in Rails views. The most important part of this
-phase will be pushing the app to Heroku and ensuring that everything works
-before moving on to phase 2.
+### Phase 1: User Authentication (~0.5 day)
+I'll create the user authentication framework that will allow people to sign up, sign in, and view albums. This will not be required to view public albums, but will be required to view private albums.
 
 [Details][phase-one]
 
@@ -70,19 +65,18 @@ that will display matching blogs in one column and matching posts in another.
 
 [Details][phase-five]
 
-### Bonus Features (TBD)
-- [ ] Activity history for posts (e.g. likes, reblogs, taggings)
-- [x] Custom urls for blogs
-- [x] 'Like' button and counter for `PostShow` view
-- [x] Pagination of the `FeedShow`, `SearchShow`, and `BlogShow` views
-- [ ] Post types with distinct views (image posts, quote posts, etc)
-- [ ] Reblogging
+### Bonus Features
+- [ ] Search for albums by location
+- [ ] Search for photos by caption
+- [ ] Map albums by location for exploring
+- [ ] Like albums or photos, display counter of how many likes there are
+- [ ] Comment on albums and photos, display counter of how many comments there are
+- [ ] Infinite scroll of albums and photos
 - [ ] Support for multiple open sessions
-- [x] User avatars
+- [ ] Alert user when albums/photos liked/commented
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-
