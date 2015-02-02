@@ -1,6 +1,6 @@
 # Schema Information
 
-## blogs
+## albums
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -14,7 +14,7 @@ id          | integer   | not null, primary key
 blog_id     | integer   | not null, foreign key (references blogs)
 follower_id | integer   | not null, foreign key (references users)
 
-## posts
+## photos
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -42,4 +42,3 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
-

@@ -11,7 +11,7 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 - [ ] Create/delete albums
 - [ ] Upload/delete photos
 - [ ] Tag albums with locations
-- [ ] Add captions/tags to photos
+- [ ] Add captions to photos
 - [ ] Rearrange photos
 - [ ] View a user's page
 - [ ] Subscribe to users or locations
@@ -32,38 +32,22 @@ I'll create the user authentication framework that will allow people to sign up,
 [Details][phase-one]
 
 ### Phase 2: Create Albums and Photos JSON API and Backbone Views (~2 days)
-I will create API routes for first albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes.
+I will create API routes for albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Tagging Albums (~1 day)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: Editing and Tagging Albums/Photos (~2.5 day)
+I will use Filepicker for uploading photos to the website. Then, a third party api (probably Google Places), will be used to tag albums with locations. Tagged locations will collect all the albums from that location and display them.
 
 [Details][phase-three]
 
-### Phase 4: Editing and Tagging Photos (~1 day)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedPosts` collection that
-fetches from the new route, then create a `FeedShow` view that uses the new
-collection. Ultimately, this will be the page users see after logging in.
+### Phase 4: Subscribing to Users/Albums and Creating Feed (~1 day)
+Using the UserShow page, I'll add a set of views that include
 
 [Details][phase-four]
 
-### Phase 5: Subscribing to Users/Albums and Creating Feed (~1 day)
-I'll need a `search` route that accepts a query in the params. The controller
-action will run two queries: one to find blogs where the `title` matches
-the search term, and another to find posts where one of their associated `Tag`s
-matches the search term. In Backbone, I plan to implement a `SearchResults` view
-that will display matching blogs in one column and matching posts in another.
-
-[Details][phase-five]
-
 ### Bonus Features
+- [ ] Use captions to create tags for photos
 - [ ] Search for albums by location
 - [ ] Search for photos by caption
 - [ ] Map albums by location for exploring
@@ -78,4 +62,3 @@ that will display matching blogs in one column and matching posts in another.
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
-[phase-five]: ./docs/phases/phase5.md
