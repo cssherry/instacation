@@ -79,9 +79,4 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
-  <<: *default
-  database: Instacation_production
-  username: Instacation
-  password: <%= ENV['INSTACATION_DATABASE_PASSWORD'] %>
+#Heroku doesn't need any information from this file
