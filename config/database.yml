@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: Instacation_development
+  database: instacation_development
   host: localhost
   username: sherry
 

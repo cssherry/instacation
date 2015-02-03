@@ -43,8 +43,8 @@ location_id | integer   | not null, foreign key (references location)
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-first_name      | string    | not null, unique
-last_name       | string    | not null, unique
+first_name      | string    | not null
+last_name       | string    | not null
 username        | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
