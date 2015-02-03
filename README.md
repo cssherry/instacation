@@ -26,7 +26,7 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 ## Implementation Timeline
 
 ### Phase 1: User Authentication (~0.5 day)
-I'll create the user authentication framework that will allow people to sign up, sign in, and view albums. This will not be required to view public albums, but will be required to view private albums.
+I'll create the user authentication framework that will allow people to sign up, sign in, and view albums. Initially all albums will be public.
 
 [Details][phase-one]
 
@@ -46,6 +46,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 [Details][phase-four]
 
 ### Bonus Features
+- [ ] Allow only followers and owner to see an album. Owner will be able to share albums with others using url/passphrase.
 - [ ] Map albums by location for exploring
 - [ ] Search for albums by location
 - [ ] Search for photos by caption

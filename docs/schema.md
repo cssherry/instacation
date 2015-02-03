@@ -6,13 +6,13 @@ column name | data type | details
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
-privacy     | boolean   | not null
 photo_id    | integer   | not null, foreign key (references thumbnail pic)
 
 ## followings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
+follower_id | string    | not null, foreign key (references users)
 follow_type | string    | not null
 follow_id   | integer   | not null, foreign key (references users or locations)
 
@@ -23,7 +23,8 @@ id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 album_id    | integer   | not null, foreign key (references album)
 caption     | string    |
-album_id    | integer   | default 0.0
+order       | integer   | default 0.0
+photo_url   | string    | not null
 
 ## locations
 column name | data type | details
