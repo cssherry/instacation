@@ -1,0 +1,27 @@
+<h2>Sign Up</h2>
+
+<form action="<%= users_url %>" method="post">
+  <%= auth_token_input %>
+  <label>
+    <p>Username</p>
+    <input type="text" name="user[username]" value="">
+  </label>
+
+  <label>
+    Name
+    <input type="text" name="user[username]" value="" placeholder='First'>
+    <input type="text" name="user[username]" value="" placeholder='Last'>
+  </label>
+
+  <label>
+    Create a Password
+    <input type="password" name="user[password]" value="">
+  </label>
+
+  <label>
+    Confirm Password
+    <input type="password" name="password_confirm" value="">
+  </label>
+
+  <input type="submit" value="Sign Up">
+</form>
