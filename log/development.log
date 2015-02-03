@@ -448,3 +448,29 @@ Started GET "/" for 127.0.0.1 at 2015-02-03 14:23:55 -0800
 Processing by SessionsController#new as HTML
   Rendered sessions/new.html.erb within layouts/application (0.7ms)
 Completed 200 OK in 2223ms (Views: 2222.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-03 14:26:10 -0800
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 48ms (Views: 47.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-02-03 14:29:28 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"TLR21u0b/+s/E+oLJhZNS4BAQq/0UTd5qQRhmbTt8ZM=", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."username" = 'test' LIMIT 1
+  Rendered sessions/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 62ms (Views: 48.6ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2015-02-03 14:29:37 -0800
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 51ms (Views: 45.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-03 14:29:45 -0800
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 40ms (Views: 39.7ms | ActiveRecord: 0.0ms)
