@@ -55,7 +55,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Comment on albums and photos, display counter of how many comments there are
 - [ ] Tag users in photos and albums
 - [ ] Infinite scroll of albums and photos
-- [ ] Support for multiple open sessions
+- [ ] Support for multiple open sessionI or authentication through omniauth
 - [ ] Alert user when albums/photos liked/commented
 
 [phase-one]: ./docs/phases/phase1.md
