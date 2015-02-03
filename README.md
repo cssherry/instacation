@@ -31,12 +31,12 @@ I'll create the user authentication framework that will allow people to sign up,
 [Details][phase-one]
 
 ### Phase 2: Create Albums and Photos JSON API and Backbone Views (~2 days)
-I will create API routes for albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes.
+I will create API routes for albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes. Filepicker will be implemented for uploading photos to the website.
 
 [Details][phase-two]
 
 ### Phase 3: Editing and Tagging Albums/Photos (~2.5 day)
-I will use Filepicker for uploading photos to the website. Then, a third party api (probably Google Places), will be used to tag albums with locations. Tagged locations will collect all the albums from that location and display them.
+A third party api (probably Google Places), will be used to tag albums with locations. Tagged locations will collect all the albums from that location and display them.
 
 [Details][phase-three]
 
@@ -61,3 +61,24 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 [phase-two]: ./docs/phases/phase2.md
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
+
+## Technology used:
+### Rails
+- CRUD functions
+- Complex forms
+- self-implemented Authentication
+- Bootstrap
+- Partials, helpers
+- Routing
+- File upload (paperclip or filepicker.io)
+- Pagination
+- 3rd Party APIs
+- delayed_job
+- *Considering: ActionMailer/Sendgrid, omniauth*
+
+### JavaScript/Backbone
+- jQuery
+  - jQuery UI: draggable/sortable
+- AJAX
+- Backbone
+- Custom API for Backbone.

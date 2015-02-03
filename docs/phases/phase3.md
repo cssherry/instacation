@@ -22,5 +22,4 @@
 * LocationShow (composite view, contains AlbumItem views)
 
 ## Gems/Libraries
-* Filepicker
 * Google Places API

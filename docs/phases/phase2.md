@@ -29,3 +29,4 @@ Api::PhotosController (create, destroy, show, update)
 * AlbumForm
 
 ## Gems/Libraries
+* Filepicker
