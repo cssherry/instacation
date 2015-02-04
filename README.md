@@ -7,7 +7,7 @@
 ## Minimum Viable Product
 Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 
-- [ ] Create accounts and sessions
+- [X] Create accounts and sessions
 - [ ] Create/delete albums
 - [ ] Upload/delete photos
 - [ ] Tag albums with locations
@@ -56,6 +56,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Tag users in photos and albums
 - [ ] Infinite scroll of albums and photos
 - [ ] Support for multiple open sessionI or authentication through omniauth
+- [ ] Allow user to edit their own information
 - [ ] Alert user when albums/photos liked/commented
 
 [phase-one]: ./docs/phases/phase1.md
