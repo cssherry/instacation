@@ -20,7 +20,6 @@ follow_id   | integer   | not null, foreign key (references users or locations)
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
 album_id    | integer   | not null, foreign key (references album)
 caption     | string    |
 order       | integer   | default 0

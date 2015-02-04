@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  first_name      :string(255)      not null
+#  last_name       :string(255)      not null
+#  username        :string(255)      not null
+#  password_digest :string(255)      not null
+#  session_token   :string(255)      not null
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 class User < ActiveRecord::Base
   validates :first_name, :last_name, :username, :password_digest, :session_token, presence: true
   validates :password, length: {minimum: 6, allow_nil: true  }
@@ -6,6 +20,13 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   after_initialize :ensure_session_token
+
+  has_many :albums,
+    class_name: 'Album',
+    foreign_key: :owner_id,
+    primary_key: :id
+
+  has_many :photos, through: :albums, source: :photo
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
