@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :user_data, only: [:show]
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
+  resources :albums
+  resources :photos
 end

@@ -23,7 +23,7 @@ id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 album_id    | integer   | not null, foreign key (references album)
 caption     | string    |
-order       | integer   | default 0.0
+order       | integer   | default 0
 photo_url   | string    | not null
 
 ## locations

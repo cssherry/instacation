@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   validates :first_name, :last_name, :username, :password_digest, :session_token, presence: true
   validates :password, length: {minimum: 6, allow_nil: true  }
+  validate :unique_username?, on: :create
 
   attr_reader :password
 
@@ -22,14 +23,28 @@ class User < ActiveRecord::Base
   end
 
   def reset_token!
-    self.session_token = SecureRandom.urlsafe_base64(16)
+    self.session_token = unrepeated_session_token
     self.save!
     self.session_token
   end
 
 private
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64(16)
+  def unique_username?
+    if self.class.find_by(username: self.username)
+      errors[:username] << 'already taken'
+    end
   end
 
+  def ensure_session_token
+    self.session_token ||= unrepeated_session_token
+  end
+
+  def unrepeated_session_token
+    session_token = SecureRandom.urlsafe_base64(16)
+    until self.class.find_by(session_token: session_token).nil?
+      session_token = SecureRandom.urlsafe_base64(16)
+    end
+
+    return session_token
+  end
 end

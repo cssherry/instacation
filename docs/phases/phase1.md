@@ -6,7 +6,7 @@
 
 ### Controllers
 * UsersController (create, new)
-* UserDataController (show, edit)
+* UserDataController (show)
 * SessionsController (create, new, destroy)
 
 ### Views
