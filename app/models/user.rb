@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   after_initialize :ensure_session_token
+  before_save :capitalize_name, :downcase_username
 
   has_many :albums,
     class_name: 'Album',
@@ -67,5 +68,14 @@ private
     end
 
     return session_token
+  end
+
+  def downcase_username
+    self.username.downcase!
+  end
+
+  def capitalize_name
+    self.first_name.capitalize!
+    self.last_name.capitalize!
   end
 end
