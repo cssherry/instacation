@@ -11,8 +11,13 @@ module Api
 
     def destroy
       @album = Album.find(params[:id])
-      @album.destroy
-      render json: {}
+
+      if editable?(@album)
+        @album.destroy
+        render json: {}
+      else
+        render json: ["You can't delete this photo"], status: 403
+      end
     end
 
     def show
@@ -21,14 +26,23 @@ module Api
 
     def update
       @album = Album.find(params[:id])
-      if @album.update_attributes(album_params)
-        render json: @album
+
+      if editable?(@album)
+        if @album.update_attributes(album_params)
+          render json: @album
+        else
+          render json: @album.errors.full_messages, status: :unprocessable_entity
+        end
       else
-        render json: @album.errors.full_messages, status: :unprocessable_entity
+        render json: ["You can't edit this photo"], status: 403
       end
     end
 
     private
+
+    def editable?(album)
+      current_user.id == album.user.id
+    end
 
     def album_params
       params.require(:album).permit(:title).merge(owner_id: params[:id])
