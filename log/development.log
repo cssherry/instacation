@@ -4573,3 +4573,43 @@ Processing by SessionsController#create as HTML
   [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
   Rendered layouts/_header.html.erb (1.4ms)
 Completed 200 OK in 146ms (Views: 79.4ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-02-03 17:09:00 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"TLR21u0b/+s/E+oLJhZNS4BAQq/0UTd5qQRhmbTt8ZM=", "user"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."username" = 'test' LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'Pc7ByKmKsmIrdro53bXZng' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 2  [["session_token", "Pc7ByKmKsmIrdro53bXZng"], ["updated_at", "2015-02-04 01:09:00.544868"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 68ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-03 17:09:00 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'Pc7ByKmKsmIrdro53bXZng' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 91ms (Views: 89.9ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-02-03 17:09:02 -0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"TLR21u0b/+s/E+oLJhZNS4BAQq/0UTd5qQRhmbTt8ZM="}
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'Pc7ByKmKsmIrdro53bXZng' LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'S_uunK2cMkli4P5hbsvj3Q' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = 2  [["session_token", "S_uunK2cMkli4P5hbsvj3Q"], ["updated_at", "2015-02-04 01:09:02.211960"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 8ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-02-03 17:09:02 -0800
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" IS NULL LIMIT 1
+  Rendered layouts/_header.html.erb (1.5ms)
+Completed 200 OK in 86ms (Views: 84.4ms | ActiveRecord: 0.4ms)
