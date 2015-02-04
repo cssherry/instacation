@@ -6,20 +6,23 @@
 * Photo
 
 ### Controllers
-Api::AlbumsController (create, destroy, index, show, update)
+Api::AlbumsController (create, destroy, show, update)
 Api::PhotosController (create, destroy, show, update)
 
 ### Views
-* albums/show.json.jbuilder
+* api/albums/show.json.jbuilder
+* api/albums/_album.json.jbuilder
+* api/photos/_photo.json.jbuilder
 
 ## Backbone
 ### Models
 * Album (parses nested `photo` association)
+* UserData (parses nested `album` and `photo` association)
 * Photo
 
 ### Collections
-* Album
-* Photo
+* Albums
+* Photos
 
 ### Views
 * UserShow (composite view, contains AlbumItem subviews, and link to AlbumForm)
