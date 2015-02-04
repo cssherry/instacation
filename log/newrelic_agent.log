@@ -433,3 +433,4 @@ Migrations are pending. To resolve this issue, run:
 [02/03/15 17:59:05 -0800 Sherrys-MacBook-Pro.local (24625)] INFO : Will re-attempt in 60 seconds
 [02/03/15 18:00:09 -0800 Sherrys-MacBook-Pro.local (24625)] ERROR : Unknown license key
 [02/03/15 18:00:09 -0800 Sherrys-MacBook-Pro.local (24625)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/04/15 09:07:54 -0800 Sherrys-MacBook-Pro.local (24625)] INFO : Starting Agent shutdown
