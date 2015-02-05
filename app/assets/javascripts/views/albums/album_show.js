@@ -4,8 +4,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.model.fetch({
       success: function () {
-        this.model.albums().each( function (albumItem) {
-          this.addAlbumItems(albumItem, this.addSubviewEnd);
+        this.model.photos().each( function (photoItem) {
+          this.addPhotoItems(photoItem, this.addSubviewEnd);
         }.bind(this));
         this.render();
       }.bind(this)
@@ -13,50 +13,49 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
 
     this.editable = options.editable;
 
-    this.listenTo(this.model.albums(), 'add', this.render);
-    this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
+    this.listenTo(this.model.photos(), 'add', this.render);
+    this.listenTo(this.model.photos(), 'remove', this.removePhotoItem);
   },
 
   events: {
-    'click .album-delete':'deleteAlbum',
-    'click .open-album-form': 'createAlbumForm',
-    'click .close-form': 'closeAlbumForm',
+    'click .open-photo-form': 'createPhotoForm',
+    'click .close-form': 'closePhotoForm',
   },
 
   render: function(){
-    var content = this.template({user: this.model, editable: this.editable});
+    var content = this.template({album: this.model, editable: this.editable});
     this.$el.html(content);
     this.attachSubviews();
     return this;
   },
 
-  addAlbumItems: function (albumItem, fn) {
-    var albumView = new Instacation.Views.AlbumItem({model: albumItem, editable: this.editable});
-    fn.call(this, ".albums", albumView);
+  addPhotoItems: function (photoItem, fn) {
+    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable});
+    fn.call(this, ".photos", photoView);
   },
 
-  removeAlbumItem: function (album) {
-    var view = _(this.subviews('.albums')).findWhere({ model: album });
-    this.removeSubview(".albums", view);
+  removePhotoItem: function (photo) {
+    var view = _(this.subviews('.photos')).findWhere({ model: photo });
+    this.removeSubview(".photos", view);
     this.render();
   },
 
-  createAlbumForm: function (event) {
+  createPhotoForm: function (event) {
     event.preventDefault();
-    var albumForm = new Instacation.Views.AlbumForm({userView: this});
-    this.addSubviewFront(".album-form", albumForm);
-    this.$('.open-album-form').html('Close form');
-    this.$('.open-album-form').toggleClass('open-album-form close-form');
+    var photoForm = new Instacation.Views.PhotoForm({albumView: this});
+    this.addSubviewFront(".photo-form", photoForm);
+    this.$('.open-photo-form').html('Close form');
+    this.$('.open-photo-form').toggleClass('open-photo-form close-form');
   },
 
-  closeAlbumForm: function (event) {
+  closePhotoForm: function (event) {
     event.preventDefault();
-    this.hideAlbumForm();
+    this.hidePhotoForm();
   },
 
-  hideAlbumForm: function () {
-    this.$('.album-form').empty();
-    this.$('.close-form').html('Add a new album');
-    this.$('.close-form').toggleClass('open-album-form close-form');
+  hidePhotoForm: function () {
+    this.$('.photo-form').empty();
+    this.$('.close-form').html('Add a new photo');
+    this.$('.close-form').toggleClass('open-photo-form close-form');
   },
 });

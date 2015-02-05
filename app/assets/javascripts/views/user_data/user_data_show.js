@@ -18,7 +18,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click .album-delete':'deleteAlbum',
     'click .open-album-form': 'createAlbumForm',
     'click .close-form': 'closeAlbumForm',
   },

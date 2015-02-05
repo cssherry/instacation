@@ -1,5 +1,13 @@
 <form class='photo-create'>
-  <input type="text" name="photo[title]" placeholder='Photo Caption'>
+  <input type="text" name="photo[caption]" placeholder='Photo Caption'>
+  <br>
+  <input type="filepicker"
+         name="photo[photo_url]"
+         data-fp-mimetype="image/*"
+         data-fp-button-text="Choose Image"
+         data-fp-button-class="btn btn-default"
+         data-fp-option-multiple="true"
+         data-fp-services="COMPUTER"/>
   <br>
   <button>Create photo</button>
 </form>

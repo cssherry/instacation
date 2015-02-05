@@ -1,4 +1,4 @@
-Instacation.Collections.UserData = Backbone.Collection.extend({
+Instacation.Collections.Photos = Backbone.Collection.extend({
 
   model: Instacation.Models.Photo,
 

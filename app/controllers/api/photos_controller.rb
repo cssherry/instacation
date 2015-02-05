@@ -1,7 +1,7 @@
 module Api
   class PhotosController < ApiController
     def create
-      @photo = Album.find(params[:id]).photos.new(photo_params)
+      @photo = Photo.new(photo_params)
       if @photo.save
         render json: @photo
       else
@@ -44,7 +44,7 @@ module Api
     end
 
     def photo_params
-      params.require(:photo).permit(:caption, :url).merge(album_id: params[:id])
+      params.require(:photo).permit(:caption, :photo_url, :album_id)
     end
   end
 end
