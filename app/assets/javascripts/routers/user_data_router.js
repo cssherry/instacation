@@ -5,7 +5,8 @@ Instacation.Routers.UserData = Backbone.Router.extend({
 
   routes: {
     '': 'currentUserShow',
-    'users/:id': 'userDataShow'
+    'users/:id': 'userDataShow',
+    'users/:userId/albums/:albumId': 'albumShow'
   },
 
   currentUserShow: function () {
@@ -17,6 +18,12 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     var editable = id === Instacation.currentUserId;
     var userShow = new Instacation.Views.UserDataShow({model: user, editable: editable});
     this._swapview(userShow);
+  },
+
+  albumShow: function (userId, albumShow) {
+    var album = new Instacation.Models.Album({id: id});
+    var editable = userId === Instacation.currentUserId;
+    
   },
 
   _swapview: function (newView) {
