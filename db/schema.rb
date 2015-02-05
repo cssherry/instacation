@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20150204193134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  
+
   create_table "albums", force: true do |t|
     t.integer  "owner_id",   null: false
     t.string   "title",      null: false

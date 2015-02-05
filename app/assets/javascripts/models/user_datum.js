@@ -10,9 +10,9 @@ Instacation.Models.UserDatum = Backbone.Model.extend({
   },
 
   albums: function () {
-    if (!this._list) {
-      this._list = new Instacation.Collections.Albums();
+    if (!this._albums) {
+      this._albums = new Instacation.Collections.Albums();
     }
-    return this._list.sort();
+    return this._albums.sort();
   },
 });

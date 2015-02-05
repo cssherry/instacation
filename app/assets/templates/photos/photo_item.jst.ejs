@@ -1,8 +1,16 @@
-<a href="<%= '#albums/' + photo.get('album_id') + '/photos/' + photo.id %>" >
-  <%= photo.escape('caption') %>
-</a>
+  <div class='thumbnail'>
+    <a href="<%= '#albums/' + photo.get('album_id') + '/photos/' + photo.id %>" >
+      <img src="<%= photo.get('photo_url') %>" alt="<%= photo.get('caption') %>" /><br>
+    </a>
 
-<% if (editable) { %>
-<button class='delete-photo'> x </button>
-<a class='edit-photo'> edit </a>
-<% } %>
+    <p class='caption'>
+      <% if (photo.escape('caption')) { %>
+        <%= photo.escape('caption') %>
+      <% } %>
+    </p>
+
+    <% if (editable) { %>
+      <a href="#" class="btn btn-primary delete-photo" role="button"> x </a>
+      <a href='#' class='btn btn-primary edit-photo' role="button"> edit </a>
+    <% } %>
+  </div>

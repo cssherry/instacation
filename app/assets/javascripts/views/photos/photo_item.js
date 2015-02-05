@@ -6,10 +6,11 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
     this.editable = options.editable;
   },
 
-  tagName: 'div class="photo-item"',
+  tagName: 'div class="photo-item col-sm-6 col-md-4 col-lg-2"',
 
   events: {
     'click .delete-photo':'destroy',
+    'click .edit-photo': 'editItem',
   },
 
   render: function(){
@@ -18,7 +19,12 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
     return this;
   },
 
+  editItem: function () {
+    var form = this.$('.caption');
+  },
+
   destroy: function (event) {
+    event.preventDefault();
     this.model.destroy();
   },
 });

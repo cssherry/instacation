@@ -1,7 +1,19 @@
-<a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
-  <%= album.escape('title') %>
-</a>
+<div class='thumbnail'>
+  <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
+    <h3><%= album.escape('title') %></h3>
+    <% if(photo) { %>
+      <img src="<%= photo.get('photo_url') %>" alt="<%= photo.get('caption') %>"/></a>
+    <% } else { %>
+      </a>
+      <p><i>No Images in this Album</i></p>
+    <% } %>
 
-<% if (editable) { %>
-<button class='delete-album'> x </button>
-<% } %>
+  <p class="title">
+
+  </p>
+
+  <% if (editable) { %>
+    <a href="#" class="btn btn-primary delete-album"> x </a>
+    <a href='#' class='btn btn-primary edit-album' role="button"> edit </a>
+  <% } %>
+</div>

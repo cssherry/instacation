@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+
+
+body {
+  padding: 70px;
+  height: 100%;
+}
+
+.container, .backdrop, .main {
+  height: 100%;
+}

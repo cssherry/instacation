@@ -9,6 +9,13 @@ Instacation.Models.Album = Backbone.Model.extend({
     return jsonObject;
   },
 
+  initialize: function (object) {
+    if (object.photos) {
+      this.photos().set(object.photos);
+      delete(object.cards);
+    }
+  },
+
   photos: function () {
     if (!this._photos) {
       this._photos = new Instacation.Collections.Photos();

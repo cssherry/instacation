@@ -1,13 +1,12 @@
 <form class='photo-create'>
   <input type="text" name="photo[caption]" placeholder='Photo Caption'>
   <br>
-  <input type="filepicker"
-         name="photo[photo_url]"
-         data-fp-mimetype="image/*"
-         data-fp-button-text="Choose Image"
-         data-fp-button-class="btn btn-default"
-         data-fp-option-multiple="true"
-         data-fp-services="COMPUTER"/>
+  <input type="filepicker-dragdrop"
+         data-fp-mimetypes="image/*"
+         data-fp-container="modal"
+         data-fp-multiple="true"
+         data-fp-services="BOX,COMPUTER,DROPBOX,FACEBOOK,GOOGLE_DRIVE,IMAGE_SEARCH,URL,WEBCAM"
+         name='photo[photo_url]'>
   <br>
   <button>Create photo</button>
 </form>
