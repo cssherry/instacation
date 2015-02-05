@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
+//= require filepicker
 //= require jquery.serializejson
 //= require_tree ./utils
 //= require_tree ../templates

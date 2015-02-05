@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'jquery-ui-rails'
 gem 'newrelic_rpm'
 gem 'bootstrap-sass'
-
+gem 'filepicker-rails'
+gem 'figaro'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

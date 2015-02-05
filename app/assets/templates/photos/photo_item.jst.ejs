@@ -1,0 +1,8 @@
+<a href="<%= '#albums/' + photo.get('album_id') + '/photos/' + photo.id %>" >
+  <%= photo.escape('title') %>
+</a>
+
+<% if (editable) { %>
+<button class='delete-photo'> x </button>
+<a class='edit-photo'> edit </a>
+<% } %>
