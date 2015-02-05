@@ -11,13 +11,12 @@ Api::PhotosController (create, destroy, show, update)
 
 ### Views
 * api/albums/show.json.jbuilder
-* api/albums/_album.json.jbuilder
 * api/photos/_photo.json.jbuilder
 
 ## Backbone
 ### Models
-* Album (parses nested `photo` association)
 * UserData (parses nested `album` and `photo` association)
+* Album (parses nested `photo` association)
 * Photo
 
 ### Collections

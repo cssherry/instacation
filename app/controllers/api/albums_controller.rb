@@ -1,7 +1,7 @@
 module Api
   class AlbumsController < ApiController
     def create
-      @album = User.find(params[:id]).albums.new(album_params)
+      @album = User.find(current_user.id).albums.new(album_params)
       if @album.save
         render json: @album
       else
@@ -45,7 +45,7 @@ module Api
     end
 
     def album_params
-      params.require(:album).permit(:title).merge(owner_id: params[:id])
+      params.require(:album).permit(:title).merge(owner_id: current_user.id)
     end
   end
 end
