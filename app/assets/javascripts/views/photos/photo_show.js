@@ -1,4 +1,4 @@
-Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
+Instacation.Views.PhotoShow = Backbone.CompositeView.extend({
   template: JST['photos/show'],
 
   initialize: function (options) {
