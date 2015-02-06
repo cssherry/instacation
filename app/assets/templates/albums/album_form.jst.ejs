@@ -1,5 +1,15 @@
 <form class='album-create'>
   <input type="text" name="album[title]" placeholder='Album Name'>
   <br>
+  <input type="text" name="photo[caption]" placeholder='Photo Caption'>
+  <br>
+  <input type="filepicker-dragdrop"
+         data-fp-mimetypes="image/*"
+         data-fp-button-text="Select some photos to add to the album"
+         data-fp-container="modal"
+         data-fp-multiple="true"
+         data-fp-services="BOX,COMPUTER,DROPBOX,FACEBOOK,GOOGLE_DRIVE,IMAGE_SEARCH,URL,WEBCAM"
+         name='photo[photo_url]'>
+  <br>
   <button>Create album</button>
 </form>
