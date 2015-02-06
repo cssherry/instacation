@@ -1,6 +1,13 @@
 <form class='album-create'>
-  <input type="text" name="album[title]" placeholder='Album Name'>
+  <input type="text"
+         name="album[title]"
+         placeholder='Album Name'
+         <% if(albumView) { %>
+           value='<%= albumView.model.escape('title') %>'
+         <% } %> >
   <br>
+
+  <% if(!albumView) { %>
   <input type="text" name="photo[caption]" placeholder='Photo Caption'>
   <br>
   <input type="filepicker-dragdrop"
@@ -11,5 +18,6 @@
          data-fp-services="BOX,COMPUTER,DROPBOX,FACEBOOK,GOOGLE_DRIVE,IMAGE_SEARCH,URL,WEBCAM"
          name='photo[photo_url]'>
   <br>
-  <button>Create album</button>
+  <% } %>
+  <button><%= albumView ? 'Edit Album' : 'Create Album' %></button>
 </form>

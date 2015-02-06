@@ -64,7 +64,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   reorderPhotos: function (event) {
   var photos = $(event.target).find('.photo-item');
   photos.each(function (indx, photo) {
-    var currentId = $('.photo-item').find('.caption').attr('id');
+    var currentId = $(photo).find('.caption').attr('id');
     var currentPhoto = this.model.photos().get(currentId);
     currentPhoto.save({order: indx});
   }.bind(this));

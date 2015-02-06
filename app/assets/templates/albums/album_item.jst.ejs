@@ -1,6 +1,6 @@
 <div class='thumbnail'>
   <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
-    <h3><%= album.escape('title') %></h3>
+    <h3 class='title'><%= album.escape('title') %></h3>
     <% if(photo) { %>
       <img src="<%= photo.get('photo_url') %>" alt="<%= photo.get('caption') %>"/></a>
     <% } else { %>
@@ -8,12 +8,11 @@
       <p><i>No Images in this Album</i></p>
     <% } %>
 
-  <p class="title">
-
-  </p>
-
   <% if (editable) { %>
     <a href="#" class="btn btn-primary delete-album"> x </a>
     <a href='#' class='btn btn-primary edit-album' role="button"> edit </a>
+    <div class='edit-album-form'>
+
+    </div>
   <% } %>
 </div>

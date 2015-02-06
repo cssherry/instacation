@@ -10,9 +10,9 @@ Instacation.Models.Album = Backbone.Model.extend({
   },
 
   initialize: function (object) {
-    if (object.photos) {
+    if (object && object.photos) {
       this.photos().set(object.photos);
-      delete(object.cards);
+      delete(object.photos);
     }
   },
 

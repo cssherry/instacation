@@ -6,6 +6,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
 
   initialize: function (options) {
     this.userView = options.userView;
+    this.albumView = options.albumView;
   },
 
   events: {
@@ -13,34 +14,63 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   render: function(){
-    var content = this.template();
+    var content = this.template({albumView: this.albumView});
     this.$el.html(content);
-    var $filePickerInput = this.$('input[type=filepicker-dragdrop]');
-    filepicker.constructWidget($filePickerInput[0]);
+    if (!this.albumView) {
+      var $filePickerInput = this.$('input[type=filepicker-dragdrop]');
+      filepicker.constructWidget($filePickerInput[0]);
+    }
     return this;
   },
 
   createAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-    var photoParams = $(event.currentTarget).serializeJSON().photo;
-    var photoUrls = photoParams.photo_url.split(",");
-    var album = new Instacation.Models.Album(albumParams);
-    album.save({},{
+
+    if (this.userView) {
+      var photoParams = $(event.currentTarget).serializeJSON().photo;
+      this.saveNewAlbum(albumParams, photoParams);
+    } else {
+      this.updateAlbum(albumParams);
+    }
+  },
+
+  saveNewAlbum: function (albumParams, photoParams) {
+    var album = new Instacation.Models.Album();
+    if (photoParams.photo_url === "") {
+      photoUrls = photoParams.photo_url.split(",");
+    } 
+    album.save(albumParams,{
       success: function(){
         this.userView.model.albums().add(album);
-        photoParams.album_id = album.id;
-        var photo = new Instacation.Models.Photo();
-        photoUrls.forEach(function (url) {
-            photoParams.photo_url = url;
-            photo.save(photoParams,{
-              success: function(){
-                album.photos().add(photo);
-                this.userView.addAlbumItems(album, this.userView.addSubviewFront);
-              }.bind(this)
-            });
-        }.bind(this));
+        photoUrls && this.saveAlbumPhotos(photoParams, photoUrls, album);
         this.$el.empty();
+      }.bind(this)
+    });
+  },
+
+  saveAlbumPhotos: function (photoParams, photoUrls) {
+    photoParams.album_id = album.id;
+    var photo = new Instacation.Models.Photo();
+    photoUrls.forEach(function (url, index) {
+      photoParams.photo_url = url;
+      photo.save(photoParams,{
+        success: function(){
+          album.photos().add(photo);
+          if (index === 0) {
+            this.userView.addAlbumItems(album, this.userView.addSubviewFront);
+          }
+        }.bind(this)
+      });
+    }.bind(this));
+  },
+
+  updateAlbum: function (albumParams) {
+    var album = this.albumView.model;
+    album.save(albumParams,{
+      success: function(){
+        this.albumView.$('.title').html(album.escape('title'));
+        this.albumView.hideAlbumForm();
       }.bind(this)
     });
   },

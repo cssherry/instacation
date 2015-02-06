@@ -1,4 +1,4 @@
-Instacation.Views.AlbumItem = Backbone.View.extend({
+Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
 
   template: JST['albums/album_item'],
 
@@ -10,6 +10,8 @@ Instacation.Views.AlbumItem = Backbone.View.extend({
 
   events: {
     'click .delete-album':'destroy',
+    'click .edit-album': 'editAlbum',
+    'click .close-album-form': 'closeEditAlbum',
   },
 
   render: function(){
@@ -21,5 +23,24 @@ Instacation.Views.AlbumItem = Backbone.View.extend({
   destroy: function (event) {
     event.preventDefault();
     this.model.destroy();
+  },
+
+  editAlbum: function (event) {
+    event.preventDefault();
+    var albumForm = new Instacation.Views.AlbumForm({albumView: this});
+    this.addSubviewFront(".edit-album-form", albumForm);
+    this.$('.edit-album').html('close form');
+    this.$('.edit-album').toggleClass('edit-album close-album-form');
+  },
+
+  hideAlbumForm: function () {
+    this.$('.edit-album-form').empty();
+    this.$('.close-album-form').html('edit');
+    this.$('.close-album-form').toggleClass('edit-album close-album-form');
+  },
+
+  closeEditAlbum: function (event) {
+    event.preventDefault();
+    this.hideAlbumForm();
   },
 });
