@@ -1,14 +1,10 @@
+<h1><%= photo.escape('caption') %></h1>
 <div class='photo'>
   <a href="<%= photo.escape('photo_url') %>">
-    <img src="<%= photo.escape('photo_url') %>" alt="<%= photo.get('caption') %>" />
+    <img src="<%= photo.escape('photo_url') %>" alt="<%= photo.escape('caption') %>" />
   </a>
 </div>
 
-<% if (editable) { %>
-  <a href='#' class="open-photo-form">Edit photo</a>
-
-  <div class='photo-form'></div>
-<% } %>
 <a href="<%= '#users/' +  userId + '/albums/' + photo.escape('album_id') %>">
   Back to album
 </a>

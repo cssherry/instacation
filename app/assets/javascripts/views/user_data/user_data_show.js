@@ -54,7 +54,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   },
 
   hideAlbumForm: function () {
-    this.$('.album-form').empty();
+    var view = this.subviews('.album-form')[0];
+    this.removeSubview(".album-form", view);
     this.$('.close-form').html('Add a new album');
     this.$('.close-form').toggleClass('open-album-form close-form');
   },

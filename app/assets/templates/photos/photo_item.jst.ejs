@@ -1,6 +1,6 @@
   <div class='thumbnail' >
-    <a href="<%= '#users/' + userId + '/albums/' + photo.get('album_id') + '/photos/' + photo.id %>" >
-      <img src="<%= photo.get('photo_url') %>" alt="<%= photo.get('caption') %>" /><br>
+    <a href="<%= '#users/' + userId + '/albums/' + photo.escape('album_id') + '/photos/' + photo.id %>" >
+      <img src="<%= photo.escape('photo_url') %>" alt="<%= photo.escape('caption') %>" /><br>
     </a>
 
     <p class='caption' id='<%= photo.id %>'>

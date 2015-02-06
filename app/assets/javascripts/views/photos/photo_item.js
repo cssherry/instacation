@@ -12,6 +12,7 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
   events: {
     'click .delete-photo':'destroy',
     'click .edit-photo': 'editItem',
+    'click .close-photo-form': 'closeEditPhoto',
   },
 
   render: function(){
@@ -20,12 +21,28 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
     return this;
   },
 
-  editItem: function () {
-    var form = this.$('.caption');
-  },
-
   destroy: function (event) {
     event.preventDefault();
     this.model.destroy();
+  },
+
+  editPhoto: function (event) {
+    event.preventDefault();
+    var photoForm = new Instacation.Views.PhotoForm({photoView: this});
+    this.addSubviewFront(".edit-photo-form", photoForm);
+    this.$('.edit-photo').html('close form');
+    this.$('.edit-photo').toggleClass('edit-photo close-photo-form');
+  },
+
+  hidePhotoForm: function () {
+    var view = this.subviews('.edit-photo-form')[0];
+    this.removeSubview(".edit-photo-form", view);
+    this.$('.close-photo-form').html('edit');
+    this.$('.close-photo-form').toggleClass('edit-photo close-photo-form');
+  },
+
+  closeEditPhoto: function (event) {
+    event.preventDefault();
+    this.hidePhotoForm();
   },
 });

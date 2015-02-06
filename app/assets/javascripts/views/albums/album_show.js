@@ -2,7 +2,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
   initialize: function (options) {
-    this.userId = this.model.get('owner_id');
+    this.userId = this.model.escape('owner_id');
     this.editable = this.userId == Instacation.currentUserId;
     this.model.photos().each( function (photoItem) {
       this.addPhotoItems(photoItem, this.addSubviewEnd);
@@ -53,7 +53,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   hidePhotoForm: function () {
-    this.$('.photo-form').empty();
+    var view = this.subviews('.photo-form')[0];
+    this.removeSubview(".photo-form", view);
     this.$('.close-form').html('Add a new photo');
     this.$('.close-form').toggleClass('open-photo-form close-form');
   },
@@ -62,7 +63,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   var photos = $(event.target).find('.photo-item');
   photos.each(function (indx, photo) {
     var currentId = $(photo).find('.caption').attr('id');
-    var currentPhoto = this.model.photos().get(currentId);
+    var currentPhoto = this.model.photos().escape(currentId);
     currentPhoto.save({order: indx});
   }.bind(this));
 },

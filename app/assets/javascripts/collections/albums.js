@@ -5,11 +5,11 @@ Instacation.Collections.Albums = Backbone.Collection.extend({
   url: 'api/albums',
 
   comparator: function (album) {
-    return new Date(Date.now()) - new Date(album.get('updated_at'));
+    return new Date(Date.now()) - new Date(album.escape('updated_at'));
   },
 
   fetchOrGet: function (id) {
-    var album = this.get(id);
+    var album = this.escape(id);
     if (!album) {
       album = new Instacation.Models.Album({ id: id });
       album.fetch({

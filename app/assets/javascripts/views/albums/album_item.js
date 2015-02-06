@@ -34,7 +34,8 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
   },
 
   hideAlbumForm: function () {
-    this.$('.edit-album-form').empty();
+    var view = this.subviews('.edit-album-form')[0];
+    this.removeSubview(".edit-album-form", view);
     this.$('.close-album-form').html('edit');
     this.$('.close-album-form').toggleClass('edit-album close-album-form');
   },
