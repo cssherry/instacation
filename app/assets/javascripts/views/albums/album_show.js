@@ -20,12 +20,14 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   events: {
     'click .open-photo-form': 'createPhotoForm',
     'click .close-form': 'closePhotoForm',
+    'sortstop .photos': 'reorderPhotos',
   },
 
   render: function(){
     var content = this.template({album: this.model, editable: this.editable});
     this.$el.html(content);
     this.attachSubviews();
+    this.$('.photos').sortable();
     return this;
   },
 
@@ -58,4 +60,13 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.$('.close-form').html('Add a new photo');
     this.$('.close-form').toggleClass('open-photo-form close-form');
   },
+
+  reorderPhotos: function (event) {
+  var photos = $(event.target).find('.photo-item');
+  photos.each(function (indx, photo) {
+    var currentId = $('.photo-item').find('.caption').attr('id');
+    var currentPhoto = this.model.photos().get(currentId);
+    currentPhoto.save({order: indx});
+  }.bind(this));
+},
 });
