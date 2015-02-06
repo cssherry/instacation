@@ -1,14 +1,21 @@
 <form class='photo-create'>
   <input type="text"
          name="photo[caption]"
-         placeholder='Photo Caption'>
+         placeholder='Photo Caption'
+         <% if(photoView) { %>
+           value='<%= photoView.model.escape('caption') %>'
+         <% } %> >
   <br>
   <input type="filepicker-dragdrop"
          data-fp-mimetypes="image/*"
-         data-fp-button-text="Select pictures"
-         data-fp-multiple="true"
          data-fp-services="BOX,COMPUTER,DROPBOX,FACEBOOK,GOOGLE_DRIVE,IMAGE_SEARCH,URL,WEBCAM"
-         name='photo[photo_url]'>
+         name='photo[photo_url]'
+         <% if(photoView) { %>
+           data-fp-button-text="Change picture"
+         <% } else { %>
+           data-fp-button-text="Select pictures"
+           data-fp-multiple="true"
+         <% } %> >
   <br>
   <button>Create photo</button>
 </form>

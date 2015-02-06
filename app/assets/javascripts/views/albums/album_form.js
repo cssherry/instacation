@@ -10,7 +10,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   events: {
-    'submit .album-create': 'createAlbum',
+    'submit .album-create': 'saveAlbum',
   },
 
   render: function(){
@@ -23,7 +23,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     return this;
   },
 
-  createAlbum: function (event) {
+  saveAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
 

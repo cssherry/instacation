@@ -1,4 +1,4 @@
-Instacation.Views.PhotoItem = Backbone.View.extend({
+Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
 
   template: JST['photos/photo_item'],
 
@@ -7,11 +7,11 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
     this.userId = options.userId;
   },
 
-  tagName: 'div class="photo-item col-sm-6 col-md-4 col-lg-2"',
+  tagName: 'div class="photo-item"',
 
   events: {
     'click .delete-photo':'destroy',
-    'click .edit-photo': 'editItem',
+    'click .edit-photo': 'editPhoto',
     'click .close-photo-form': 'closeEditPhoto',
   },
 
