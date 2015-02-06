@@ -1,16 +1,17 @@
-<h1> <%= album.escape('title') %> </h1>
+<h1>
+  <%= album.escape('title') %>
+  <% if (editable) { %>
+    <a href='#' class="btn btn-primary open-photo-form" role="button">+ New Photo</a>
+  <% } %>
+</h1>
 
 <div class='photos-and-create'>
+  <div class='photo-form'>
+
+  </div>
 
   <div class='photos row'>
 
 
   </div>
-
-<% if (editable) { %>
-  <a href='#' class="open-photo-form">Add a new photo</a>
-
-  <div class='photo-form'>
-
-  </div>
-<% } %>
+</div>

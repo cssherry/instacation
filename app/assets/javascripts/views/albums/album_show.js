@@ -55,7 +55,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   hidePhotoForm: function () {
     var view = this.subviews('.photo-form')[0];
     this.removeSubview(".photo-form", view);
-    this.$('.close-form').html('Add a new photo');
+    this.$('.close-form').html('+ New Photo');
     this.$('.close-form').toggleClass('open-photo-form close-form');
   },
 

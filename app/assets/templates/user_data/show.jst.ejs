@@ -1,16 +1,16 @@
-<h1> <%= user.escape('first_name') + " " + user.escape('last_name') %> </h1>
+<h1>
+  <%= user.escape('first_name') + " " + user.escape('last_name') %>
+  <% if (editable) { %>
+    <a href='#' class="btn btn-primary open-album-form" role="button">+ New Album</a>
+  <% } %>
+</h1>
 
 <div class='albums-and-create'>
+  <div class='album-form'>
+
+  </div>
 
   <div class='albums'>
 
 
   </div>
-
-<% if (editable) { %>
-  <a href='#' class="open-album-form">Add a new album</a>
-
-  <div class='album-form'>
-
-  </div>
-<% } %>
