@@ -8,17 +8,17 @@ Instacation.Views.PhotoShow = Backbone.CompositeView.extend({
       }.bind(this)
     });
 
-    this.editable = options.editable;
+    this.userId = options.userId;
+    this.editable = this.userId == Instacation.currentUserId;
   },
 
   events: {
     'click .open-photo-form': 'createPhotoForm',
     'click .close-form': 'closePhotoForm',
-    'sortstop .photos': 'reorderPhotos',
   },
 
   render: function(){
-    var content = this.template({photo: this.model, editable: this.editable});
+    var content = this.template({photo: this.model, editable: this.editable, userId: this.userId});
     this.$el.html(content);
     return this;
   },

@@ -4,6 +4,7 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
 
   initialize: function (options) {
     this.editable = options.editable;
+    this.userId = options.userId;
   },
 
   tagName: 'div class="photo-item col-sm-6 col-md-4 col-lg-2"',
@@ -14,7 +15,7 @@ Instacation.Views.PhotoItem = Backbone.View.extend({
   },
 
   render: function(){
-    var content = this.template({photo: this.model, editable: this.editable});
+    var content = this.template({photo: this.model, editable: this.editable, userId: this.userId});
     this.$el.html(content);
     return this;
   },

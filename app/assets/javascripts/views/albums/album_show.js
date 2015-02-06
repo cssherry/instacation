@@ -2,12 +2,13 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
   initialize: function (options) {
+    this.userId = this.model.get('owner_id');
+    this.editable = this.userId == Instacation.currentUserId;
     this.model.photos().each( function (photoItem) {
       this.addPhotoItems(photoItem, this.addSubviewEnd);
     }.bind(this));
     this.render();
 
-    this.editable = options.editable;
 
     this.listenTo(this.model.photos(), 'add', this.render);
     this.listenTo(this.model.photos(), 'remove', this.removePhotoItem);
@@ -28,7 +29,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   addPhotoItems: function (photoItem, fn) {
-    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable});
+    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId});
     fn.call(this, ".photos", photoView);
   },
 

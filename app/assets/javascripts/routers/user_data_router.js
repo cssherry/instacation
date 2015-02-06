@@ -7,7 +7,7 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     '': 'currentUserShow',
     'users/:id': 'userDataShow',
     'users/:userId/albums/:albumId': 'albumShow',
-    'albums/:albumId/photos/:photoId': 'photoShow'
+    'users/:userId/albums/:albumId/photos/:photoId': 'photoShow'
   },
 
   currentUserShow: function () {
@@ -17,17 +17,30 @@ Instacation.Routers.UserData = Backbone.Router.extend({
   userDataShow: function (id) {
     var user = new Instacation.Models.UserDatum({id: id});
     var editable = id === Instacation.currentUserId;
-    var userShowView = new Instacation.Views.UserDataShow({model: user, editable: editable});
-    this._swapview(userShowView);
+    user.fetch({
+      success: function () {
+        var userShowView = new Instacation.Views.UserDataShow({model: user, editable: editable});
+        this._swapview(userShowView);
+      }.bind(this)
+    });
   },
 
   albumShow: function (userId, albumId) {
     var album = new Instacation.Models.Album({id: albumId});
-    var editable = userId == Instacation.currentUserId;
     album.fetch({
       success: function () {
-        var albumShowView = new Instacation.Views.AlbumShow({model: album, editable: editable});
+        var albumShowView = new Instacation.Views.AlbumShow({model: album});
         this._swapview(albumShowView);
+      }.bind(this)
+    });
+  },
+
+  photoShow: function (userId, albumId, photoId) {
+    var photo = new Instacation.Models.Photo({id: photoId});
+    photo.fetch({
+      success: function () {
+        var photoShowView = new Instacation.Views.PhotoShow({model: photo, userId: userId});
+        this._swapview(photoShowView);
       }.bind(this)
     });
   },
