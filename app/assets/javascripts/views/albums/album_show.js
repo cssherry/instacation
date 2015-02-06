@@ -2,14 +2,10 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
   initialize: function (options) {
-    this.model.fetch({
-      success: function () {
-        this.model.photos().each( function (photoItem) {
-          this.addPhotoItems(photoItem, this.addSubviewEnd);
-        }.bind(this));
-        this.render();
-      }.bind(this)
-    });
+    this.model.photos().each( function (photoItem) {
+      this.addPhotoItems(photoItem, this.addSubviewEnd);
+    }.bind(this));
+    this.render();
 
     this.editable = options.editable;
 

@@ -1,0 +1,10 @@
+<div class='photo'>
+
+</div>
+
+<% if (editable) { %>
+  <a href='#' class="open-photo-form">Edit photo</a>
+
+  <div class='photo-form'></div>
+<% } %>
+<a href="#" data-album-id='<%= photo.escape('album_id') %>'>Back to album</a>
