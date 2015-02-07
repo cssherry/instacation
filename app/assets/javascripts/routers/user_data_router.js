@@ -16,7 +16,7 @@ Instacation.Routers.UserData = Backbone.Router.extend({
 
   userDataShow: function (id) {
     var user = new Instacation.Models.UserDatum({id: id});
-    var editable = id === Instacation.currentUserId;
+    var editable = parseInt(id) === Instacation.currentUserId;
     user.fetch({
       success: function () {
         var userShowView = new Instacation.Views.UserDataShow({model: user, editable: editable});
