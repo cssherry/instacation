@@ -12,6 +12,7 @@
 ### Views
 * users/new.html.erb
 * session/new.html.erb
+* user_data/show.json.jbuilder
 
 ## Backbone
 ### Models

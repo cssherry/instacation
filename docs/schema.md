@@ -28,14 +28,20 @@ cloudinary_id| string   | not null
 ## locations
 column name | data type | details
 ------------|-----------|-----------------------
-id          | integer   | not null, primary key
-label       | string    | not null, unique
+id          | integer   |
+street_number| integer   |
+street      | integer   |
+city        | integer   | not null
+state       | integer   | not null
+country     | string    | not null
+place_id    | string    |
 
-## taggings
+## location_taggings
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-album_id    | integer   | not null, foreign key (references album)
+taggable_id | integer   | not null, foreign key (references album or photo)
+taggable_type| string   | not null
 location_id | integer   | not null, foreign key (references location)
 
 ## users

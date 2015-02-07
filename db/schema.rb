@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206214226) do
+ActiveRecord::Schema.define(version: 20150207015052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,29 @@ ActiveRecord::Schema.define(version: 20150206214226) do
   end
 
   add_index "albums", ["owner_id"], name: "index_albums_on_owner_id", using: :btree
+
+  create_table "location_taggings", force: true do |t|
+    t.integer  "taggable_id", null: false
+    t.integer  "location_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "location_taggings", ["location_id"], name: "index_location_taggings_on_location_id", using: :btree
+  add_index "location_taggings", ["taggable_id"], name: "index_location_taggings_on_taggable_id", using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "street_number"
+    t.string   "street"
+    t.string   "city",          null: false
+    t.string   "state",         null: false
+    t.string   "country",       null: false
+    t.string   "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["place_id"], name: "index_locations_on_place_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "album_id",                  null: false
