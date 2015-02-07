@@ -1,5 +1,5 @@
 module Api
-  class LocationsController < ApplicationController
+  class LocationsController < ApiController
     def create
       @location = Location.new(location_params)
       if @location.save
