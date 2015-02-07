@@ -13,8 +13,10 @@
 class Album < ActiveRecord::Base
   validates :owner_id, :title, presence: true
 
-  has_one :location_tag, as: :taggable
-  has_one :location, through: :location_tag, source: :location
+  belongs_to :location,
+             class_name: 'Location',
+             foreign_key: :location_id,
+             primary_key: :id
 
   belongs_to :user,
              class_name: 'User',

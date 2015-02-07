@@ -14,8 +14,13 @@
 #
 
 class Location < ActiveRecord::Base
-  has_many :location_taggings,
-            class_name: 'LocationTagging',
-            foreign_key: :location_id,
-            primary_key: :id
+  has_many :albums,
+           class_name: 'Album',
+           foreign_key: :location_id,
+           primary_key: :id
+
+  has_many :photos,
+           class_name: 'Photo',
+           foreign_key: :location_id,
+           primary_key: :id
 end

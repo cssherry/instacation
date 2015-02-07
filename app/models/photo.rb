@@ -15,6 +15,9 @@
 
 class Photo < ActiveRecord::Base
   validates :album_id, :photo_url, :cloudinary_id, presence: true
-  has_many :location_tags, as: :taggable
+  belongs_to :location,
+             class_name: 'Location',
+             foreign_key: :location_id,
+             primary_key: :id
   belongs_to :album
 end
