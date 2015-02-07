@@ -7,8 +7,9 @@
          <% } %> >
   <br>
 
-  <input type="button" name="photo[photo_url]" value="">
+  <a href='#' class='btn btn-primary choose-photo' role="button"> Click or Drag Photos Here </a>
+  <div class='chosen-photos'>  </div>
 
   <br>
-  <button>Create photo</button>
+  <button><%= photoView ? 'Edit Photo' : 'Create Photo' %></button>
 </form>
