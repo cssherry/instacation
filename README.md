@@ -31,7 +31,7 @@ I'll create the user authentication framework that will allow people to sign up,
 [Details][phase-one]
 
 ### Phase 2: Create Albums and Photos JSON API and Backbone Views (~2 days)
-I will create API routes for albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes. Filepicker will be implemented for uploading photos to the website.
+I will create API routes for albums, then photos, while creating the corresponding Backbone models and collections to fetch the data from these routes. Cloudinary will be implemented for uploading photos to the website.
 
 [Details][phase-two]
 
@@ -72,7 +72,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - Bootstrap
 - Partials, helpers
 - Routing
-- File upload (paperclip or filepicker.io)
+- File upload (Cloudinary)
 - Pagination
 - 3rd Party APIs
 - delayed_job

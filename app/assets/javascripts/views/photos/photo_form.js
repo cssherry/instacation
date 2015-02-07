@@ -16,8 +16,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   render: function(){
     var content = this.template({photoView: this.photoView});
     this.$el.html(content);
-    var $filePickerInput = this.$('input[type=filepicker-dragdrop]');
-    filepicker.constructWidget($filePickerInput[0]);
+    // PUT CLOUDERY STUFF HERE
     return this;
   },
 

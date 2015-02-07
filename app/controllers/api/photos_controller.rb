@@ -44,7 +44,7 @@ module Api
     end
 
     def photo_params
-      params.require(:photo).permit(:caption, :photo_url, :album_id, :order, :created_at, :updated_at)
+      params.require(:photo).permit(:caption, :photo_url, :album_id, :order, :created_at, :updated_at, :cloudinary_id)
     end
   end
 end

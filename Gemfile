@@ -13,7 +13,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'newrelic_rpm'
 gem 'bootstrap-sass'
-gem 'filepicker-rails'
 gem 'figaro'
 gem 'bcrypt', '~> 3.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

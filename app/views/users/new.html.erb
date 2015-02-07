@@ -3,26 +3,30 @@
 <form action="<%= users_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>
-    <p>Username</p>
-    <input type="text" name="user[username]" value="">
-  </label>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="user[username]" value="">
+    <br>
+  </div>
 
-  <label>
-    <p>Name</p>
-    <input type="text" name="user[first_name]" value="" placeholder='First'>
-    <input type="text" name="user[last_name]" value="" placeholder='Last'>
-  </label>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="user[first_name]" value="" placeholder='First'>
+    <input type="text" class="form-control" id="name" name="user[last_name]" value="" placeholder='Last'>
+    <br>
+  </div>
 
-  <label>
-    <p>Create a Password</p>
-    <input type="password" name="user[password]" value="">
-  </label>
+  <div class="form-group">
+    <label for="password1">Create a Password</label>
+    <input type="password" class="form-control" id="password1" name="user[password]" value="">
+    <br>
+  </div>
 
-  <label>
-    <p>Confirm Password</p>
-    <input type="password" name="password_confirm" value="">
-  </label>
+  <div class="form-group">
+    <label for="password2">Confirm Password</label>
+    <input type="password" class="form-control" id="password2" name="password_confirm" value="">
+    <br>
+  </div>
 
-  <input type="submit" value="Sign Up">
+  <input type="submit" class="btn btn-default" value="Sign Up">
 </form>

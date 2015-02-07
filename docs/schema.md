@@ -23,6 +23,7 @@ album_id    | integer   | not null, foreign key (references album)
 caption     | string    |
 order       | integer   | default 0
 photo_url   | string    | not null
+cloudinary_id| string   | not null
 
 ## locations
 column name | data type | details

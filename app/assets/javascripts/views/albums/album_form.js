@@ -7,20 +7,36 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   initialize: function (options) {
     this.userView = options.userView;
     this.albumView = options.albumView;
+    this.photoUrls = [];
+    this.public_id = [];
   },
 
   events: {
     'submit .album-create': 'saveAlbum',
+    'click .choose-photo': 'selectPhotos',
+    'dragenter .choose-photo': 'selectPhotos',
   },
 
   render: function(){
     var content = this.template({albumView: this.albumView});
     this.$el.html(content);
-    if (!this.albumView) {
-      var $filePickerInput = this.$('input[type=filepicker-dragdrop]');
-      filepicker.constructWidget($filePickerInput[0]);
-    }
     return this;
+  },
+
+  selectPhotos: function () {
+    cloudinary.openUploadWidget({ cloud_name: cloud_name, upload_preset: upload_preset},
+      function(error, results) {
+        this.savePhotos(error, results);
+      }.bind(this), false);
+  },
+
+  savePhotos: function (error, results) {
+    results.forEach(function(result){
+      this.photoUrls.push(result.url);
+      this.public_id.push(result.public_id);
+    }.bind(this));
+    var uploadedFiles = $("<p>").text(this.public_id.join(", "));
+    this.$(".chosen-photos").html(uploadedFiles);
   },
 
   saveAlbum: function (event) {
@@ -37,14 +53,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
 
   saveNewAlbum: function (albumParams, photoParams) {
     var album = new Instacation.Models.Album();
-    if (photoParams.photo_url !== "") {
-      photoUrls = photoParams.photo_url.split(",");
-    }
     album.save(albumParams,{
       success: function(){
         this.userView.model.albums().add(album);
-        if (photoParams.photo_url !== "") {
-          this.saveAlbumPhotos(photoParams, photoUrls, album);
+        if (this.photoUrls.length !== 0) {
+          this.saveAlbumPhotos(photoParams, album);
         } else {
           this.userView.addAlbumItems(album, this.userView.addSubviewFront);
         }
@@ -53,11 +66,12 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     });
   },
 
-  saveAlbumPhotos: function (photoParams, photoUrls, album) {
+  saveAlbumPhotos: function (photoParams, album) {
     photoParams.album_id = album.id;
     var photo = new Instacation.Models.Photo();
-    photoUrls.forEach(function (url, index) {
+    this.photoUrls.forEach(function (url, index) {
       photoParams.photo_url = url;
+      photoParams.cloudinary_id = this.public_id[index];
       photo.save(photoParams,{
         success: function(){
           album.photos().add(photo);

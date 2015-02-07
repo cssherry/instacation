@@ -3,15 +3,13 @@
 <form action="<%= session_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>
-    <p>Username</p>
-    <input type="text" name="user[username]" value="">
-  </label>
+  <label for="username">Username</label>
+  <input type="text" id="username"btn btn-default"" name="user[username]" value="">
+  <br>
 
-  <label>
-    <p>Password</p>
-    <input type="password" name="user[password]" value="">
-  </label>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="user[password]" value="">
+
 
   <input type="submit" value="Sign In">
 </form>

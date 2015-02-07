@@ -8,16 +8,13 @@
   <br>
 
   <% if(!albumView) { %>
-  <input type="text" name="photo[caption]" placeholder='Photo Caption'>
-  <br>
-  <input type="filepicker-dragdrop"
-         data-fp-mimetypes="image/*"
-         data-fp-button-text="Select some photos to add to the album"
-         data-fp-container="modal"
-         data-fp-multiple="true"
-         data-fp-services="BOX,COMPUTER,DROPBOX,FACEBOOK,GOOGLE_DRIVE,IMAGE_SEARCH,URL,WEBCAM"
-         name='photo[photo_url]'>
-  <br>
+
+    <label for="photo-selector"></label>
+    <a href='#' class='btn btn-primary choose-photo' role="button"> Click or Drag Photos Here </a>
+    <div class='chosen-photos'>  </div>
+
+    <input type="text" name="photo[caption]" placeholder='Photo Caption'>
+
   <% } %>
   <button><%= albumView ? 'Edit Album' : 'Create Album' %></button>
 </form>
