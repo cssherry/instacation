@@ -3,7 +3,9 @@
 <head>
   <title>Instacation</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application', '//widget.cloudinary.com/global/all.js' %>
+  <%= javascript_include_tag 'application',
+                             '//widget.cloudinary.com/global/all.js',
+                             'https://maps.googleapis.com/maps/api/js?libraries=places' %>
 
   <script>
     var cloud_name = "<%= ENV['cloud_name'] %>";

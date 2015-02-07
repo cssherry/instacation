@@ -12,7 +12,7 @@ window.Instacation = {
     //     var ratio = maxHeight / newImage.height
     //     var height = newImage.height
     //     var width = newImage.width
-    // 
+    //
     //     newImage.width = ratio * width
     //     newImage.height = ratio * height
     //   }

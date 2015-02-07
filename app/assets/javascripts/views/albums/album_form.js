@@ -8,7 +8,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     this.userView = options.userView;
     this.albumView = options.albumView;
     this.photoUrls = [];
-    this.public_id = [];
+  this.public_id = [];
   },
 
   events: {
@@ -20,6 +20,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   render: function(){
     var content = this.template({albumView: this.albumView});
     this.$el.html(content);
+    var input = this.$('.location-picker');
+    new google.maps.places.Autocomplete(input);
     return this;
   },
 
