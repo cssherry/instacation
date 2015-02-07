@@ -51,6 +51,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Search for albums by location
 - [ ] Search for photos by caption
 - [ ] Use captions to create tags for photos
+- [ ] Allow users to select header photo
 - [ ] Like albums or photos, display counter of how many likes there are
 - [ ] Comment on albums and photos, display counter of how many comments there are
 - [ ] Tag users in photos and albums
