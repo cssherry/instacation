@@ -15,8 +15,11 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var cloudinaryId = this.model.photos().first().get('cloudinary_id');
-    var photoUrl = $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
+    if (this.model.photos().length !== 0) {
+      var cloudinaryId = this.model.photos().first().get('cloudinary_id');
+      var photoUrl = $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
+    }
+
     var content = this.template({album: this.model, photoUrl: photoUrl, editable: this.editable});
     this.$el.html(content);
     return this;
