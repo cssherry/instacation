@@ -5,7 +5,7 @@ Instacation.Collections.Photos = Backbone.Collection.extend({
   url: 'api/photos',
 
   comparator: function (photo) {
-    return [photo.escape('order'), new Date(Date.now()) - new Date(photo.escape('updated_at'))];
+    return [photo.escape('order'), new Date(photo.escape('updated_at')) - new Date(Date.now())];
   },
 
   fetchOrGet: function (id) {
