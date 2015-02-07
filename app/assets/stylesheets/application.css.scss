@@ -26,10 +26,12 @@ body {
 
 .photos {
   padding: 20px;
+  height: auto;
 }
 
 .photo-item {
   display: inline-block;
+  vertical-align: top;
   padding: 20px;
-  width: 200px;
+  width: 300px;
 }
