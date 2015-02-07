@@ -6,6 +6,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 owner_id    | integer   | not null, foreign key (references users)
 title       | string    | not null
+location_id | integer   |
 
 ## followings
 column name | data type | details
@@ -24,6 +25,7 @@ caption     | string    |
 order       | integer   | default 0
 photo_url   | string    | not null
 cloudinary_id| string   | not null
+location_id | integer   |
 
 ## locations
 column name | data type | details
@@ -35,14 +37,6 @@ city        | integer   | not null
 state       | integer   | not null
 country     | string    | not null
 place_id    | string    |
-
-## location_taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-taggable_id | integer   | not null, foreign key (references album or photo)
-taggable_type| string   | not null
-location_id | integer   | not null, foreign key (references location)
 
 ## users
 column name     | data type | details

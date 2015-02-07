@@ -10,9 +10,11 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  cloudinary_id :string(255)      not null
+#  location_id   :integer
 #
 
 class Photo < ActiveRecord::Base
   validates :album_id, :photo_url, :cloudinary_id, presence: true
+  has_many :location_tags, as: :taggable
   belongs_to :album
 end
