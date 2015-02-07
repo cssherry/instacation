@@ -21,7 +21,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var content = this.template({album: this.model, editable: this.editable});
+    var content = this.template({album: this.model, editable: this.editable, userId: this.userId});
     this.$el.html(content);
     this.attachSubviews();
     this.$('.photos').sortable();

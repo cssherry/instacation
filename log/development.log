@@ -42448,3 +42448,1186 @@ Migrating to CreateTaggings (20150207015052)
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150207015052"]]
   [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:13:57 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+Completed 200 OK in 1404ms (Views: 1366.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:13:58 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.7ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 25ms (Views: 0.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:13:59 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:14:24 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.4ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.5ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (71.6ms)
+  Rendered api/albums/show.json.jbuilder (76.7ms)
+Completed 200 OK in 94ms (Views: 80.7ms | ActiveRecord: 4.4ms)
+
+
+Started PUT "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "cloudinary_id"=>"period_n2stdb", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T01:46:09.684Z", "photo"=>{"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T01:46:09.684Z", "cloudinary_id"=>"period_n2stdb"}}
+  [1m[35mUser Load (2.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "photos" SET "created_at" = $1, "updated_at" = $2 WHERE "photos"."id" = 12[0m  [["created_at", "2015-02-07 01:46:09.684000"], ["updated_at", "2015-02-07 01:46:09.684000"]]
+  [1m[35m (51.0ms)[0m  COMMIT
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 55.0ms)
+
+
+Started PUT "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "cloudinary_id"=>"nowon_eym020", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T01:46:09.674Z", "photo"=>{"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T01:46:09.674Z", "cloudinary_id"=>"nowon_eym020"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.5ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mAlbum Load (0.3ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "photos" SET "created_at" = $1, "order" = $2, "updated_at" = $3 WHERE "photos"."id" = 11  [["created_at", "2015-02-07 01:46:09.674000"], ["order", 1], ["updated_at", "2015-02-07 01:46:09.674000"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started PUT "/api/photos/10" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "photo"=>{"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "created_at" = $1, "order" = $2, "updated_at" = $3 WHERE "photos"."id" = 10[0m  [["created_at", "2015-02-07 01:40:57.195000"], ["order", 2], ["updated_at", "2015-02-07 01:40:57.195000"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+Started PUT "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T01:39:44.574Z", "photo"=>{"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T01:39:44.574Z", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mAlbum Load (0.3ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 9  [["order", 3], ["updated_at", "2015-02-07 03:14:29.441628"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+Started PUT "/api/photos/8" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "cloudinary_id"=>"ku-xlarge_jjf1t7", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "photo"=>{"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "cloudinary_id"=>"ku-xlarge_jjf1t7"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 8[0m  [["order", 4], ["updated_at", "2015-02-07 01:39:56.164000"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 12]]
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:14:29 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"12"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 12]]
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:14:34 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (4.6ms)
+  Rendered api/albums/show.json.jbuilder (6.0ms)
+Completed 200 OK in 12ms (Views: 9.2ms | ActiveRecord: 0.9ms)
+
+
+Started PUT "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:14:36 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "cloudinary_id"=>"nowon_eym020", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T01:46:09.674Z", "photo"=>{"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T01:46:09.674Z", "cloudinary_id"=>"nowon_eym020"}}
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 11[0m  [["order", 0], ["updated_at", "2015-02-07 03:14:36.589364"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 3.2ms)
+
+
+Started PUT "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:14:36 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "cloudinary_id"=>"period_n2stdb", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T01:46:09.684Z", "photo"=>{"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T01:46:09.684Z", "cloudinary_id"=>"period_n2stdb"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 12  [["order", 1], ["updated_at", "2015-02-07 03:14:36.601156"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/api/photos/8" for 127.0.0.1 at 2015-02-06 19:14:36 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "cloudinary_id"=>"ku-xlarge_jjf1t7", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "photo"=>{"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "cloudinary_id"=>"ku-xlarge_jjf1t7"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started PUT "/api/photos/10" for 127.0.0.1 at 2015-02-06 19:14:36 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "photo"=>{"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started PUT "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:14:36 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "photo"=>{"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "updated_at" = $1 WHERE "photos"."id" = 9[0m  [["updated_at", "2015-02-07 03:14:29.441000"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started PUT "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:14:39 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "cloudinary_id"=>"nowon_eym020", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T03:14:36.589Z", "photo"=>{"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T03:14:36.589Z", "cloudinary_id"=>"nowon_eym020"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.4ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "photos" SET "updated_at" = $1 WHERE "photos"."id" = 11  [["updated_at", "2015-02-07 03:14:36.589000"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/api/photos/10" for 127.0.0.1 at 2015-02-06 19:14:39 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "photo"=>{"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T01:40:57.195Z", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 10[0m  [["order", 1], ["updated_at", "2015-02-07 03:14:39.160337"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:14:39 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "cloudinary_id"=>"period_n2stdb", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T03:14:36.601Z", "photo"=>{"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T03:14:36.601Z", "cloudinary_id"=>"period_n2stdb"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "photos" SET "order" = $1, "updated_at" = $2 WHERE "photos"."id" = 12  [["order", 2], ["updated_at", "2015-02-07 03:14:36.601000"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/api/photos/8" for 127.0.0.1 at 2015-02-06 19:14:39 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "cloudinary_id"=>"ku-xlarge_jjf1t7", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "photo"=>{"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "cloudinary_id"=>"ku-xlarge_jjf1t7"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started PUT "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:14:39 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "photo"=>{"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:14:41 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 172ms (Views: 171.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:14:41 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.6ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (7.8ms)
+  Rendered api/albums/show.json.jbuilder (9.1ms)
+Completed 200 OK in 18ms (Views: 13.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:14:46 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 9]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:14:46 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"9"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 9]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:14:49 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.6ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.6ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (7.3ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.5ms)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (3.7ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.9ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (2.4ms)
+  Rendered api/user_data/show.json.jbuilder (26.4ms)
+Completed 200 OK in 34ms (Views: 29.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:14:49 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.6ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (3.9ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.7ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.6ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.1ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.5ms)
+  Rendered api/user_data/show.json.jbuilder (17.8ms)
+Completed 200 OK in 24ms (Views: 19.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:14:56 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.1ms)
+  Rendered api/albums/show.json.jbuilder (4.9ms)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:15:00 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:15:00 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:15:05 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.5ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (5.9ms)
+  Rendered api/albums/show.json.jbuilder (7.1ms)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:15:12 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.4ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.6ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.9ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.8ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (2.6ms)
+  [1m[36mPhoto Load (0.4ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (2.9ms)
+  Rendered api/user_data/show.json.jbuilder (19.4ms)
+Completed 200 OK in 27ms (Views: 22.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:15:12 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.3ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.1ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.1ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (1.8ms)
+  Rendered api/user_data/show.json.jbuilder (16.6ms)
+Completed 200 OK in 22ms (Views: 18.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:17:04 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 515ms (Views: 513.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:17:05 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.4ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (4.4ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[35mPhoto Load (0.6ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (3.2ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.4ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.6ms)
+  Rendered api/user_data/show.json.jbuilder (19.0ms)
+Completed 200 OK in 28ms (Views: 22.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:17:05 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.3ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.6ms)
+  Rendered api/photos/_photo.json.jbuilder (0.5ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.4ms)
+  Rendered api/albums/_album.json.jbuilder (7.1ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (6.1ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.6ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (3.0ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.6ms)
+  Rendered api/user_data/show.json.jbuilder (27.1ms)
+Completed 200 OK in 34ms (Views: 29.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:17:07 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (3.9ms)
+  Rendered api/albums/show.json.jbuilder (5.1ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:17:09 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:17:09 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:17:19 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 624ms (Views: 622.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:17:20 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:17:20 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:17:24 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (5.7ms)
+  Rendered api/albums/show.json.jbuilder (6.7ms)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:18:00 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 666ms (Views: 664.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:18:01 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.4ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (4.8ms)
+  Rendered api/albums/show.json.jbuilder (5.9ms)
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:18:51 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 654ms (Views: 652.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-02-06 19:18:52 -0800
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+Completed 200 OK in 160ms (Views: 159.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:18:52 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.2ms)
+  Rendered api/albums/show.json.jbuilder (5.1ms)
+Completed 200 OK in 13ms (Views: 9.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:18:59 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (4.7ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.4ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (1.0ms)
+  Rendered api/albums/_album.json.jbuilder (2.8ms)
+  Rendered api/user_data/show.json.jbuilder (19.6ms)
+Completed 200 OK in 28ms (Views: 23.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:18:59 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.6ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.6ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (3.0ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  Rendered api/user_data/show.json.jbuilder (19.9ms)
+Completed 200 OK in 27ms (Views: 21.8ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:19:01 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (4.2ms)
+  Rendered api/albums/show.json.jbuilder (5.3ms)
+Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:02 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.2ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.6ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.6ms)
+  Rendered api/user_data/show.json.jbuilder (18.4ms)
+Completed 200 OK in 26ms (Views: 22.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:02 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (3.8ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.8ms)
+  Rendered api/albums/_album.json.jbuilder (3.0ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.7ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (1.9ms)
+  Rendered api/user_data/show.json.jbuilder (18.0ms)
+Completed 200 OK in 25ms (Views: 20.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/albums/5" for 127.0.0.1 at 2015-02-06 19:19:03 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.5ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (4.0ms)
+  Rendered api/albums/show.json.jbuilder (5.2ms)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:03 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.4ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.4ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (7.0ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.8ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (1.9ms)
+  Rendered api/user_data/show.json.jbuilder (22.1ms)
+Completed 200 OK in 28ms (Views: 24.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:03 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.5ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.1ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (1.5ms)
+  Rendered api/user_data/show.json.jbuilder (17.1ms)
+Completed 200 OK in 23ms (Views: 19.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/albums/4" for 127.0.0.1 at 2015-02-06 19:19:05 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.5ms)
+  Rendered api/albums/show.json.jbuilder (3.4ms)
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:06 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.4ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (5.3ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/albums/_album.json.jbuilder (3.1ms)
+  [1m[35mPhoto Load (0.6ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (3.5ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (1.8ms)
+  Rendered api/user_data/show.json.jbuilder (21.2ms)
+Completed 200 OK in 29ms (Views: 23.5ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:06 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mAlbum Load (0.5ms)[0m  SELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1  [["owner_id", 1]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (5.4ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.3ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.5ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.8ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.1ms)
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  Rendered api/user_data/show.json.jbuilder (19.9ms)
+Completed 200 OK in 25ms (Views: 21.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/albums/2" for 127.0.0.1 at 2015-02-06 19:19:08 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.6ms)
+  Rendered api/albums/show.json.jbuilder (3.9ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:08 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (5.5ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (2.4ms)
+  [1m[35mPhoto Load (0.3ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.5ms)
+  Rendered api/user_data/show.json.jbuilder (18.9ms)
+Completed 200 OK in 27ms (Views: 22.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/user_data/1" for 127.0.0.1 at 2015-02-06 19:19:08 -0800
+Processing by Api::UserDataController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT "albums".* FROM "albums"  WHERE "albums"."owner_id" = $1[0m  [["owner_id", 1]]
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.7ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 5]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.0ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 4]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 3]]
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (1.9ms)
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1  [["album_id", 2]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/albums/_album.json.jbuilder (2.2ms)
+  Rendered api/user_data/show.json.jbuilder (18.4ms)
+Completed 200 OK in 25ms (Views: 20.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:19:10 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (4.9ms)
+  Rendered api/albums/show.json.jbuilder (5.8ms)
+Completed 200 OK in 12ms (Views: 9.2ms | ActiveRecord: 0.8ms)
+
+
+Started PUT "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "cloudinary_id"=>"nowon_eym020", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T03:14:36.589Z", "photo"=>{"id"=>"11", "album_id"=>6, "caption"=>"test", "order"=>0, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273563/nowon_eym020.jpg", "created_at"=>"2015-02-07T01:46:09.674Z", "updated_at"=>"2015-02-07T03:14:36.589Z", "cloudinary_id"=>"nowon_eym020"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.3ms)
+
+
+Started PUT "/api/photos/10" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T03:14:39.160Z", "photo"=>{"id"=>"10", "album_id"=>6, "caption"=>"testing comparator", "order"=>1, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273254/onbottom-tothesoldierfromlastweek-letsdoit_hinodh.jpg", "created_at"=>"2015-02-07T01:40:57.195Z", "updated_at"=>"2015-02-07T03:14:39.160Z", "cloudinary_id"=>"onbottom-tothesoldierfromlastweek-letsdoit_hinodh"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1
+  [1m[36mPhoto Load (0.2ms)[0m  [1mSELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1[0m  [["id", 10]]
+  [1m[35mAlbum Load (0.2ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "photos" SET "updated_at" = $1 WHERE "photos"."id" = 10[0m  [["updated_at", "2015-02-07 03:14:39.160000"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started PUT "/api/photos/12" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "cloudinary_id"=>"period_n2stdb", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T03:14:36.601Z", "photo"=>{"id"=>"12", "album_id"=>6, "caption"=>"test", "order"=>2, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273567/period_n2stdb.jpg", "created_at"=>"2015-02-07T01:46:09.684Z", "updated_at"=>"2015-02-07T03:14:36.601Z", "cloudinary_id"=>"period_n2stdb"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 12]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started PUT "/api/photos/8" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "cloudinary_id"=>"ku-xlarge_jjf1t7", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "photo"=>{"id"=>"8", "album_id"=>6, "caption"=>"flying higher!", "order"=>4, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273052/ku-xlarge_jjf1t7.jpg", "created_at"=>"2015-02-07T00:40:28.809Z", "updated_at"=>"2015-02-07T01:39:56.164Z", "cloudinary_id"=>"ku-xlarge_jjf1t7"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started PUT "/api/photos/9" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#update as JSON
+  Parameters: {"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "photo"=>{"id"=>"9", "album_id"=>6, "caption"=>"test photo upload", "order"=>3, "photo_url"=>"http://res.cloudinary.com/devybncp2/image/upload/v1423273181/ku-xlarge-20140108-225812_ngr3av.jpg", "created_at"=>"2015-02-07T01:39:44.574Z", "updated_at"=>"2015-02-07T03:14:29.441Z", "cloudinary_id"=>"ku-xlarge-20140108-225812_ngr3av"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.4ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mAlbum Load (0.2ms)[0m  [1mSELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Unpermitted parameters: id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.2ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/photos/11" for 127.0.0.1 at 2015-02-06 19:19:11 -0800
+Processing by Api::PhotosController#show as JSON
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mPhoto Load (0.5ms)[0m  SELECT  "photos".* FROM "photos"  WHERE "photos"."id" = $1 LIMIT 1  [["id", 11]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/albums/6" for 127.0.0.1 at 2015-02-06 19:19:12 -0800
+Processing by Api::AlbumsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."session_token" = 'f44drHDMMj6T432SVNwN-g' LIMIT 1[0m
+  [1m[35mAlbum Load (0.3ms)[0m  SELECT  "albums".* FROM "albums"  WHERE "albums"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mPhoto Load (0.3ms)[0m  [1mSELECT "photos".* FROM "photos"  WHERE "photos"."album_id" = $1[0m  [["album_id", 6]]
+  Rendered api/photos/_photo.json.jbuilder (0.2ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/photos/_photo.json.jbuilder (0.3ms)
+  Rendered api/photos/_photo.json.jbuilder (0.1ms)
+  Rendered api/albums/_album.json.jbuilder (5.1ms)
+  Rendered api/albums/show.json.jbuilder (6.0ms)
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 1.6ms)
