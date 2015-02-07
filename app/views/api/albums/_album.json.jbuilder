@@ -1,4 +1,4 @@
-json.extract! album, :id, :owner_id, :title, :updated_at, :created_at
-json.photos do
-  json.array! album.photos, partial: 'api/photos/photo', as: :photo
+json.partial! 'api/albums/album', album: album
+json.location do
+  json.partial! 'api/locations/location_only', location: album.location
 end

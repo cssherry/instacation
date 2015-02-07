@@ -1,1 +1,4 @@
-json.extract! photo, :id, :album_id, :caption, :order, :photo_url, :cloudinary_id, :created_at, :updated_at
+json.partial! 'api/photos/photo', photo: photo
+json.location do
+  json.partial! 'api/locations/location_only', location: photo.location
+end

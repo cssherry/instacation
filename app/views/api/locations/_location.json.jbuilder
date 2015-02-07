@@ -1,7 +1,7 @@
-json.extract! location, :id, :street_number, :street, :city, :state, :country, :place_id, :updated_at, :created_at
+json.partial! 'api/locations/location_only', location: location
 json.photos do
-  json.array! album.photos, partial: 'api/photos/photo', as: :photo
+  json.array! location.photos, partial: 'api/photos/photo_only', as: :photo
 end
 json.albums do
-  json.array! album.albums, partial: 'api/photos/album', as: :album
+  json.array! location.albums, partial: 'api/albums/album_no_location', as: :album
 end

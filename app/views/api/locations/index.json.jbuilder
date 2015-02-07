@@ -1,1 +1,1 @@
-json.array! 'api/locations/location', location: @locations
+json.array! @locations, partial: 'api/locations/location', as: :location
