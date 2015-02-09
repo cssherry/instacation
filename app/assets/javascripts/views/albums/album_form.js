@@ -45,13 +45,13 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
     if ($(event.currentTarget).serializeJSON().location) {
-      this.saveLocation(function () {
-        albumParams['location_id'] = this.location_id;
+      this.saveLocation(function (location) {
+        albumParams['location_id'] = location.escape('place_id');
         if (this.userView) {
           var photoParams = $(event.currentTarget).serializeJSON().photo;
-          this.saveNewAlbum(albumParams, photoParams);
+          this.saveNewAlbum(albumParams, photoParams, location);
         } else {
-          this.updateAlbum(albumParams);
+          this.updateAlbum(albumParams, location);
         }
       }.bind(this));
     } else {
@@ -64,10 +64,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     }
   },
 
-  saveNewAlbum: function (albumParams, photoParams) {
+  saveNewAlbum: function (albumParams, photoParams, location) {
     var album = new Instacation.Models.Album();
     album.save(albumParams,{
       success: function(){
+        album.locations().set(location);
         this.userView.model.albums().add(album);
         if (this.photoUrls.length !== 0) {
           this.saveAlbumPhotos(photoParams, album);
@@ -96,10 +97,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     }.bind(this));
   },
 
-  updateAlbum: function (albumParams) {
+  updateAlbum: function (albumParams, location) {
     var album = this.albumView.model;
     album.save(albumParams,{
       success: function(){
+        album.locations().set(location);
         this.albumView.$('.title').html(album.escape('title'));
         this.albumView.hideAlbumForm();
       }.bind(this)
@@ -126,8 +128,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     });
     var locations = new Instacation.Collections.Locations();
     var location = locations.fetchOrCreateByPlaceID(locationTag, function (location) {
-      this.location_id = location.escape('place_id');
-      callback.call();
+      callback.call({}, location);
     }.bind(this));
   }
 });

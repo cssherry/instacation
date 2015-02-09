@@ -15,7 +15,7 @@ Instacation.Models.Album = Backbone.Model.extend({
       delete(object.photos);
     }
     if (object && object.location) {
-      this.location(object);
+      this.locations().set(object.location);
       delete(object.location);
     }
     return object;
@@ -34,22 +34,4 @@ Instacation.Models.Album = Backbone.Model.extend({
     }
     return this._locations;
   },
-
-  location: function (object) {
-   if (!this._location) {
-     var objectLocation = {place_id: object.location.place_id,
-                           street_number: object.location.street_number,
-                           street: object.location.street,
-                           city: object.location.city,
-                           state: object.location.state,
-                           country: object.location.country};
-     this.locations().fetchOrCreateByPlaceID(objectLocation,
-                                             function (location) {
-                                               this._location = location;
-                                               return this._location;
-                                             }.bind(this));
-    } else {
-      return this._location;
-    }
-  }
 });

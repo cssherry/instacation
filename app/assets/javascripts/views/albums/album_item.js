@@ -22,8 +22,7 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
 
     var placeID = this.model.escape('location_id')
     if (placeID) {
-      var placeIDHash = {location: {place_id: placeID}};
-      var location = this.model.location(placeID);
+      var location = this.model.locations().first();
       var locationName = location.escape('state') + ", " + location.escape('country');
     } else {
       var locationName = "";
