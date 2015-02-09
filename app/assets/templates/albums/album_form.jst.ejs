@@ -7,7 +7,13 @@
          <% } %> >
   <br>
 
-  <input type="text" name="location" class="location-picker" placeholder="Add location tag">
+  <input type="text"
+         name="location"
+         class="location-picker"
+         placeholder="Add location tag"
+         <% if(albumView) { %>
+           value='<%= location %>'
+         <% } %> >
   <br>
   <% if(!albumView) { %>
 

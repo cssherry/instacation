@@ -11,6 +11,7 @@
 #  place_id      :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  name          :string(255)      not null
 #
 
 class Location < ActiveRecord::Base

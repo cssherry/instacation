@@ -18,7 +18,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   render: function(){
-    var content = this.template({albumView: this.albumView});
+    if(albumView) var location = this.albumView.locations().first.escape('description');
+    google.maps.places.PlacesService.getDetails();
+    var content = this.template({albumView: this.albumView, location:location});
     this.$el.html(content);
     var input = this.$('.location-picker')[0];
     this.autocomplete = new google.maps.places.Autocomplete(input);
@@ -112,6 +114,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     var place = this.autocomplete.getPlace();
     var locationTag = {};
     locationTag['place_id'] = place.place_id;
+    locationTag['name'] = place.name;
     place.address_components.forEach(function (address_component, index) {
       if (address_component.types[0] === 'country') {
         var street_number = place.address_components[index - 4];
