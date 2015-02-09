@@ -1307,3 +1307,43 @@ DETAIL:  Failing row contains (12, null, null, null, null, null, , 2015-02-09 21
 [02/09/15 13:26:51 -0800 Sherrys-MacBook-Pro.local (32235)] INFO : Installing Rails 4 view instrumentation
 [02/09/15 13:26:51 -0800 Sherrys-MacBook-Pro.local (32235)] INFO : Installing Rails 4 Error instrumentation
 [02/09/15 13:26:51 -0800 Sherrys-MacBook-Pro.local (32235)] INFO : Finished instrumentation
+[02/09/15 13:37:23 -0800 Sherrys-MacBook-Pro.local (20403)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: PG::UndefinedFunction: ERROR:  operator does not exist: character varying = integer at character 63
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+: SELECT "photos".* FROM "photos"  WHERE "photos"."location_id" = $1
+[02/09/15 13:40:15 -0800 Sherrys-MacBook-Pro.local (20403)] WARN : The error reporting queue has reached 20. The error detail for this and subsequent errors will not be transmitted to New Relic until the queued errors have been sent: PG::UndefinedFunction: ERROR:  operator does not exist: character varying = integer at character 63
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+: SELECT "photos".* FROM "photos"  WHERE "photos"."location_id" = $1
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Starting the New Relic agent in "development" environment.
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] WARN : No configuration file found. Working directory = /Users/sherry/Documents/Programming/instacation
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] WARN : Looked in these locations (based on defaults): /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/.newrelic/newrelic.yml, /Users/sherry/newrelic.yml
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Environment: development
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : No known dispatcher detected.
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Application: development
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing ActiveRecord 4 instrumentation
+[02/09/15 13:42:07 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Net instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing deferred Rack instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Rack::Builder middleware instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Rails 3+ middleware instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Rails 4 Controller instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Rails 4 view instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Installing Rails 4 Error instrumentation
+[02/09/15 13:42:08 -0800 Sherrys-MacBook-Pro.local (32611)] INFO : Finished instrumentation
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Starting the New Relic agent in "development" environment.
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] WARN : No configuration file found. Working directory = /Users/sherry/Documents/Programming/instacation
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] WARN : Looked in these locations (based on defaults): /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/.newrelic/newrelic.yml, /Users/sherry/newrelic.yml
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Environment: development
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : No known dispatcher detected.
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Application: development
+[02/09/15 13:43:12 -0800 Sherrys-MacBook-Pro.local (32647)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing ActiveRecord 4 instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Net instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing deferred Rack instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Rack::Builder middleware instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Rails 3+ middleware instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Rails 4 Controller instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Rails 4 view instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Installing Rails 4 Error instrumentation
+[02/09/15 13:43:13 -0800 Sherrys-MacBook-Pro.local (32647)] INFO : Finished instrumentation

@@ -17,10 +17,10 @@ class Location < ActiveRecord::Base
   has_many :albums,
            class_name: 'Album',
            foreign_key: :location_id,
-           primary_key: :id
+           primary_key: :place_id
 
   has_many :photos,
            class_name: 'Photo',
            foreign_key: :location_id,
-           primary_key: :id
+           primary_key: :place_id
 end

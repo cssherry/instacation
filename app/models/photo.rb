@@ -18,6 +18,6 @@ class Photo < ActiveRecord::Base
   belongs_to :location,
              class_name: 'Location',
              foreign_key: :location_id,
-             primary_key: :id
+             primary_key: :place_id
   belongs_to :album
 end
