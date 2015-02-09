@@ -83,7 +83,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
         album.locations().set(location);
         this.userView.model.albums().add(album);
         if (this.photoUrls.length !== 0) {
-          this.saveAlbumPhotos(photoParams, album);
+          this.saveNewAlbumPhotos(photoParams, album);
         } else {
           this.userView.addAlbumItems(album, this.userView.addSubviewFront);
         }
@@ -92,7 +92,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     });
   },
 
-  saveAlbumPhotos: function (photoParams, album) {
+  saveNewAlbumPhotos: function (photoParams, album) {
     photoParams.album_id = album.id;
     var photo = new Instacation.Models.Photo();
     this.photoUrls.forEach(function (url, index) {
