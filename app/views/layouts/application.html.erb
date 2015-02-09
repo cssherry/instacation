@@ -10,7 +10,8 @@
   <script>
     var cloud_name = "<%= ENV['cloud_name'] %>";
     var upload_preset = "<%= ENV['upload_preset'] %>";
-    $.cloudinary.config({ cloud_name: cloud_name, api_key: "<%= ENV['cloudinary_api'] %>" })
+    var api_key = "<%= ENV['cloudinary_api'] %>";
+    $.cloudinary.config({ cloud_name: cloud_name, api_key: api_key })
   </script>
 
   <%= csrf_meta_tags %>

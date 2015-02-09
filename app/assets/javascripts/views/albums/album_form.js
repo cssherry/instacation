@@ -8,7 +8,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     this.userView = options.userView;
     this.albumView = options.albumView;
     this.photoUrls = [];
-  this.public_id = [];
+    this.public_id = [];
   },
 
   events: {
@@ -20,8 +20,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   render: function(){
     var content = this.template({albumView: this.albumView});
     this.$el.html(content);
-    var input = this.$('.location-picker');
-    new google.maps.places.Autocomplete(input);
+    var input = this.$('.location-picker')[0];
+    this.autocomplete = new google.maps.places.Autocomplete(input);
     return this;
   },
 
@@ -44,7 +44,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   saveAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-
+    this.saveLocation();
+    
     if (this.userView) {
       var photoParams = $(event.currentTarget).serializeJSON().photo;
       this.saveNewAlbum(albumParams, photoParams);
@@ -94,4 +95,19 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
       }.bind(this)
     });
   },
+
+  saveLocation: function (event) {
+    var place = this.autocomplete.getPlace();
+    var locationTag = {};
+    locationTag['place_id'] = place.place_id;
+    place.address_components.forEach(function (address_component, index) {
+      if (address_component.types[0] === 'country') {
+        locationTag['street_number'] = place.address_components[index - 4].long_name;
+        locationTag['street'] = place.address_components[index - 3].long_name;
+        locationTag['city'] = place.address_components[index - 2].long_name;
+        locationTag['state'] = place.address_components[index - 1].short_name;
+        locationTag['country'] = place.address_components[index].short_name;
+      }
+    });
+  }
 });

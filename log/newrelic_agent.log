@@ -1213,3 +1213,20 @@ Migrations are pending. To resolve this issue, run:
 [02/06/15 20:19:41 -0800 Sherrys-MacBook-Pro.local (20504)] INFO : Installing Rails 4 view instrumentation
 [02/06/15 20:19:41 -0800 Sherrys-MacBook-Pro.local (20504)] INFO : Installing Rails 4 Error instrumentation
 [02/06/15 20:19:41 -0800 Sherrys-MacBook-Pro.local (20504)] INFO : Finished instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Starting the New Relic agent in "development" environment.
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] WARN : No configuration file found. Working directory = /Users/sherry/Documents/Programming/instacation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] WARN : Looked in these locations (based on defaults): /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/.newrelic/newrelic.yml, /Users/sherry/newrelic.yml
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Environment: development
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : No known dispatcher detected.
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Application: development
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing ActiveRecord 4 instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Net instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing deferred Rack instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Rack::Builder middleware instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Rails 3+ middleware instrumentation
+[02/09/15 09:58:50 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Rails 4 Controller instrumentation
+[02/09/15 09:58:51 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Rails 4 view instrumentation
+[02/09/15 09:58:51 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Installing Rails 4 Error instrumentation
+[02/09/15 09:58:51 -0800 Sherrys-MacBook-Pro.local (26796)] INFO : Finished instrumentation
