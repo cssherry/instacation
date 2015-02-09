@@ -2,18 +2,23 @@ Instacation.Models.Album = Backbone.Model.extend({
   urlRoot: 'api/albums',
 
   parse: function (jsonObject) {
-    if (jsonObject.photos) {
-      this.photos().set(jsonObject.photos);
-      delete(jsonObject.photos);
-    }
-    return jsonObject;
+    return setLocationPhotos(jsonObject);
   },
 
   initialize: function (object) {
+    setLocationPhotos(object);
+  },
+
+  setLocationPhotos: function (object) {
     if (object && object.photos) {
       this.photos().set(object.photos);
       delete(object.photos);
     }
+    if (object && object.location) {
+      this.location = Instacation.Collections.Locations.fetchOrCreateByPlaceID(object.location.place_id);
+      delete(object.location);
+    }
+    return object;
   },
 
   photos: function () {

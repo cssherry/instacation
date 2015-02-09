@@ -9,7 +9,7 @@ Instacation.Collections.Albums = Backbone.Collection.extend({
   },
 
   fetchOrGet: function (id) {
-    var album = this.escape(id);
+    var album = this.get(id);
     if (!album) {
       album = new Instacation.Models.Album({ id: id });
       album.fetch({

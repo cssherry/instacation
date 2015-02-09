@@ -21,7 +21,7 @@ module Api
 
     def show
       @photo = Photo.find(params[:id])
-      render json: @photo
+      render :show
     end
 
     def update

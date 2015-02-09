@@ -9,7 +9,7 @@ Instacation.Collections.Photos = Backbone.Collection.extend({
   },
 
   fetchOrGet: function (id) {
-    var photo = this.escape(id);
+    var photo = this.get(id);
     if (!photo) {
       photo = new Instacation.Models.Photo({ id: id });
       photo.fetch({
