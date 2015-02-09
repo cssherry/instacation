@@ -14,7 +14,7 @@ Instacation.Collections.Locations = Backbone.Collection.extend({
       location = new Instacation.Models.Location({ place_id: locationObject.place_id });
       location.fetch({
         success: function () {
-          if (!location) {
+          if (!location.id) {
             location = this.create({ place_id: locationObject.place_id,
                                      street_number: locationObject.street_number,
                                      street: locationObject.street,

@@ -33,10 +33,10 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   savePhotos: function (error, results) {
-    results.forEach(function(result){
-      this.photoUrls.push(result.url);
-      this.public_id.push(result.public_id);
-    }.bind(this));
+    results && results.forEach(function(result){
+                this.photoUrls.push(result.url);
+                this.public_id.push(result.public_id);
+              }.bind(this));
     var uploadedFiles = $("<p>").text(this.public_id.join(", "));
     this.$(".chosen-photos").html(uploadedFiles);
   },
@@ -44,7 +44,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   saveAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-    this.saveLocation();
+    if ($(event.currentTarget).serializeJSON().location) {
+      this.saveLocation();
+    }
     albumParams['location_id'] = this.location_id;
     if (this.userView) {
       var photoParams = $(event.currentTarget).serializeJSON().photo;
@@ -102,15 +104,20 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     locationTag['place_id'] = place.place_id;
     place.address_components.forEach(function (address_component, index) {
       if (address_component.types[0] === 'country') {
-        locationTag['street_number'] = place.address_components[index - 4].long_name;
-        locationTag['street'] = place.address_components[index - 3].long_name;
-        locationTag['city'] = place.address_components[index - 2].long_name;
-        locationTag['state'] = place.address_components[index - 1].short_name;
+        var street_number = place.address_components[index - 4];
+        var street = place.address_components[index - 3];
+        var city = place.address_components[index - 2];
+        var state = place.address_components[index - 1];
+
+        if (street_number) locationTag['street_number'] = street_number.long_name;
+        if (street) locationTag['street'] = street.long_name;
+        if (city) locationTag['city'] = city.long_name;
+        if (state) locationTag['state'] = state.short_name;
         locationTag['country'] = place.address_components[index].short_name;
       }
     });
     var locations = new Instacation.Collections.Locations();
-    var location = locations.fetchOrCreateByPlaceID(locationTagging);
+    var location = locations.fetchOrCreateByPlaceID(locationTag);
     this.location_id = location.id;
   }
 });
