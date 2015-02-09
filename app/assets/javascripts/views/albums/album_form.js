@@ -19,7 +19,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   render: function(){
-    if(this.albumView) var location = this.albumView.model.locations().first().escape('name');
+    if(this.albumView && this.albumView.model.locations().first()) {
+      var location = this.albumView.model.locations().first().escape('name');
+    }
     var content = this.template({albumView: this.albumView, location: location});
     this.$el.html(content);
     var input = this.$('.location-picker')[0];
@@ -28,7 +30,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     return this;
   },
 
-  setLocationChanged: function () {
+  setLocationChanged: function (event) {
     this.locationChanged = true;
   },
 
@@ -51,7 +53,10 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   saveAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-    if (this.locationChanged) {
+    if ($(event.currentTarget).serializeJSON().location === "") {
+      albumParams['location_id'] = null;
+      this.updateAlbum(albumParams);
+    } else if (this.locationChanged) {
       this.saveLocation(function (location) {
         albumParams['location_id'] = location.escape('place_id');
         if (this.userView) {
@@ -112,6 +117,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
           album.locations().set(location);
           var locationName = location.escape('state') + ", " + location.escape('country');
           this.albumView.$('.location-name').text(locationName);
+        } else if (!album.escape('location_id')) {
+          this.albumView.$('.location-name').text("");
         }
         this.albumView.$('.title').html(album.escape('title'));
         this.albumView.hideAlbumForm();
