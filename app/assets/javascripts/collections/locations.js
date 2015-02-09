@@ -8,25 +8,38 @@ Instacation.Collections.Locations = Backbone.Collection.extend({
     return [location.escape('country'), location.escape('state'), location.escape('country'), location.escape('city'), location.escape('street'), location.escape('street_number')];
   },
 
-  fetchOrCreateByPlaceID: function (locationObject) {
+  fetchOrCreateByPlaceID: function (locationObject, callback) {
     var location = this.findWhere({place_id: locationObject.place_id});
     if (!location) {
-      location = new Instacation.Models.Location({ place_id: locationObject.place_id });
-      location.fetch({
+      this.fetch({
         success: function () {
-          if (!location.id) {
+          location = this.findWhere({place_id: locationObject.place_id});
+          if (!location) {
             location = this.create({ place_id: locationObject.place_id,
                                      street_number: locationObject.street_number,
                                      street: locationObject.street,
                                      city: locationObject.city,
                                      state: locationObject.state,
-                                     country: locationObject.country});
+                                     country: locationObject.country},
+                                     {success: function () {
+                                        callback.call({},location);
+                                     }
+                                  });
+          } else {
+            location.fetch({
+              success: function () {
+                callback.call({},location);
+              }
+            });
           }
         }.bind(this)
       });
     } else {
-      location.fetch();
+      location.fetch({
+        success: function () {
+          callback.call({},location);
+        }
+      });
     }
-    return location;
-  }
+  },
 });

@@ -7,7 +7,7 @@
 #  title       :string(255)      not null
 #  created_at  :datetime
 #  updated_at  :datetime
-#  location_id :integer
+#  location_id :string(255)
 #
 
 class Album < ActiveRecord::Base

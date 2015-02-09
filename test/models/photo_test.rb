@@ -10,7 +10,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  cloudinary_id :string(255)      not null
-#  location_id   :integer
+#  location_id   :string(255)
 #
 
 require 'test_helper'

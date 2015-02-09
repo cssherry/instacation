@@ -1,6 +1,9 @@
 <div class='thumbnail'>
   <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
     <h3 class='title'><%= album.escape('title') %></h3>
+
+    <p><%= locationName %></p>
+
     <% if(photoUrl) { %>
       <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>"/></a>
     <% } else { %>

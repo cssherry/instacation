@@ -20,7 +20,16 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
       var photoUrl = $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
     }
 
-    var content = this.template({album: this.model, photoUrl: photoUrl, editable: this.editable});
+    var placeID = this.model.escape('location_id')
+    if (placeID) {
+      var placeIDHash = {location: {place_id: placeID}};
+      var location = this.model.location(placeID);
+      var locationName = location.escape('state') + ", " + location.escape('country');
+    } else {
+      var locationName = "";
+    }
+
+    var content = this.template({album: this.model, photoUrl: photoUrl, editable: this.editable, locationName: locationName});
     this.$el.html(content);
     return this;
   },

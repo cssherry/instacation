@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207041101) do
+ActiveRecord::Schema.define(version: 20150209212456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150207041101) do
     t.string   "title",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "location_id"
+    t.string   "location_id"
   end
 
   add_index "albums", ["location_id"], name: "index_albums_on_location_id", using: :btree
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150207041101) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "cloudinary_id",             null: false
-    t.integer  "location_id"
+    t.string   "location_id"
   end
 
   add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree

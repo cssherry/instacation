@@ -45,14 +45,22 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
     if ($(event.currentTarget).serializeJSON().location) {
-      this.saveLocation();
-    }
-    albumParams['location_id'] = this.location_id;
-    if (this.userView) {
-      var photoParams = $(event.currentTarget).serializeJSON().photo;
-      this.saveNewAlbum(albumParams, photoParams);
+      this.saveLocation(function () {
+        albumParams['location_id'] = this.location_id;
+        if (this.userView) {
+          var photoParams = $(event.currentTarget).serializeJSON().photo;
+          this.saveNewAlbum(albumParams, photoParams);
+        } else {
+          this.updateAlbum(albumParams);
+        }
+      }.bind(this));
     } else {
-      this.updateAlbum(albumParams);
+      if (this.userView) {
+        var photoParams = $(event.currentTarget).serializeJSON().photo;
+        this.saveNewAlbum(albumParams, photoParams);
+      } else {
+        this.updateAlbum(albumParams);
+      }
     }
   },
 
@@ -98,7 +106,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     });
   },
 
-  saveLocation: function (event) {
+  saveLocation: function (callback) {
     var place = this.autocomplete.getPlace();
     var locationTag = {};
     locationTag['place_id'] = place.place_id;
@@ -117,7 +125,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
       }
     });
     var locations = new Instacation.Collections.Locations();
-    var location = locations.fetchOrCreateByPlaceID(locationTag);
-    this.location_id = location.id;
+    var location = locations.fetchOrCreateByPlaceID(locationTag, function (location) {
+      this.location_id = location.escape('place_id');
+      callback.call();
+    }.bind(this));
   }
 });
