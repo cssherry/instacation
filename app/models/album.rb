@@ -23,5 +23,5 @@ class Album < ActiveRecord::Base
              foreign_key: :owner_id,
              primary_key: :id
 
-  has_many :photos
+  has_many :photos, dependent: :destroy
 end

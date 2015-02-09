@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
   has_many :albums,
     class_name: 'Album',
     foreign_key: :owner_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
 
   has_many :photos, through: :albums, source: :photo
 
