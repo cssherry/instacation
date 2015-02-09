@@ -45,7 +45,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
     this.saveLocation();
-    
+    albumParams['location_id'] = this.location_id;
     if (this.userView) {
       var photoParams = $(event.currentTarget).serializeJSON().photo;
       this.saveNewAlbum(albumParams, photoParams);
@@ -109,5 +109,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
         locationTag['country'] = place.address_components[index].short_name;
       }
     });
+    var locations = new Instacation.Collections.Locations();
+    var location = locations.fetchOrCreateByPlaceID(locationTagging);
+    this.location_id = location.id;
   }
 });

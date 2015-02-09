@@ -2,21 +2,21 @@ Instacation.Models.Location = Backbone.Model.extend({
   urlRoot: 'api/locations',
 
   parse: function (jsonObject) {
-    return setLocationPhotos(jsonObject);
+    return this.setAlbumsPhotos(jsonObject);
   },
 
   initialize: function (object) {
-    setLocationPhotos(object);
+    this.setAlbumsPhotos(object);
   },
 
-  setLocationPhotos: function (object) {
+  setAlbumsPhotos: function (object) {
     if (object && object.photos) {
       this.photos().set(object.photos);
       delete(object.photos);
     }
-    if (object && object.location) {
-      this.location = Instacation.Collections.Locations.fetchOrCreateByPlaceID(object.location.place_id);
-      delete(object.location);
+    if (object && object.albums) {
+      this.albums().set(object.albums);
+      delete(object.albums);
     }
     return object;
   },
@@ -26,5 +26,12 @@ Instacation.Models.Location = Backbone.Model.extend({
       this._photos = new Instacation.Collections.Photos();
     }
     return this._photos.sort();
+  },
+
+  albums: function () {
+    if (!this._albums) {
+      this._albums = new Instacation.Collections.Albums();
+    }
+    return this._albums.sort();
   },
 });
