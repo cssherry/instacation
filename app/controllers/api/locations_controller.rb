@@ -26,7 +26,7 @@ module Api
     private
 
     def location_params
-      params.require(:location).permit(:street_number, :street, :city, :state, :country, :place_id, :updated_at)
+      params.require(:location).permit(:street_number, :street, :city, :state, :country, :place_id, :updated_at, :name)
     end
   end
 end

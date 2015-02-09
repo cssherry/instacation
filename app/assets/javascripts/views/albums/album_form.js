@@ -9,6 +9,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     this.albumView = options.albumView;
     this.photoUrls = [];
     this.public_id = [];
+    this.locationChanged = false;
   },
 
   events: {
@@ -18,13 +19,17 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   render: function(){
-    if(albumView) var location = this.albumView.locations().first.escape('description');
-    google.maps.places.PlacesService.getDetails();
-    var content = this.template({albumView: this.albumView, location:location});
+    if(this.albumView) var location = this.albumView.model.locations().first().escape('name');
+    var content = this.template({albumView: this.albumView, location: location});
     this.$el.html(content);
     var input = this.$('.location-picker')[0];
     this.autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(this.autocomplete, 'place_changed', this.setLocationChanged.bind(this));
     return this;
+  },
+
+  setLocationChanged: function () {
+    this.locationChanged = true;
   },
 
   selectPhotos: function () {
@@ -46,7 +51,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   saveAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-    if ($(event.currentTarget).serializeJSON().location) {
+    if (this.locationChanged) {
       this.saveLocation(function (location) {
         albumParams['location_id'] = location.escape('place_id');
         if (this.userView) {
@@ -103,7 +108,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     var album = this.albumView.model;
     album.save(albumParams,{
       success: function(){
-        album.locations().set(location);
+        if (location) {
+          album.locations().set(location);
+          var locationName = location.escape('state') + ", " + location.escape('country');
+          this.albumView.$('.location-name').text(locationName);
+        }
         this.albumView.$('.title').html(album.escape('title'));
         this.albumView.hideAlbumForm();
       }.bind(this)

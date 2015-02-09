@@ -7,11 +7,11 @@
 ## Minimum Viable Product
 Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 
+- [X] View a user's page
 - [X] Create accounts and sessions
 - [X] Create/delete albums
 - [X] Upload/delete photos
 - [ ] Tag albums with locations
-- [ ] View a user's page
 - [ ] Subscribe to users or locations
 - [ ] View a feed of subscribed users/locations
 

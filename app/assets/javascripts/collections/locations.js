@@ -16,6 +16,7 @@ Instacation.Collections.Locations = Backbone.Collection.extend({
           location = this.findWhere({place_id: locationObject.place_id});
           if (!location) {
             location = this.create({ place_id: locationObject.place_id,
+                                     name: locationObject.name,
                                      street_number: locationObject.street_number,
                                      street: locationObject.street,
                                      city: locationObject.city,
