@@ -20,7 +20,7 @@
 
 
 body {
-  padding: 70px;
+  padding-top: 70px;
   height: 100%;
 }
 
@@ -62,10 +62,9 @@ body {
   position: absolute;
   top: 30px;
   left: 15px;
-  color: #fff;
+  color: black;
   display: none;
 }
-
 .blueimp-gallery-controls > .description {
   display: block;
 }
@@ -73,4 +72,9 @@ body {
 .blueimp-gallery-controls > .description {
   display: block;
   margin: 20px 0 0 20px;
+}
+
+.navbar-bottom {
+  width: 100%;
+  margin-bottom: 0;
 }

@@ -16,7 +16,7 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var modelPhotoUrl = $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill' })[0].src;
+    var modelPhotoUrl = $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
 
     var placeID = this.model.escape('location_id');
     if (placeID) {
