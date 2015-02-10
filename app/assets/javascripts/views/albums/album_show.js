@@ -18,7 +18,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     'click .open-photo-form': 'createPhotoForm',
     'click .close-form': 'closePhotoForm',
     'sortstop .photos': 'reorderPhotos',
-    'click .links': 'openPhotoView',
   },
 
   render: function(){
@@ -27,16 +26,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.attachSubviews();
     this.$('.photos').sortable();
     return this;
-  },
-
-  openPhotoView: function (event) {
-    event.preventDefault();
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
   },
 
   addPhotoItems: function (photoItem, fn) {

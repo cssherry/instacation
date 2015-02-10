@@ -58,6 +58,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Support for multiple open sessionI or authentication through omniauth
 - [ ] Allow user to edit their own information
 - [ ] Alert user when albums/photos liked/commented
+- [ ] Automatically save location for photos that have location metadata. Then, album locations can be updated based on average of photo location metadata. 
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
