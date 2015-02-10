@@ -12,8 +12,6 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 - [X] Create/delete albums
 - [X] Upload/delete photos
 - [X] Tag albums with locations
-- [ ] Subscribe to users or locations
-- [ ] View a feed of subscribed users/locations
 
 ## Design Docs
 * [View Wireframes][views]
@@ -39,8 +37,8 @@ A third party api (probably Google Places), will be used to tag albums with loca
 
 [Details][phase-three]
 
-### Phase 4: Subscribing to Users/Albums and Creating Feed (~1 day)
-Users will be able to subscribe to other users and albums using polymorphic associations. On the UserShow page, I'll add a set of views that includes albums from the location and users subscribed.
+### Phase 4: Viewing albums and photos on map (~2 day)
+Using Google Maps, images and albums will be shown on a map. Albums will be shown on a map on the user's page, and images will be shown on a map on the album show page. Images without locations will be mapped to the albums location or will be grabbed from the image metadata. Albums without locations will grab locations from photos. There will be a navigation bar at the top of the page that will display all the countries, then states, then cities that albums appear.
 
 [Details][phase-four]
 
@@ -50,7 +48,7 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Search for albums by location
 - [ ] Search for photos by caption
 - [ ] Use captions to create tags for photos
-- [ ] Allow users to select header photo
+- [ ] Allow users to select header photo for the album
 - [ ] Like albums or photos, display counter of how many likes there are
 - [ ] Comment on albums and photos, display counter of how many comments there are
 - [ ] Tag users in photos and albums
@@ -58,7 +56,6 @@ Users will be able to subscribe to other users and albums using polymorphic asso
 - [ ] Support for multiple open sessionI or authentication through omniauth
 - [ ] Allow user to edit their own information
 - [ ] Alert user when albums/photos liked/commented
-- [ ] Automatically save location for photos that have location metadata. Then, album locations can be updated based on average of photo location metadata. 
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
