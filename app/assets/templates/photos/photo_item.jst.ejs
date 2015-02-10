@@ -5,7 +5,7 @@
       <% } %>
     </h3>
 
-    <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" data-gallery>
+    <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='link' id='<%= photo.id %>'>
       <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
     </a>
 

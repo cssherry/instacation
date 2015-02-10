@@ -37,11 +37,31 @@ body {
 }
 
 .google-map {
-  height: 300px;
+  height: 200px;
   width: 200px;
-  float: right;
+}
+
+.google-map.hidden {
+  display: hidden;
 }
 
 .photo {
   float: left;
+}
+
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+
+.blueimp-gallery-controls > .description {
+  display: block;
+}
+
+.blueimp-gallery-controls > .description {
+  display: block;
+  margin: 20px 0 0 20px;
 }

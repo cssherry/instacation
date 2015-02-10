@@ -18,6 +18,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     'click .open-photo-form': 'createPhotoForm',
     'click .close-form': 'closePhotoForm',
     'sortstop .photos': 'reorderPhotos',
+    'click .link': "openGallery"
   },
 
   render: function(){
@@ -27,6 +28,83 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.$('.photos').sortable();
     return this;
   },
+
+  openGallery: function (event) {
+    event = event || window.event;
+    var  that = this;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link,
+                   event: event,
+                   stretchImages: true,
+                   onslide: function (index, slide) {
+                     that.displayDescription.call(this, index, slide, that);
+                   }},
+        links = this.$('.link');
+    blueimp.Gallery(links, options);
+  },
+
+  displayDescription: function (index, slide, albumView) {
+    var text = this.list[index].getAttribute('data-description'),
+        node = this.container.find('.description');
+    node.empty();
+    if (text) {
+      node[0].appendChild(document.createTextNode(text));
+    }
+
+    var photoId = $(this.list[index]).attr('id'),
+        photo = albumView.model.photos().get(photoId),
+        map = this.container.find('.google-map')[0];
+
+    if (photo.escape('location_id')) {
+      $(map).removeClass("hidden");
+      albumView.renderMap.call(albumView, map, photo);
+    } else {
+      $(map).addClass("hidden");
+    }
+  },
+
+  renderMap: function (mapElement, photo) {
+    var map = new google.maps.Map(mapElement);
+    var service = new google.maps.places.PlacesService(map);
+    service.getDetails({placeId: photo.escape('location_id')}, function (result, status) {
+                                                            this.renderLocationOnMap(result, status, map);
+                                                          }.bind(this));
+  },
+
+  renderLocationOnMap: function (results, status, map) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      var place = results;
+
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+      });
+
+      var infoWindow = new google.maps.InfoWindow();
+      infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place));
+      infoWindow.open(map, marker);
+
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(15);
+      }
+    }
+  },
+
+  parseAddress: function (place) {
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+    return address;
+  },
+
 
   addPhotoItems: function (photoItem, fn) {
     var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId});
