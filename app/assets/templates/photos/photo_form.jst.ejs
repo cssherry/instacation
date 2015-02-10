@@ -1,4 +1,4 @@
-<form class='photo-create'>
+<form class='<%= photoView ? 'photo-update' : 'photo-create' %>'>
   <input type="text"
          name="photo[caption]"
          placeholder='Photo Caption'
@@ -9,6 +9,15 @@
 
   <a href='#' class='btn btn-primary choose-photo' role="button"> Click or Drag Photos Here </a>
   <div class='chosen-photos'>  </div>
+
+  <input type="text"
+         name="location"
+         class="location-picker"
+         placeholder="Add location tag"
+         <% if(photoView) { %>
+           value='<%= location %>'
+         <% } %> >
+  <br>
 
   <br>
   <button><%= photoView ? 'Edit Photo' : 'Create Photo' %></button>

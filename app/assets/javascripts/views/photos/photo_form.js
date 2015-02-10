@@ -12,26 +12,36 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   },
 
   events: {
-    'submit .photo-create': 'savePhoto',
+    'submit .photo-create': 'saveNewPhoto',
+    'submit .photo-update': 'updatePhoto',
     'click .choose-photo': 'selectPhotos',
     'dragenter .choose-photo': 'selectPhotos',
   },
 
   render: function(){
-    var content = this.template({photoView: this.photoView});
+    if(this.photoView && this.photoView.model.locations().first()) {
+      var location = this.photoView.model.locations().first().escape('name');
+    }
+    var content = this.template({photoView: this.photoView, location: location});
     this.$el.html(content);
-    // PUT CLOUDERY STUFF HERE
+    var input = this.$('.location-picker')[0];
+    this.autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(this.autocomplete, 'place_changed', this.setLocationChanged.bind(this));
     return this;
+  },
+
+  setLocationChanged: function (event) {
+      this.locationChanged = true;
   },
 
   selectPhotos: function () {
     cloudinary.openUploadWidget({ cloud_name: cloud_name, upload_preset: upload_preset},
       function(error, results) {
-        this.savePhotos(error, results);
+        this.savePhotosUrl(error, results);
       }.bind(this), false);
   },
 
-  savePhotos: function (error, results) {
+  savePhotosUrl: function (error, results) {
     if (this.albumView) {
       results.forEach(function(result){
         this.photoUrls.push(result.url);
@@ -46,19 +56,21 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
     this.$(".chosen-photos").html(uploadedFiles);
   },
 
-  savePhoto: function (event) {
+  saveNewPhoto: function (event) {
     event.preventDefault();
     var params = $(event.currentTarget).serializeJSON().photo;
-    if (this.albumView) {
-      this.saveNewPhoto(params);
+    params.album_id = this.albumView.model.id;
+    if (this.locationChanged) {
+      this.saveLocation(function (location) {
+        params['location_id'] = location.escape('place_id');
+        this.saveNewPhotoModel(params, location);
+      }.bind(this));
     } else {
-      this.updatePhoto(params);
+      this.saveNewPhotoModel(params);
     }
   },
 
-  saveNewPhoto: function (params) {
-    var album_id = this.albumView.model.id;
-    params.album_id = album_id;
+  saveNewPhotoModel: function (params, location) {
     var photo = new Instacation.Models.Photo();
     this.photoUrls.forEach(function (url, index) {
         params.photo_url = url;
@@ -73,7 +85,20 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
     }.bind(this));
   },
 
-  updatePhoto:function (params) {
+  updatePhoto:function (event) {
+    event.preventDefault();
+    var params = $(event.currentTarget).serializeJSON().photo;
+    if (this.locationChanged) {
+      this.saveLocation(function (location) {
+        params['location_id'] = location.escape('place_id');
+        this.updatePhotoModel(params, location);
+      }.bind(this));
+    } else {
+      this.updatePhotoModel(params);
+    }
+  },
+
+  updatePhotoModel: function (params, location) {
     var photo = this.photoView.model;
     if (this.public_id.length !== 0) {
       params.photo_url = this.photoUrls[0];
@@ -81,6 +106,14 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
     }
     photo.save(params, {
       success: function () {
+        if (location) {
+          photo.locations().set(location);
+          var locationName = $("<b>").text(location.escape('name'));
+          var locationDescription = $("<i>").text(" (" + location.escape('state') + ", " + location.escape('country') + ")");
+          this.photoView.$('.location-name').html(locationName).append(locationDescription);
+        } else if (!photo.escape('location_id')) {
+          this.photoView.$('.location-name').text("");
+        }
         this.photoView.$('.caption').html(photo.escape('caption'));
         if (this.public_id.length !== 0) {
           var photoUrl = $.cloudinary.image(this.public_id[0], { width: 300, height: 300, crop: 'fill' })[0].src;
@@ -89,5 +122,30 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
         this.photoView.hidePhotoForm();
       }.bind(this)
     });
+  },
+
+  saveLocation: function (callback) {
+    var place = this.autocomplete.getPlace();
+    var locationTag = {};
+    locationTag['place_id'] = place.place_id;
+    locationTag['name'] = place.name;
+    place.address_components.forEach(function (address_component, index) {
+      if (address_component.types[0] === 'country') {
+        var street_number = place.address_components[index - 4];
+        var street = place.address_components[index - 3];
+        var city = place.address_components[index - 2];
+        var state = place.address_components[index - 1];
+
+        if (street_number) locationTag['street_number'] = street_number.long_name;
+        if (street) locationTag['street'] = street.long_name;
+        if (city) locationTag['city'] = city.long_name;
+        if (state) locationTag['state'] = state.short_name;
+        locationTag['country'] = place.address_components[index].short_name;
+      }
+    });
+    var locations = new Instacation.Collections.Locations();
+    var location = locations.fetchOrCreateByPlaceID(locationTag, function (location) {
+      callback.call({}, location);
+    }.bind(this));
   },
 });

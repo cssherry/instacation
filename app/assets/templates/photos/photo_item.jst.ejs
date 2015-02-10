@@ -1,13 +1,21 @@
   <div class='thumbnail' >
     <a href="<%= '#users/' + userId + '/albums/' + photo.escape('album_id') + '/photos/' + photo.id %>" >
+      <h3 class='caption' id='<%= photo.id %>'>
+        <% if (photo.escape('caption')) { %>
+          <%= photo.escape('caption') %>
+        <% } %>
+      </h3>
+
       <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" /><br>
     </a>
 
-    <p class='caption' id='<%= photo.id %>'>
-      <% if (photo.escape('caption')) { %>
-        <%= photo.escape('caption') %>
+    <p class='location-name'>
+      <% if (location) {%>
+        <b> <%= location.escape('name')%> </b>
+        <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
       <% } %>
     </p>
+
 
     <% if (editable) { %>
       <a href="#" class="btn btn-primary delete-photo" role="button"> x </a>
