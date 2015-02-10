@@ -120,8 +120,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
       success: function(){
         if (location) {
           album.locations().set(location);
-          var locationName = location.escape('state') + ", " + location.escape('country');
-          this.albumView.$('.location-name').text(locationName);
+          var locationName = $("<b>").text(location.escape('name'));
+          var locationDescription = $("<i>").text(" (" + location.escape('state') + ", " + location.escape('country') + ")");
+          this.albumView.$('.location-name').html(locationName).append(locationDescription);
         } else if (!album.escape('location_id')) {
           this.albumView.$('.location-name').text("");
         }
