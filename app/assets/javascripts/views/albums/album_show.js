@@ -48,6 +48,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     var text = this.list[index].getAttribute('data-description'),
         node = this.container.find('.description');
     node.empty();
+    
     if (text) {
       node[0].appendChild(document.createTextNode(text));
     }
