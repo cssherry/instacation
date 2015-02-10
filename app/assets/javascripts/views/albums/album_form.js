@@ -13,7 +13,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   },
 
   events: {
-    'submit .album-create': 'saveAlbum',
+    'submit .album-create': 'saveNewAlbum',
+    'submit .album-update': 'updateAlbum',
     'click .choose-photo': 'selectPhotos',
     'dragenter .choose-photo': 'selectPhotos',
   },
@@ -50,33 +51,22 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     this.$(".chosen-photos").html(uploadedFiles);
   },
 
-  saveAlbum: function (event) {
+  saveNewAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
-    if ($(event.currentTarget).serializeJSON().location === "") {
-      albumParams['location_id'] = null;
-      this.updateAlbum(albumParams);
-    } else if (this.locationChanged) {
+    if (this.locationChanged) {
       this.saveLocation(function (location) {
         albumParams['location_id'] = location.escape('place_id');
-        if (this.userView) {
-          var photoParams = $(event.currentTarget).serializeJSON().photo;
-          this.saveNewAlbum(albumParams, photoParams, location);
-        } else {
-          this.updateAlbum(albumParams, location);
-        }
+        var photoParams = $(event.currentTarget).serializeJSON().photo;
+        this.saveNewAlbumModel(albumParams, photoParams, location);
       }.bind(this));
     } else {
-      if (this.userView) {
-        var photoParams = $(event.currentTarget).serializeJSON().photo;
-        this.saveNewAlbum(albumParams, photoParams);
-      } else {
-        this.updateAlbum(albumParams);
-      }
+      var photoParams = $(event.currentTarget).serializeJSON().photo;
+      this.saveNewAlbumModel(albumParams, photoParams);
     }
   },
 
-  saveNewAlbum: function (albumParams, photoParams, location) {
+  saveNewAlbumModel: function (albumParams, photoParams, location) {
     var album = new Instacation.Models.Album();
     album.save(albumParams,{
       success: function(){
@@ -109,7 +99,23 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     }.bind(this));
   },
 
-  updateAlbum: function (albumParams, location) {
+  updateAlbum: function (event) {
+    event.preventDefault();
+    var albumParams = $(event.currentTarget).serializeJSON().album;
+    if ($(event.currentTarget).serializeJSON().location === "") {
+      albumParams['location_id'] = null;
+      this.updateAlbumModel(albumParams);
+    } else if (this.locationChanged) {
+      this.saveLocation(function (location) {
+        albumParams['location_id'] = location.escape('place_id');
+        this.updateAlbumModel(albumParams, location);
+      }.bind(this));
+    } else {
+      this.updateAlbumModel(albumParams);
+    }
+  },
+
+  updateAlbumModel: function (albumParams, location) {
     var album = this.albumView.model;
     album.save(albumParams,{
       success: function(){
