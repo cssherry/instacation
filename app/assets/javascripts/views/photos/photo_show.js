@@ -16,6 +16,10 @@ Instacation.Views.PhotoShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     var mapElement = this.$('.google-map')[0];
     this.renderMap(mapElement);
+    if (this.model.escape('location_id')) {
+      var map = this.$('.google-map')[0];
+      this.renderMap(map);
+    }
     return this;
   },
 

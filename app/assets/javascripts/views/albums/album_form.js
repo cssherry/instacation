@@ -35,7 +35,8 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     this.locationChanged = true;
   },
 
-  selectPhotos: function () {
+  selectPhotos: function (event) {
+    event.preventDefault();
     cloudinary.openUploadWidget({ cloud_name: cloud_name, upload_preset: upload_preset},
       function(error, results) {
         this.savePhotosUrls(error, results);
