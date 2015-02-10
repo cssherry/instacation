@@ -27,8 +27,13 @@ class User < ActiveRecord::Base
     foreign_key: :owner_id,
     primary_key: :id,
     dependent: :destroy
+  has_many :albumLocations, through: :albums, source: :location
 
   has_many :photos, through: :albums, source: :photo
+  has_many :photoLocations, through: :photos, source: :location
+
+
+
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

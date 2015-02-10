@@ -7,6 +7,7 @@ module Api
     end
 
     private
+    
     def owner?
       current_user.id == params[:id] ? true : false
     end
