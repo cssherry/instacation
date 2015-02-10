@@ -8,7 +8,12 @@
       <p><i>No Images in this Album</i></p>
     <% } %>
 
-  <p class='location-name'><%= locationName %></p>
+  <p class='location-name'>
+    <% if (location) {%>
+      <b> <%= location.escape('name')%> </b>
+      <%= "(" + location.escape('state') + ", " + location.escape('country') + ")"%>
+    <% } %>
+  </p>
 
   <% if (editable) { %>
     <a href="#" class="btn btn-primary delete-album"> x </a>

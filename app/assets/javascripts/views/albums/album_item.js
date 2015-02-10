@@ -23,12 +23,9 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     var placeID = this.model.escape('location_id')
     if (placeID) {
       var location = this.model.locations().first();
-      var locationName = location.escape('state') + ", " + location.escape('country');
-    } else {
-      var locationName = "";
     }
 
-    var content = this.template({album: this.model, photoUrl: photoUrl, editable: this.editable, locationName: locationName});
+    var content = this.template({album: this.model, photoUrl: photoUrl, editable: this.editable, location: location});
     this.$el.html(content);
     return this;
   },

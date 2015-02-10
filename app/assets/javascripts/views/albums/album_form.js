@@ -38,11 +38,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   selectPhotos: function () {
     cloudinary.openUploadWidget({ cloud_name: cloud_name, upload_preset: upload_preset},
       function(error, results) {
-        this.savePhotos(error, results);
+        this.savePhotosUrls(error, results);
       }.bind(this), false);
   },
 
-  savePhotos: function (error, results) {
+  savePhotosUrls: function (error, results) {
     results && results.forEach(function(result){
                 this.photoUrls.push(result.url);
                 this.public_id.push(result.public_id);
@@ -54,14 +54,13 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
   saveNewAlbum: function (event) {
     event.preventDefault();
     var albumParams = $(event.currentTarget).serializeJSON().album;
+    var photoParams = $(event.currentTarget).serializeJSON().photo;
     if (this.locationChanged) {
       this.saveLocation(function (location) {
         albumParams['location_id'] = location.escape('place_id');
-        var photoParams = $(event.currentTarget).serializeJSON().photo;
         this.saveNewAlbumModel(albumParams, photoParams, location);
       }.bind(this));
     } else {
-      var photoParams = $(event.currentTarget).serializeJSON().photo;
       this.saveNewAlbumModel(albumParams, photoParams);
     }
   },
