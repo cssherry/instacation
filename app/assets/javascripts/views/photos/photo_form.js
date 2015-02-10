@@ -73,13 +73,16 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   saveNewPhotoModel: function (params, location) {
     var photo = new Instacation.Models.Photo();
     this.photoUrls.forEach(function (url, index) {
+        photo.locations().set(location);
         params.photo_url = url;
         params.cloudinary_id = this.public_id[index];
         photo.save(params,{
           success: function(){
             this.albumView.model.photos().add(photo);
             this.albumView.addPhotoItems(photo, this.albumView.addSubviewFront);
-            this.albumView.hidePhotoForm();
+            if (index === 0) {
+              this.albumView.hidePhotoForm();
+            }
           }.bind(this)
         });
     }.bind(this));
