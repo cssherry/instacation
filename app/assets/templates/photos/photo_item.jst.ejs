@@ -1,12 +1,12 @@
   <div class='thumbnail' >
-    <a href="<%= '#users/' + userId + '/albums/' + photo.escape('album_id') + '/photos/' + photo.id %>" >
-      <h3 class='caption' id='<%= photo.id %>'>
-        <% if (photo.escape('caption')) { %>
-          <%= photo.escape('caption') %>
-        <% } %>
-      </h3>
+    <h3 class='caption' id='<%= photo.id %>'>
+      <% if (photo.escape('caption')) { %>
+        <%= photo.escape('caption') %>
+      <% } %>
+    </h3>
 
-      <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" /><br>
+    <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" data-gallery>
+      <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
     </a>
 
     <p class='location-name'>

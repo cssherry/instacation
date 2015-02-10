@@ -14,13 +14,13 @@ Instacation.Views.PhotoShow = Backbone.CompositeView.extend({
   render: function(){
     var content = this.template({photo: this.model,  userId: this.userId});
     this.$el.html(content);
-    var map = this.$('.google-map')[0];
-    this.renderMap(map);
+    var mapElement = this.$('.google-map')[0];
+    this.renderMap(mapElement);
     return this;
   },
 
-  renderMap: function (map) {
-    var map = new google.maps.Map(map);
+  renderMap: function (mapElement) {
+    var map = new google.maps.Map(mapElement);
     var service = new google.maps.places.PlacesService(map);
     service.getDetails({placeId: this.model.escape('location_id')}, function (result, status) {
                                                             this.renderLocationOnMap(result, status, map);

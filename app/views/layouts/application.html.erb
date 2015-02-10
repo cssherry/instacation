@@ -2,10 +2,11 @@
 <html>
 <head>
   <title>Instacation</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+
+  <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application',
                              '//widget.cloudinary.com/global/all.js',
-                             'https://maps.googleapis.com/maps/api/js?libraries=places' %>
+                             'https://maps.googleapis.com/maps/api/js?libraries=places'%>
 
   <script>
     var cloud_name = "<%= ENV['cloud_name'] %>";
@@ -14,6 +15,8 @@
     $.cloudinary.config({ cloud_name: cloud_name, api_key: api_key })
   </script>
 
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -28,6 +31,8 @@
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <a href="http://www.cssherry.com/">Contact</a> | <a href="https://github.com/zhoux10/instacation">Visit on Github</a> | © 2015 - Today
 </nav>
+
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 
 </body>
 </html>

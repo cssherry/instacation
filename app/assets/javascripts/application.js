@@ -15,7 +15,6 @@
 
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
-//= require jquery.fileupload
 //= require jquery.cloudinary
 
 //= require jquery-ui/sortable
