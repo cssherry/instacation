@@ -6,7 +6,7 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     this.editable = options.editable;
   },
 
-  tagName: 'div class="album-item col-sm-6 col-md-4 col-lg-2"',
+  tagName: 'div class="album-item col-sm-12 col-md-6 col-lg-4"',
 
   events: {
     'click .delete-album':'destroy',

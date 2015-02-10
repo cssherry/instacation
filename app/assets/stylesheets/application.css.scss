@@ -46,8 +46,16 @@ body {
   display: hidden;
 }
 
+.title {
+  height: 50px;
+}
+
 .photo {
   float: left;
+}
+
+.location-name {
+  min-height: 20px;
 }
 
 .blueimp-gallery > .description {
