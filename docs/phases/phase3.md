@@ -3,7 +3,6 @@
 ## Rails
 ### Models
 * Location
-* Tagging
 
 ### Controllers
 * Api::LocationsController (create, destroy, index, show)
@@ -13,13 +12,12 @@
 
 ## Backbone
 ### Models
-* Location (parses nested 'albums' association)
+* Location (parses nested 'albums' and 'photos' association)
 
 ### Collections
 
 ### Views
-* PhotoForm (link to this from AlbumShow and UserShow views)
-* LocationShow (composite view, contains AlbumItem views)
+* PhotoForm (link to this from AlbumShow and PhotoItem views)
 
 ## Gems/Libraries
 * Google Places API

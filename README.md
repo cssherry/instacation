@@ -11,9 +11,7 @@ Instacation is a clone of Instagram built on Rails and Backbone. Users can:
 - [X] Create accounts and sessions
 - [X] Create/delete albums
 - [X] Upload/delete photos
-- [ ] Tag albums with locations
-- [ ] Subscribe to users or locations
-- [ ] View a feed of subscribed users/locations
+- [X] Tag albums with locations
 
 ## Design Docs
 * [View Wireframes][views]
@@ -39,8 +37,8 @@ A third party api (probably Google Places), will be used to tag albums with loca
 
 [Details][phase-three]
 
-### Phase 4: Subscribing to Users/Albums and Creating Feed (~1 day)
-Users will be able to subscribe to other users and albums using polymorphic associations. On the UserShow page, I'll add a set of views that includes albums from the location and users subscribed.
+### Phase 4: Viewing albums and photos on map (~2 day)
+Using Google Maps, images and albums will be shown on a map. Albums will be shown on a map on the user's page, and images will be shown on a map on the album show page. Images without locations will be mapped to the albums location or will be grabbed from the image metadata. Albums without locations will grab locations from photos. There will be a navigation bar at the top of the page that will display all the countries, then states, then cities that albums appear.
 
 [Details][phase-four]
 
