@@ -12,6 +12,7 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     'click .delete-album':'destroy',
     'click .edit-album': 'editAlbum',
     'click .close-album-form': 'closeEditAlbum',
+    'mouseover img': 'triggerMarker'
   },
 
   render: function(){
@@ -20,13 +21,16 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
       var modelPhotoUrl = $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
     }
 
-    var placeID = this.model.escape('location_id')
+    var placeID = this.model.escape('location_id');
     if (placeID) {
       var modelLocation = this.model.locations().first();
     }
 
     var content = this.template({album: this.model, photoUrl: modelPhotoUrl, editable: this.editable, location: modelLocation});
     this.$el.html(content);
+
+    Instacation.resize();
+
     return this;
   },
 
@@ -53,5 +57,9 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
   closeEditAlbum: function (event) {
     event.preventDefault();
     this.hideAlbumForm();
+  },
+
+  triggerMarker: function () {
+    this.model.trigger('select', this.model);
   },
 });

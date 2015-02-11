@@ -48,7 +48,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     var text = this.list[index].getAttribute('data-description'),
         node = this.container.find('.description');
     node.empty();
-    
+
     if (text) {
       node[0].appendChild(document.createTextNode(text));
     }
@@ -77,14 +77,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       var place = results;
 
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-      });
-
-      var infoWindow = new google.maps.InfoWindow();
-      infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place));
-      infoWindow.open(map, marker);
+      this.addMarker(place, map);
 
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
@@ -93,6 +86,24 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
         map.setZoom(15);
       }
     }
+  },
+
+  addMarker: function (place, map) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location,
+    });
+
+    var placeInfo = '<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place);
+
+    var infoWindow = new google.maps.InfoWindow();
+    infoWindow.setContent(placeInfo);
+    infoWindow.open(map, marker);
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.setContent(placeInfo);
+      infoWindow.open(map, this);
+    });
   },
 
   parseAddress: function (place) {
@@ -139,11 +150,11 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   reorderPhotos: function (event) {
-  var photos = $(event.target).find('.photo-item');
-  photos.each(function (indx, photo) {
-    var currentId = $(photo).find('.caption').attr('id');
-    var currentPhoto = this.model.photos().get(currentId);
-    currentPhoto.save({order: indx});
-  }.bind(this));
-},
+    var photos = $(event.target).find('.photo-item');
+    photos.each(function (indx, photo) {
+      var currentId = $(photo).find('.caption').attr('id');
+      var currentPhoto = this.model.photos().get(currentId);
+      currentPhoto.save({order: indx});
+    }.bind(this));
+  },
 });

@@ -1,20 +1,22 @@
   <div class='thumbnail' >
-    <h3 class='caption' id='<%= photo.id %>'>
-      <% if (photo.escape('caption')) { %>
-        <%= photo.escape('caption') %>
-      <% } %>
-    </h3>
+    <div class='image'>
+      <h3 class='caption' id='<%= photo.id %>'>
+        <% if (photo.escape('caption')) { %>
+          <%= photo.escape('caption') %>
+        <% } %>
+      </h3>
 
-    <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='link' id='<%= photo.id %>'>
-      <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
-    </a>
+      <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='link' id='<%= photo.id %>'>
+        <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
+      </a>
 
-    <p class='location-name'>
-      <% if (location) {%>
-        <b> <%= location.escape('name')%> </b>
-        <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
-      <% } %>
-    </p>
+      <p class='location-name'>
+        <% if (location) {%>
+          <b> <%= location.escape('name')%> </b>
+          <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
+        <% } %>
+      </p>
+    </div>
 
 
     <% if (editable) { %>

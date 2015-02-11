@@ -22,7 +22,13 @@ window.Instacation = {
     this.currentUserId = $root.data('current-user');
     new Instacation.Routers.UserData({$rootEl: $root});
     Backbone.history.start();
-  }
+  },
+
+  resize: function () {
+    while( $('.fitable-text').height() > $('.fit-container').height() ) {
+        $('.fitable-text').css('font-size', (parseInt($('.fitable-text').css('font-size')) - 1) + "px" );
+    }
+  },
 };
 
 $(document).ready(function(){

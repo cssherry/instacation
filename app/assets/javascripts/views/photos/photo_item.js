@@ -29,6 +29,9 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
                                  userId: this.userId,
                                  location: modelLocation});
     this.$el.html(content);
+
+    Instacation.resize();
+
     return this;
   },
 

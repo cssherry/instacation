@@ -1,16 +1,17 @@
-<h1>
-  <%= user.escape('first_name') + " " + user.escape('last_name') %>
-  <% if (editable) { %>
-    <a href='#' class="btn btn-primary open-album-form" role="button">+ New Album</a>
-  <% } %>
-</h1>
+<div class="row">
+  <div class="col-md-5 google-map-collection"></div>
 
-<div class='albums-and-create'>
-  <div class='album-form'>
+  <div class='albums-and-create col-md-7 col-md-offset-5'>
 
+  <h1>
+    <%= user.escape('first_name') + " " + user.escape('last_name') %>
+    <% if (editable) { %>
+      <a href='#' class="btn btn-primary open-album-form" role="button">+ New Album</a>
+    <% } %>
+  </h1>
+    <div class='album-form'></div>
+
+    <div class='albums'></div>
   </div>
-
-  <div class='albums'>
-
 
 </div>
