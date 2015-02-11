@@ -118,11 +118,11 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
       success: function () {
         if (location) {
           photo.locations().set(location);
-          var locationName = $("<b>").text(location.escape('name'));
-          var locationDescription = $("<i>").text(" (" + location.escape('state') + ", " + location.escape('country') + ")");
-          this.photoView.$('.location-name').html(locationName).append(locationDescription);
-        } else if (!photo.escape('location_id')) {
+          this.photoView.$('.location-name').html(this.photoView.parseLocation(this.photoView.getLocationHash()));
+        } else if (!photo.escape('location_id') && !this.photoView.getLocationHash) {
           this.photoView.$('.location-name').text("");
+        } else if (!photo.escape('location_id') && this.photoView.getLocationHash) {
+          this.photoView.$('.location-name').html(this.photoView.parseLocation(this.photoView.getLocationHash()));
         }
         this.photoView.$('.caption').html(photo.escape('caption'));
         if (this.public_id.length !== 0) {
