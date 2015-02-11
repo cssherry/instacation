@@ -1,7 +1,7 @@
 Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
-  className: "album-show main",
+  className: "main",
 
   initialize: function (options) {
     this.userId = this.model.escape('owner_id');

@@ -71,7 +71,7 @@ body {
   transform: rotate(-1deg) ;
 }
 
-.photo-item:hover{
+.photo-item img:hover{
   transform: rotate(2deg) translateY(-20px);
 }
 
@@ -107,7 +107,7 @@ body {
   display: hidden !important;
 }
 
-.albums-and-create, .photos-and-create {
+.albums-and-create, .photo-and-create {
   height: 100%;
   overflow-y: scroll;
   // position: absolute;
@@ -118,10 +118,6 @@ body {
 }
 .fitable-text {
   margin: 0;
-}
-
-.photo {
-  float: left;
 }
 
 .location-name {
