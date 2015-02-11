@@ -33,10 +33,11 @@ column name | data type | details
 id          | integer   |
 street_number| integer   |
 street      | integer   |
-city        | integer   | not null
-state       | integer   | not null
+city        | integer   |
+state       | integer   |
 country     | string    | not null
-place_id    | string    |
+place_id    | string    | not null
+name        | string    | not null
 
 ## users
 column name     | data type | details
