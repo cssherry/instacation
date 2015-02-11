@@ -9,7 +9,9 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.model.photos().each( function (photoItem) {
       this.addPhotoItems(photoItem, this.addSubviewEnd);
     }.bind(this));
-    this.render();
+
+    // DON'T DO THIS! GOOGLE Maps won't load properly
+    // this.render();
 
     this.openMarker = [];
 

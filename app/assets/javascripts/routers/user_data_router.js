@@ -48,6 +48,10 @@ Instacation.Routers.UserData = Backbone.Router.extend({
   _swapview: function (newView) {
     this._oldview && this._oldview.remove();
     this._oldview = newView;
-    this.$rootEl.html(newView.render().$el);
+    // this.$rootEl.html(newView.render().$el);
+
+    // put element on page before rendering!
+    this.$rootEl.html(newView.$el);
+    newView.render();
   }
 });

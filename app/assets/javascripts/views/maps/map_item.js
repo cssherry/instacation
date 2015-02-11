@@ -6,7 +6,9 @@ Instacation.Views.MapItem = Backbone.View.extend({
     this.infoWindows = {};
     this.map(options.mapElement);
     this.$el = options.mapElement;
-    this.bounds = new google.maps.LatLngBounds ();
+    this.bounds = new google.maps.LatLngBounds();
+
+    google.maps.event.addListenerOnce(this._map, 'idle', this.zoomOrResize.bind(this));
   },
 
   render: function(){
@@ -45,10 +47,6 @@ Instacation.Views.MapItem = Backbone.View.extend({
       this.addMarker(place, map, itemView);
 
       this.bounds.extend(place.geometry.location);
-      map.fitBounds(this.bounds);
-      if (Object.keys(this.markers).length <= 1) {
-        map.setZoom(15);
-      }
     }
   },
 
@@ -102,4 +100,11 @@ Instacation.Views.MapItem = Backbone.View.extend({
     }
     return address;
   },
+
+  zoomOrResize: function () {
+    this._map.fitBounds(this.bounds);
+    if (Object.keys(this.markers).length <= 1) {
+      this._map.setZoom(15);
+    }
+  }
 });
