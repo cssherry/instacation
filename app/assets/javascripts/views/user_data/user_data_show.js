@@ -13,8 +13,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
       }.bind(this)
     });
 
-    this.openMarker = [];
-
     this.editable = options.editable;
 
     this.listenTo(this.model.albums(), 'add', this.render);
@@ -75,16 +73,18 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
   highlightMarker: function (event) {
     var place_id = event.escape("location_id");
-    var marker = this.mapView.markers[place_id];
-    var map = this.mapView.map();
-    map.setCenter(marker.location);
-    // map.setZoom(15);
+    if (place_id) {
+      var marker = this.mapView.markers[place_id];
+      var map = this.mapView.map();
+      map.setCenter(marker.location);
+      // map.setZoom(15);
 
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+      marker.setAnimation(google.maps.Animation.BOUNCE);
 
-    if(this.openMarker.length !== 0) this.openMarker.close();
-    this.openMarker = this.mapView.infoWindows[place_id];
-    this.openMarker.open(map, marker);
+      if(this.openMarker) this.openMarker.close();
+      this.openMarker = this.mapView.infoWindows[place_id];
+      this.openMarker.open(map, marker);
+    }
   },
 
   unhighlightMarker: function (event) {
