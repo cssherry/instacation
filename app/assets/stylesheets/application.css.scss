@@ -78,7 +78,7 @@ body {
 
 .photos {
   padding: 20px;
-  height: auto;
+  height: 100%;
 }
 
 .photo-item {
@@ -105,10 +105,10 @@ body {
 }
 
 .google-map-collection.hidden {
-  display: hidden !important; 
+  display: hidden !important;
 }
 
-.albums-and-create {
+.albums-and-create, .photos-and-create {
   height: 100%;
   max-height: 600px;
   overflow-y: scroll;
@@ -138,16 +138,12 @@ body {
   display: none;
 }
 .blueimp-gallery-controls > .description {
-  display: block;
+  display: block-inline;
 }
 
 .blueimp-gallery-controls > .description {
   display: block;
   margin: 20px 0 0 20px;
-}
-
-.album-show {
-  margin: 50px;
 }
 
 .navbar {
