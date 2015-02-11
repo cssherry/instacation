@@ -23,6 +23,7 @@ window.Instacation = {
     new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
+    this.changeHeightForFooter();
     Backbone.history.start();
   },
 
@@ -37,12 +38,15 @@ window.Instacation = {
 
   changeHeightForFooter: function () {
     var docHeight = $(window).height();
-     var footerHeight = $('footer').height();
-     var footerTop = $('footer').position().top + footerHeight;
+    if ($(".modal-dialog").length !== 0 ) var modalHeight = $(".modal-dialog").height() + $(".modal-dialog").offset().top ;
+    var footerHeight = $('footer').height();
+    var footerTop = $('footer').position().top + footerHeight;
 
-     if (footerTop < docHeight) {
-      $('footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
-     }
+    if (footerTop < docHeight) {
+      $('footer').css('margin-top', 10 + (docHeight - footerTop) + 'px');
+    } else if (footerTop < modalHeight) {
+      $('footer').css('margin-top', 100 + (modalHeight - footerTop) + 'px');
+    }
   },
 
   addEvent: function (elem, type, eventHandle) {
