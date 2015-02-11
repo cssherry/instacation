@@ -1,32 +1,107 @@
-<h2>Sign Up</h2>
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+      <br>
+      <div class="bs-login bs-login-tabs">
+          <ul id="loginTabs" class="nav nav-tabs">
+            <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+            <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+            <li class=""><a href="#about" data-toggle="tab">About</a></li>
+          </ul>
+      </div>
+    <div class="modal-body">
+      <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in" id="about">
+      <p>Remember your vacation in an instant! Store and view albums from your vacation by location.</p>
+    </div>
 
-<form action="<%= users_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="tab-pane fade active in" id="signin">
+        <!-- Sign In Form -->
+      <form class="form-horizontal" action="<%= session_url %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <!-- Username input-->
+        <div class="control-group">
+          <label class="control-label" for="username">Username:</label>
+          <div class="controls">
+            <input type="text" id="username"btn btn-default"" name="user[username]" value="" class="form-control input-medium" placeholder="Username">
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" name="user[username]" value="">
-    <br>
+        <!-- Password input-->
+        <div class="control-group">
+          <label class="control-label" for="password">Password:</label>
+          <div class="controls">
+            <input type="password" id="password" name="user[password]" value="" class="form-control input-medium" placeholder="******">
+          </div>
+        </div>
+
+        <!-- Sign In Button -->
+        <div class="control-group">
+          <label class="control-label" for="signin"></label>
+          <div class="controls">
+            <button id="signin" name="signin" class="btn btn-success">Sign In</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-pane fade" id="signup">
+      <form class="form-horizontal" action="<%= users_url %>" method="post">
+        <!-- Sign Up Form -->
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <!-- Username input-->
+        <div class="control-group">
+          <label class="control-label" for="email">Username:</label>
+          <div class="controls">
+            <input type="text" class="form-control" id="username" name="user[username]" value="" class="form-control input-medium" placeholder='Username'>
+          </div>
+        </div>
+
+        <!-- Name input-->
+        <div class="control-group ">
+          <label class="control-label" for="name">Name:</label>
+          <div class="controls row">
+            <div class='col-md-6'>
+              <input type="text" class="form-control" id="name" name="user[first_name]" value="" placeholder='First name' class="form-control input-small">
+            </div>
+            <div class='col-md-6'>
+              <input type="text" class="form-control" id="name" name="user[last_name]" value="" placeholder='Last name' class="form-control input-small">
+            </div>
+          </div>
+        </div>
+
+      <div class='row'>
+        <!-- Password input-->
+        <div class="control-group col-md-6">
+          <label class="control-label" for="password">Password:</label>
+          <div class="controls">
+            <input type="password" class="form-control" id="password1" name="user[password]" value="" placeholder='******' class="form-control input-medium">
+            <em>>6 Characters</em>
+          </div>
+        </div>
+
+        <div class="control-group col-md-6">
+          <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
+          <div class="controls">
+            <input type="password" class="form-control" id="password2" name="password_confirm" value="" placeholder='******' class="form-control input-medium">
+          </div>
+        </div>
+      </div>
+
+        <!-- Sign up Button -->
+        <div class="control-group">
+          <label class="control-label" for="confirmsignup"></label>
+          <div class="controls">
+            <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="user[first_name]" value="" placeholder='First'>
-    <input type="text" class="form-control" id="name" name="user[last_name]" value="" placeholder='Last'>
-    <br>
+    </div>
+    <div class="modal-footer">
+    <center>
+      <button type="button" class="btn btn-default">Guest Login</button>
+      </center>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="password1">Create a Password</label>
-    <input type="password" class="form-control" id="password1" name="user[password]" value="">
-    <br>
-  </div>
-
-  <div class="form-group">
-    <label for="password2">Confirm Password</label>
-    <input type="password" class="form-control" id="password2" name="password_confirm" value="">
-    <br>
-  </div>
-
-  <input type="submit" class="btn btn-default" value="Sign Up">
-</form>
+</div>

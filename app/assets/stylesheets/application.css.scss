@@ -23,6 +23,22 @@ html, .container, .wrap, #main, .main, .main > .row {
   width: 100%
 }
 
+html, .wrap {
+  background: url(nTr1589kTgyXCOdStCGm_MikaRuusunen.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.row div {
+  padding: 0;
+}
+
+.float {
+  float: left;
+}
+
 .container {
   padding: 0;
 }
