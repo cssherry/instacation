@@ -71,7 +71,7 @@ body {
   transform: rotate(-1deg) ;
 }
 
-.photo-item img:hover{
+.photo-item .image:hover{
   transform: rotate(2deg) translateY(-20px);
 }
 
