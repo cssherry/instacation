@@ -31,6 +31,10 @@ html, .wrap {
   background-size: cover;
 }
 
+.image {
+  height: 360px;
+}
+
 .main {
   background-color: white;
 }
@@ -78,7 +82,7 @@ body {
 
 .photos {
   padding: 20px;
-  height: 100%;
+  height: auto;
 }
 
 .photo-item {
