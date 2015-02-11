@@ -81,12 +81,20 @@ Instacation.Views.MapItem = Backbone.View.extend({
     if (itemView.model.escape("owner_id")) {
       var albumUrl = $("<a>").attr("href", '#users/' + itemView.model.escape('owner_id') + '/albums/' + itemView.model.id);
       var albumName = $("<h4>").text(itemView.model.escape("title"));
-      var photo = $("<p>").html($("<img>").attr({'src': itemView.getThumbnail(), 'width': '75px', 'height': '75px'}));
+      var photo = this.getPhotoUrlOrError(itemView);
       return albumUrl.html(albumName).append(photo);
     } else {
       var photoCaption = $("<h4>").text(itemView.model.escape("caption"));
-      var photo = $("<img>").attr({'src': itemView.getThumbnail(), 'width': '75px', 'height': '75px'});
+      var photo = this.getPhotoUrlOrError(itemView);
       return $("<div>").append(photo).append(photoCaption);
+    }
+  },
+
+  getPhotoUrlOrError: function (itemView) {
+    if (itemView.getThumbnail()) {
+      return $("<p>").html($("<img>").attr({'src': itemView.getThumbnail(), 'width': '75px', 'height': '75px'}));
+    } else {
+      return $("<p>").text("No Photos Yet");
     }
   },
 
