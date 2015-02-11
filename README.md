@@ -44,7 +44,7 @@ Using Google Maps, images and albums will be shown on a map. Albums will be show
 
 ### Bonus Features
 - [ ] Allow only followers and owner to see an album. Owner will be able to share albums with others using url/passphrase.
-- [ ] Map albums by location for exploring
+- [X] Map albums by location for exploring
 - [ ] Search for albums by location
 - [ ] Search for photos by caption
 - [ ] Use captions to create tags for photos
@@ -53,7 +53,7 @@ Using Google Maps, images and albums will be shown on a map. Albums will be show
 - [ ] Comment on albums and photos, display counter of how many comments there are
 - [ ] Tag users in photos and albums
 - [ ] Infinite scroll of albums and photos
-- [ ] Support for multiple open sessionI or authentication through omniauth
+- [ ] Support for multiple open session or authentication through omniauth
 - [ ] Allow user to edit their own information
 - [ ] Alert user when albums/photos liked/commented
 
