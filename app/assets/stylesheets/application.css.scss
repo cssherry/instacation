@@ -18,7 +18,7 @@
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 
-html, .container, #main, .main, .main > .row {
+html, .container, .wrap, #main, .main, .main > .row {
   height: 100%;
   width: 100%
 }
@@ -49,7 +49,7 @@ body {
 }
 
 .album-item img:hover{
-  transform: rotate(1deg) translateY(5px);
+  transform: rotate(-1deg) ;
 }
 
 .photo-item:hover{
@@ -134,4 +134,9 @@ body {
 .navbar-bottom {
   width: 100%;
   margin-bottom: 0;
+}
+
+.gm-style * {
+  width:auto;
+  height:auto;
 }

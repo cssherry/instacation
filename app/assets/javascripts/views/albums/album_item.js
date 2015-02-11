@@ -6,32 +6,39 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     this.editable = options.editable;
   },
 
-  tagName: 'div class="album-item col-sm-12 col-md-6 col-lg-4"',
+  tagName: 'div class="album-item col-md-6 col-lg-4"',
 
   events: {
     'click .delete-album':'destroy',
     'click .edit-album': 'editAlbum',
     'click .close-album-form': 'closeEditAlbum',
-    'mouseover img': 'triggerMarker'
+    'mouseover .image': 'triggerMarker',
+    'mouseout .image': 'closeMarker',
   },
 
   render: function(){
-    if (this.model.photos().length !== 0) {
-      var cloudinaryId = this.model.photos().first().get('cloudinary_id');
-      var modelPhotoUrl = $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
-    }
-
-    var placeID = this.model.escape('location_id');
-    if (placeID) {
-      var modelLocation = this.model.locations().first();
-    }
-
+    var modelPhotoUrl = this.getThumbnail();
+    var modelLocation = this.getLocation();
     var content = this.template({album: this.model, photoUrl: modelPhotoUrl, editable: this.editable, location: modelLocation});
     this.$el.html(content);
 
     Instacation.resize();
 
     return this;
+  },
+
+  getThumbnail: function () {
+    if (this.model.photos().length !== 0) {
+      var cloudinaryId = this.model.photos().first().get('cloudinary_id');
+      return $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
+    }
+  },
+
+  getLocation: function () {
+    var placeID = this.model.escape('location_id');
+    if (placeID) {
+      return this.model.locations().first();
+    }
   },
 
   destroy: function (event) {
@@ -60,6 +67,14 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
   },
 
   triggerMarker: function () {
-    this.model.trigger('select', this.model);
+    if (this.model.get('location_id')) {
+      this.model.trigger('select', this.model);
+    }
+  },
+
+  closeMarker: function () {
+    if (this.model.get('location_id')) {
+      this.model.trigger('unselect', this.model);
+    }
   },
 });

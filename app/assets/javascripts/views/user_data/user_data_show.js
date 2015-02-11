@@ -13,11 +13,14 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
       }.bind(this)
     });
 
+    this.openMarker = [];
+
     this.editable = options.editable;
 
     this.listenTo(this.model.albums(), 'add', this.render);
     this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
-    this.listenTo(this.model.albums(), 'select', this.highlightMarker);
+    this.listenTo(this.model.albums(), 'select', this.highlightMarker.bind(this));
+    this.listenTo(this.model.albums(), 'unselect', this.unhighlightMarker.bind(this));
   },
 
   events: {
@@ -28,16 +31,20 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   render: function(){
     var content = this.template({user: this.model, editable: this.editable});
     this.$el.html(content);
-    var mapElement = this.$('.google-map-collection')[0];
     this.attachSubviews();
-    var map = new google.maps.Map(mapElement);
-    this.renderMap(map);
+    var mapElement = this.$('.google-map-collection')[0];
+    this.addMapItem(mapElement, this.addSubviewEnd);
     return this;
   },
 
   addAlbumItems: function (albumItem, fn) {
     var albumView = new Instacation.Views.AlbumItem({model: albumItem, editable: this.editable});
     fn.call(this, ".albums", albumView);
+  },
+
+  addMapItem: function (mapElement, fn) {
+    this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.albums'), mapElement: mapElement});
+    fn.call(this, ".google-map-collection", this.mapView);
   },
 
   removeAlbumItem: function (album) {
@@ -66,62 +73,23 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.$('.close-form').toggleClass('open-album-form close-form');
   },
 
-  renderMap: function (map) {
-    var that = this;
-    this.model.albums().each(function (album) {
-      if (album.escape('location_id')) {
-        var service = new google.maps.places.PlacesService(map);
-        service.getDetails({placeId: album.escape('location_id')}, function (result, status) {
-          that.renderLocationOnMap(result, status, map);
-        });
-      }
-    });
+  highlightMarker: function (event) {
+    var place_id = event.escape("location_id");
+    var marker = this.mapView.markers[place_id];
+    var map = this.mapView.map();
+    map.setCenter(marker.location);
+    // map.setZoom(15);
+
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+
+    if(this.openMarker.length !== 0) this.openMarker.close();
+    this.openMarker = this.mapView.infoWindows[place_id];
+    this.openMarker.open(map, marker);
   },
 
-  renderLocationOnMap: function (results, status, map) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var place = results;
-
-      this.addMarker(place, map);
-
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(2);
-      }
-    }
-  },
-
-  addMarker: function (place, map) {
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location,
-    });
-
-    var placeInfo = '<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place);
-
-    var infoWindow = new google.maps.InfoWindow();
-    infoWindow.setContent(placeInfo);
-    infoWindow.open(map, marker);
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent(placeInfo);
-      infoWindow.open(map, this);
-    });
-  },
-
-  parseAddress: function (place) {
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-    return address;
-  },
-  highlightMarker: function () {
-    console.log("whatup");
+  unhighlightMarker: function (event) {
+    var place_id = event.escape("location_id");
+    var marker = this.mapView.markers[place_id];
+    marker.setAnimation(null);
   }
 });
