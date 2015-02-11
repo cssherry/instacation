@@ -27,9 +27,14 @@ Instacation.Views.MapItem = Backbone.View.extend({
     var that = this;
     var numberItemWithLocations = 0;
     this.collection.forEach(function (itemView) {
-      if (itemView.model.escape('location_id')) {
+      if (itemView.model.escape("owner_id")) {
+        var locationId = itemView.model.escape('location_id');
+      } else {
+        var locationId = itemView.getLocationId();
+      }
+      if (locationId) {
         var service = new google.maps.places.PlacesService(map);
-        service.getDetails({placeId: itemView.model.escape('location_id')}, function (result, status) {
+        service.getDetails({placeId: locationId}, function (result, status) {
           that.renderLocationOnMap(result, status, map, itemView);
         });
         numberItemWithLocations ++;
@@ -86,7 +91,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
     } else {
       var photoCaption = $("<h4>").text(itemView.model.escape("caption"));
       var photo = this.getPhotoUrlOrError(itemView);
-      return $("<div>").append(photo).append(photoCaption);
+      return $("<div>").append(photoCaption).append(photo);
     }
   },
 

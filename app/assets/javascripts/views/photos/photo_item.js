@@ -5,6 +5,7 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.editable = options.editable;
     this.userId = options.userId;
+    this.album = options.album;
   },
 
   tagName: 'div class="photo-item"',
@@ -20,15 +21,14 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
 
   render: function(){
     var modelPhotoUrl = this.getThumbnail();
-
-    var modelLocation = this.getLocation();
-
     var content = this.template({photo: this.model,
                                  editable: this.editable,
                                  photoUrl: modelPhotoUrl,
-                                 userId: this.userId,
-                                 location: modelLocation});
+                                 userId: this.userId});
     this.$el.html(content);
+
+
+    if (this.getLocationHash()) this.$(".location-name").html(this.parseLocation(this.getLocationHash()));
 
     Instacation.resize();
 
@@ -39,10 +39,29 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
     return $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
   },
 
-  getLocation: function () {
+  getLocationHash: function () {
     var placeID = this.model.escape('location_id');
+    var albumPlaceID = this.album.escape('location_id');
     if (placeID) {
-      return this.model.locations().first();
+      return {"Photo Location": this.model.locations().first()};
+    } else if (albumPlaceID) {
+      return {"Album Location": this.album.locations().first()};
+    }
+  },
+
+  parseLocation: function (typeLocationHash) {
+    var locationString = Object.keys(typeLocationHash)[0];
+    var location = typeLocationHash[locationString];
+    $locationName = $("<b>").text(locationString + ": ").append($("<br>")).append(location.escape('name'));
+    $locationDescription = $("<i>").text(" (" + location.escape('state') + ", " + location.escape('country') + ")");
+    return ($locationName).add($locationDescription);
+  },
+
+  getLocationId: function () {
+    var locationHash = this.getLocationHash();
+    if (locationHash) {
+      var location = Object.keys(locationHash)[0];
+      return locationHash[location].escape("place_id");
     }
   },
 
@@ -72,14 +91,14 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   },
 
   triggerMarker: function () {
-    if (this.model.get('location_id')) {
-      this.model.trigger('selectImage', this.model);
+    if (this.getLocationId()) {
+      this.model.trigger('selectImage', this.getLocationId());
     }
   },
 
   closeMarker: function () {
-    if (this.model.get('location_id')) {
-      this.model.trigger('unselectImage', this.model);
+    if (this.getLocationId()) {
+      this.model.trigger('unselectImage', this.getLocationId());
     }
   },
 });

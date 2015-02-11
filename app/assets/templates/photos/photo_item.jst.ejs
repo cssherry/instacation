@@ -10,12 +10,7 @@
       <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
     </a>
 
-    <p class='location-name'>
-      <% if (location) {%>
-        <b> <%= location.escape('name')%> </b>
-        <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
-      <% } %>
-    </p>
+    <p class='location-name'></p>
   </div>
 
   <% if (editable) { %>
@@ -26,4 +21,5 @@
     </div>
 
   <% } %>
+
 </div>

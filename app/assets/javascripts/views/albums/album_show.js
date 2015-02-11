@@ -122,7 +122,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   addPhotoItems: function (photoItem, fn) {
-    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId});
+    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId, album: this.model});
     fn.call(this, ".photos", photoView);
   },
 
@@ -161,22 +161,20 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
-  highlightMarker: function (event) {
-    var place_id = event.escape("location_id");
-    var marker = this.mapView.markers[place_id];
+  highlightMarker: function (placeId) {
+    var marker = this.mapView.markers[placeId];
     var map = this.mapView.map();
     map.setCenter(marker.location);
 
     marker.setAnimation(google.maps.Animation.BOUNCE);
 
     if(this.openMarker.length !== 0) this.openMarker.close();
-    this.openMarker = this.mapView.infoWindows[place_id];
+    this.openMarker = this.mapView.infoWindows[placeId];
     this.openMarker.open(map, marker);
   },
 
-  unhighlightMarker: function (event) {
-    var place_id = event.escape("location_id");
-    var marker = this.mapView.markers[place_id];
+  unhighlightMarker: function (placeId) {
+    var marker = this.mapView.markers[placeId];
     marker.setAnimation(null);
   }
 });
