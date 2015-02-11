@@ -18,21 +18,30 @@
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 
-html, #main, .main, .main > .row {
+html, .container, #main, .main, .main > .row {
   height: 100%;
+  width: 100%
+}
+
+.container {
+  padding: 0;
 }
 
 body {
   padding-top: 50px;
   height: 100%;
   position: relative;
+  overflow-y: hidden;
 }
 
 .backdrop {
   position: relative;
   height: 100%;
   width: 100%;
+}
 
+.row {
+  margin: 0;
 }
 
 .thumbnail {
@@ -70,10 +79,9 @@ body {
 }
 
 .google-map-collection {
-  float: left;
+  left: 0;
   height: 100%;
-  position: absolute !important;
-  // width: 300px;
+  position: fixed !important;
 }
 
 .albums-and-create {
@@ -114,13 +122,16 @@ body {
   margin: 20px 0 0 20px;
 }
 
+.album-show {
+  margin: 50px;
+}
+
+.navbar {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 .navbar-bottom {
   width: 100%;
   margin-bottom: 0;
-}
-
-.row:after {
-  content: ""; /* Empty content string */
-  clear: both;
-  display: table; /* Need this to work properly on IE */
 }

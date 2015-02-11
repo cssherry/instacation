@@ -1,6 +1,8 @@
 Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
+  className: "album-show",
+
   initialize: function (options) {
     this.userId = this.model.escape('owner_id');
     this.editable = this.userId == Instacation.currentUserId;
