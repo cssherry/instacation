@@ -73,8 +73,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
   highlightMarker: function (event) {
     var place_id = event.escape("location_id");
-    if (place_id) {
-      var marker = this.mapView.markers[place_id];
+    var marker = this.mapView.markers[place_id];
+    if (marker) {
       var map = this.mapView.map();
       map.setCenter(marker.location);
       // map.setZoom(15);
@@ -90,6 +90,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   unhighlightMarker: function (event) {
     var place_id = event.escape("location_id");
     var marker = this.mapView.markers[place_id];
-    marker.setAnimation(null);
+    if (marker) marker.setAnimation(null);
   }
 });
