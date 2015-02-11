@@ -73,6 +73,47 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }
   },
 
+  renderMap: function (mapElement, photo) {
+    var map = new google.maps.Map(mapElement);
+    var service = new google.maps.places.PlacesService(map);
+    service.getDetails({placeId: photo.escape('location_id')}, function (result, status) {
+                                                          this.renderLocationOnMap(result, status, map);
+                                                        }.bind(this));
+},
+
+  renderLocationOnMap: function (results, status, map) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      var place = results;
+
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+      });
+
+      var infoWindow = new google.maps.InfoWindow();
+      infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place));
+      infoWindow.open(map, marker);
+
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(15);
+      }
+    }
+  },
+
+  parseAddress: function (place) {
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+    return address;
+  },
+
   addMapItem: function (mapElement, fn) {
     this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.photos'), mapElement: mapElement});
     fn.call(this, ".google-map-collection", this.mapView);

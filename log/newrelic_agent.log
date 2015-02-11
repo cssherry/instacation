@@ -1509,3 +1509,24 @@ HINT:  No operator matches the given name and argument type(s). You might need t
 [02/11/15 00:27:09 -0800 Sherrys-MacBook-Pro.local (63937)] INFO : Doing deferred dependency-detection before Rack startup
 [02/11/15 00:27:26 -0800 Sherrys-MacBook-Pro.local (63937)] ERROR : Invalid license key, please contact support@newrelic.com
 [02/11/15 00:27:26 -0800 Sherrys-MacBook-Pro.local (63937)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/11/15 00:47:19 -0800 Sherrys-MacBook-Pro.local (63937)] INFO : Starting Agent shutdown
+[02/11/15 01:03:05 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Starting the New Relic agent in "development" environment.
+[02/11/15 01:03:05 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[02/11/15 01:03:05 -0800 Sherrys-MacBook-Pro.local (64858)] WARN : No configuration file found. Working directory = /Users/sherry/Documents/Programming/instacation
+[02/11/15 01:03:05 -0800 Sherrys-MacBook-Pro.local (64858)] WARN : Looked in these locations (based on defaults): /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/Documents/Programming/instacation/config/newrelic.yml, /Users/sherry/Documents/Programming/instacation/newrelic.yml, /Users/sherry/.newrelic/newrelic.yml, /Users/sherry/newrelic.yml
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Environment: development
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Dispatcher: webrick
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Application: development
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'.
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing ActiveRecord 4 instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Net instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing deferred Rack instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Rack::Builder middleware instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Rails 3+ middleware instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Rails 4 Controller instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Rails 4 view instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Installing Rails 4 Error instrumentation
+[02/11/15 01:03:06 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Finished instrumentation
+[02/11/15 01:03:07 -0800 Sherrys-MacBook-Pro.local (64858)] INFO : Doing deferred dependency-detection before Rack startup
+[02/11/15 01:03:11 -0800 Sherrys-MacBook-Pro.local (64858)] ERROR : Invalid license key, please contact support@newrelic.com
+[02/11/15 01:03:11 -0800 Sherrys-MacBook-Pro.local (64858)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
