@@ -20,11 +20,15 @@
 
 html, .container, #main, .main, .main > .row {
   // height: 100%;
-  width: 100%
-
+  width: 100%;
 }
 
 body {
+  padding-top: 50px;
+  width: 100%;
+  // height: 100%;
+  // position: relative;
+  overflow-y: hidden;
   background: url(nTr1589kTgyXCOdStCGm_MikaRuusunen.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -32,8 +36,14 @@ body {
   background-size: cover;
 }
 
+.backdrop {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 .image {
-  height: 360px;
+  height: 400px;
 }
 
 .main {
@@ -44,25 +54,8 @@ body {
   padding: 0;
 }
 
-.float {
-  float: left;
-}
-
 .container {
   padding: 0;
-}
-
-body {
-  padding-top: 50px;
-  height: 100%;
-  position: relative;
-  overflow-y: hidden;
-}
-
-.backdrop {
-  position: relative;
-  height: 100%;
-  width: 100%;
 }
 
 .row {
