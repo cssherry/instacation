@@ -64,7 +64,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
     var itemInfo = this.parseItemInfo(itemView);
 
-    var info = $("<div>").append(itemInfo).append(placeInfo);
+    var info = $("<div>").addClass("center").append(itemInfo).append(placeInfo);
 
     var infoWindow = new google.maps.InfoWindow();
     infoWindow.setContent(info[0]);
