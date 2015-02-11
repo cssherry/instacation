@@ -7,7 +7,6 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     '': 'currentUserShow',
     'users/:id': 'userDataShow',
     'users/:userId/albums/:albumId': 'albumShow',
-    'users/:userId/albums/:albumId/photos/:photoId': 'photoShow'
   },
 
   currentUserShow: function () {
@@ -31,16 +30,6 @@ Instacation.Routers.UserData = Backbone.Router.extend({
       success: function () {
         var albumShowView = new Instacation.Views.AlbumShow({model: album});
         this._swapview(albumShowView);
-      }.bind(this)
-    });
-  },
-
-  photoShow: function (userId, albumId, photoId) {
-    var photo = new Instacation.Models.Photo({id: photoId});
-    photo.fetch({
-      success: function () {
-        var photoShowView = new Instacation.Views.PhotoShow({model: photo, userId: userId});
-        this._swapview(photoShowView);
       }.bind(this)
     });
   },
