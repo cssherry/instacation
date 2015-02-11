@@ -13,9 +13,13 @@
   <input type="text"
          name="location"
          class="location-picker"
-         placeholder="Add location tag"
-         <% if(photoView) { %>
-           value='<%= location %>'
+         <% if(locationPlaceholder) { %>
+           placeholder='<%= locationPlaceholder.escape("name") %>'
+         <% } else { %>
+           placeholder="Add location tag"
+         <% } %>
+         <% if(location ) { %>
+           value='<%= location.escape("name") %>'
          <% } %> >
   <br>
 

@@ -19,10 +19,13 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   },
 
   render: function(){
-    if(this.photoView && this.photoView.model.locations().first()) {
-      var location = this.photoView.model.locations().first().escape('name');
+    if(this.photoView && this.photoView.getLocationHash()) {
+      var locationHash = this.photoView.getLocationHash();
+      var photoLocation = locationHash["Photo Location"];
+      var albumLocation = locationHash["Album Location"];
     }
-    var content = this.template({photoView: this.photoView, location: location});
+
+    var content = this.template({photoView: this.photoView, location: photoLocation, locationPlaceholder: albumLocation});
     this.$el.html(content);
     var input = this.$('.location-picker')[0];
     this.autocomplete = new google.maps.places.Autocomplete(input);
