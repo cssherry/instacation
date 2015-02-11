@@ -1,23 +1,27 @@
-<h1>
-  <%= album.escape('title') %>
-  <% if (editable) { %>
-    <a href='#' class="btn btn-primary open-photo-form" role="button">+ New Photo</a>
-  <% } %>
+<div class="row">
+  <div class="col-md-4 google-map-collection"></div>
 
-  <a href="<%= '#users/' +  userId %>" class="btn btn-primary">
-    Back to User Page
-  </a>
-</h1>
+  <div class='albums-and-create col-md-8 col-md-offset-4'>
 
-<div class='photos-and-create'>
-  <div class='photo-form'>
+  <h1>
+    <%= album.escape('title') %>
+    <% if (editable) { %>
+      <a href='#' class="btn btn-primary open-photo-form" role="button">+ New Photo</a>
+    <% } %>
 
+    <a href="<%= '#users/' +  userId %>" class="btn btn-primary">
+      Back to User Page
+    </a>
+  </h1>
+
+  <div class='photos-and-create'>
+    <div class='photo-form'></div>
+
+    <div class='photos' id='links'></div>
   </div>
 
-  <div class='photos' id='links'>
-
-  </div>
 </div>
+
 
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>

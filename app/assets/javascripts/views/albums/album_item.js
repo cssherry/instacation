@@ -68,13 +68,13 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
 
   triggerMarker: function () {
     if (this.model.get('location_id')) {
-      this.model.trigger('select', this.model);
+      this.model.trigger('selectImage', this.model);
     }
   },
 
   closeMarker: function () {
     if (this.model.get('location_id')) {
-      this.model.trigger('unselect', this.model);
+      this.model.trigger('unselectImage', this.model);
     }
   },
 });

@@ -1,7 +1,7 @@
 Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   template: JST['albums/show'],
 
-  className: "album-show",
+  className: "album-show main",
 
   initialize: function (options) {
     this.userId = this.model.escape('owner_id');
@@ -11,9 +11,13 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }.bind(this));
     this.render();
 
+    this.openMarker = [];
 
     this.listenTo(this.model.photos(), 'add', this.render);
     this.listenTo(this.model.photos(), 'remove', this.removePhotoItem);
+
+    this.listenTo(this.model.photos(), 'selectImage', this.highlightMarker.bind(this));
+    this.listenTo(this.model.photos(), 'unselectImage', this.unhighlightMarker.bind(this));
   },
 
   events: {
@@ -28,6 +32,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     this.$('.photos').sortable();
+    var mapElement = this.$('.google-map-collection')[0];
+    this.addMapItem(mapElement, this.addSubviewEnd);
     return this;
   },
 
@@ -67,58 +73,10 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }
   },
 
-  renderMap: function (mapElement, photo) {
-    var map = new google.maps.Map(mapElement);
-    var service = new google.maps.places.PlacesService(map);
-    service.getDetails({placeId: photo.escape('location_id')}, function (result, status) {
-                                                            this.renderLocationOnMap(result, status, map);
-                                                          }.bind(this));
+  addMapItem: function (mapElement, fn) {
+    this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.photos'), mapElement: mapElement});
+    fn.call(this, ".google-map-collection", this.mapView);
   },
-
-  renderLocationOnMap: function (results, status, map) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var place = results;
-
-      this.addMarker(place, map);
-
-      if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
-      } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(15);
-      }
-    }
-  },
-
-  addMarker: function (place, map) {
-    var marker = new google.maps.Marker({
-      map: map,
-      position: place.geometry.location,
-    });
-
-    var placeInfo = '<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place);
-
-    var infoWindow = new google.maps.InfoWindow();
-    infoWindow.setContent(placeInfo);
-    infoWindow.open(map, marker);
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infoWindow.setContent(placeInfo);
-      infoWindow.open(map, this);
-    });
-  },
-
-  parseAddress: function (place) {
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-    return address;
-  },
-
 
   addPhotoItems: function (photoItem, fn) {
     var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId});
@@ -159,4 +117,23 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
       currentPhoto.save({order: indx});
     }.bind(this));
   },
+
+  highlightMarker: function (event) {
+    var place_id = event.escape("location_id");
+    var marker = this.mapView.markers[place_id];
+    var map = this.mapView.map();
+    map.setCenter(marker.location);
+
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+
+    if(this.openMarker.length !== 0) this.openMarker.close();
+    this.openMarker = this.mapView.infoWindows[place_id];
+    this.openMarker.open(map, marker);
+  },
+
+  unhighlightMarker: function (event) {
+    var place_id = event.escape("location_id");
+    var marker = this.mapView.markers[place_id];
+    marker.setAnimation(null);
+  }
 });

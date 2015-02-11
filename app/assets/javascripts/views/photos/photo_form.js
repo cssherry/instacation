@@ -92,7 +92,10 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   updatePhoto:function (event) {
     event.preventDefault();
     var params = $(event.currentTarget).serializeJSON().photo;
-    if (this.locationChanged) {
+    if ($(event.currentTarget).serializeJSON().location === "") {
+      params['location_id'] = null;
+      this.updatePhotoModel(params);
+    } else if (this.locationChanged) {
       this.saveLocation(function (location) {
         params['location_id'] = location.escape('place_id');
         this.updatePhotoModel(params, location);

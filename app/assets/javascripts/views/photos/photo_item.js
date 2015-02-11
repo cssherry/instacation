@@ -13,15 +13,15 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
     'click .delete-photo':'destroy',
     'click .edit-photo': 'editPhoto',
     'click .close-photo-form': 'closeEditPhoto',
+    'mouseover .image': 'triggerMarker',
+    'mouseout .image': 'closeMarker',
+
   },
 
   render: function(){
-    var modelPhotoUrl = $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
+    var modelPhotoUrl = this.getThumbnail();
 
-    var placeID = this.model.escape('location_id');
-    if (placeID) {
-      var modelLocation = this.model.locations().first();
-    }
+    var modelLocation = this.getLocation();
 
     var content = this.template({photo: this.model,
                                  editable: this.editable,
@@ -33,6 +33,17 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
     Instacation.resize();
 
     return this;
+  },
+
+  getThumbnail: function () {
+    return $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
+  },
+
+  getLocation: function () {
+    var placeID = this.model.escape('location_id');
+    if (placeID) {
+      return this.model.locations().first();
+    }
   },
 
   destroy: function (event) {
@@ -58,5 +69,17 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   closeEditPhoto: function (event) {
     event.preventDefault();
     this.hidePhotoForm();
+  },
+
+  triggerMarker: function () {
+    if (this.model.get('location_id')) {
+      this.model.trigger('selectImage', this.model);
+    }
+  },
+
+  closeMarker: function () {
+    if (this.model.get('location_id')) {
+      this.model.trigger('unselectImage', this.model);
+    }
   },
 });

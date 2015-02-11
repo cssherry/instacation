@@ -23,15 +23,19 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
   renderMap: function (map) {
     var that = this;
-
+    var numberItemWithLocations = 0;
     this.collection.forEach(function (itemView) {
       if (itemView.model.escape('location_id')) {
         var service = new google.maps.places.PlacesService(map);
         service.getDetails({placeId: itemView.model.escape('location_id')}, function (result, status) {
           that.renderLocationOnMap(result, status, map, itemView);
         });
+        numberItemWithLocations ++;
       }
     });
+    if (numberItemWithLocations === 0) {
+      $(this.$el).addClass("hidden");
+    }
   },
 
   renderLocationOnMap: function (results, status, map, itemView) {
@@ -42,6 +46,9 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
       this.bounds.extend(place.geometry.location);
       map.fitBounds(this.bounds);
+      if (Object.keys(this.markers).length <= 1) {
+        map.setZoom(15);
+      }
     }
   },
 
@@ -76,11 +83,11 @@ Instacation.Views.MapItem = Backbone.View.extend({
     if (itemView.model.escape("owner_id")) {
       var albumUrl = $("<a>").attr("href", '#users/' + itemView.model.escape('owner_id') + '/albums/' + itemView.model.id);
       var albumName = $("<h4>").text(itemView.model.escape("title"));
-      var photo = $("<p>").html($("<img>").attr({'src': itemView.getThumbnail(), 'width': '100px', 'height': '100px'}));
+      var photo = $("<p>").html($("<img>").attr({'src': itemView.getThumbnail(), 'width': '75px', 'height': '75px'}));
       return albumUrl.html(albumName).append(photo);
     } else {
       var photoCaption = $("<h4>").text(itemView.model.escape("caption"));
-      var photo = $("<img>").attr("src", itemView.getThumbnail());
+      var photo = $("<img>").attr({'src': itemView.getThumbnail(), 'width': '75px', 'height': '75px'});
       return $("<div>").append(photo).append(photoCaption);
     }
   },

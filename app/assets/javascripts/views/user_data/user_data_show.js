@@ -19,8 +19,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
     this.listenTo(this.model.albums(), 'add', this.render);
     this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
-    this.listenTo(this.model.albums(), 'select', this.highlightMarker.bind(this));
-    this.listenTo(this.model.albums(), 'unselect', this.unhighlightMarker.bind(this));
+    this.listenTo(this.model.albums(), 'selectImage', this.highlightMarker.bind(this));
+    this.listenTo(this.model.albums(), 'unselectImage', this.unhighlightMarker.bind(this));
   },
 
   events: {
