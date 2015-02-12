@@ -1,11 +1,10 @@
-
 <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
   <div class='fit-container'>
     <h3 class='title fitable-text'><%= album.escape('title') %></h3>
   </div>
 
 <div class='image'>
-    <div class='thumbnail'>
+    <div class='thumbnail height280'>
       <% if(photoUrl) { %>
         <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>"/></a>
       <% } else { %>
@@ -13,7 +12,6 @@
       <% } %>
     </div>
   </a>
-
 
   <p class='location-name'>
     <% if (location) {%>
@@ -26,7 +24,5 @@
 <% if (editable) { %>
   <a href="#" class="btn btn-primary delete-album"> x </a>
   <a href='#' class='btn btn-primary edit-album' role="button"> edit </a>
-  <div class='edit-album-form'>
-
-  </div>
+  <div class='edit-album-form'></div>
 <% } %>

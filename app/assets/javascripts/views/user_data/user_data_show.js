@@ -4,11 +4,11 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   className: "main",
 
   initialize: function (options) {
+    this.editable = options.editable;
+    
     this.model.albums().each( function (albumItem) {
       this.addAlbumItems(albumItem, this.addSubviewEnd);
     }.bind(this));
-
-    this.editable = options.editable;
 
     this.listenTo(this.model.albums(), 'add', this.render);
     this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
