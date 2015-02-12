@@ -32,10 +32,13 @@ body {
   overflow-y: hidden;
 }
 
-.fade-in{
+.background-image {
   height: 100%;
   width: 100%;
   position: fixed;
+}
+
+.fade-in{
   -webkit-animation: fade-in 1s ease;
   -moz-animation: fade-in ease-in-out 2s both;
   -ms-animation: fade-in ease-in-out 2s both;

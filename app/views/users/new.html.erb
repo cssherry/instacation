@@ -2,10 +2,10 @@
   <% backgroundArray = ["01bg.jpg", "02bg.jpg", "03bg.jpg", "04bg.jpg", "05bg.jpg", "06bg.jpg", "07bg.jpg"]; %>
   <% i = rand(6); %>
   <% backgroundImg = backgroundArray[i]; %>
-  $("body").prepend($('<img class="fade-in" src="<%=asset_path backgroundImg%>">'));
+  $("body").prepend($('<img class="fade-in background-image" src="<%=image_path backgroundImg%>">'));
 </script>
 
-<div class="modal-dialog modal-md">
+<div class="modal-dialog modal-md fade-in">
   <div class="modal-content">
       <div class="bs-login bs-login-tabs">
           <ul id="loginTabs" class="nav nav-tabs">
