@@ -10,27 +10,37 @@
     </button>
 
     <a class="navbar-brand" href="#">
-      <img class="navbar-logo hidden-xs" src="<%= image_path("instacation_logo.png") %>" alt="Instacation" />
+      <img class="navbar-logo hidden-xs" src="<%= image_url("instacation_logo.png") %>" alt="Instacation" />
       <p class="navbar-brand-text visible-xs">Instacation</p>
     </a>
+
   </div>
 
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <div class="collapse navbar-collapse" id="instacation-navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
     <% if current_user %>
-      <li id='add-album' class='dropdown'>
-        <button
-          class='dropdown-toggle navbar-btn btn btn-primary'
-          data-toggle='dropdown'><span class='glyphicon glyphicon-plus'></span>
-        </button>
+      <li id='add-album'>
+        <a href="#" class="add-album"> <span class="glyphicon glyphicon-plus"></span> Album</a>
+      </li>
+      <li id='add-photos'>
+        <a href="#" class="add-photos"> <span class="glyphicon glyphicon-plus"></span> Photos</a>
+      </li>
+      <li class="divider"></li>
+      <li id='navigate-back'>
+        <a href="#" class="navigate-back"> <span class="glyphicon glyphicon-menu-left"></span> Back</a>
+      </li>
+      <li class="divider"></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <%= "#{current_user.first_name} #{current_user.last_name}" %> <span class="caret"></span>
+        </a>
         <ul class="dropdown-menu" role="menu">
-          <li>test</li>
-          <li>test</li>
-          <li>test</li>
-          <li>test</li>
+          <li><%= link_to "Sign out", session_url, method: :delete%></li>
+          <li class="divider"></li>
+          <li><a href="http://www.cssherry.com/">Contact</a></li>
+          <li><a href="https://github.com/zhoux10/instacation">Visit on Github</a></li>
         </ul>
       </li>
-      <li><%= button_to "Sign out", session_url, method: :delete, class: "btn btn-primary navbar-btn" %></li>
     <% end %>
     </ul>
   </div>
