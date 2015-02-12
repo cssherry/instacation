@@ -52,8 +52,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   },
 
   addLocationsToHash: function (location) {
-    var locationCountry = location.escape("country"),
-        locationState = location.escape("state"),
+    var locationCountry = location.escape("country").split(" ").join("-"),
+        locationState = location.escape("state").split(" ").join("-"),
         locationCity = location.escape("city").split(" ").join("-");
 
     if (!this.locations[locationCountry]) {
@@ -103,7 +103,13 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
   unSearchCollection: function (event) {
     var location = event.params.data.id;
-    $(".albums .album-item."+ location).addClass("hidden");
+    var index = this.searchFields.indexOf(location);
+    this.searchFields.splice(index, 1);
+    if (this.searchFields.length === 0) {
+      $(".albums .album-item").removeClass("hidden");
+    } else {
+      $(".albums .album-item."+ location).addClass("hidden");
+    }
   },
 
   addMapItem: function (mapElement, fn) {

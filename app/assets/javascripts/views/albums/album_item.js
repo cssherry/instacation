@@ -21,7 +21,10 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     var modelLocation = this.getLocation();
     var content = this.template({album: this.model, photoUrl: modelPhotoUrl, editable: this.editable, location: modelLocation});
     this.$el.html(content);
-    if (modelLocation) this.$el.addClass(modelLocation.escape("country")).addClass(modelLocation.escape("state")).addClass(modelLocation.escape("city").split(" ").join("-"));
+    if (modelLocation) this.$el.
+                            addClass(modelLocation.escape("country").split(" ").join("-")).
+                            addClass(modelLocation.escape("state").split(" ").join("-")).
+                            addClass(modelLocation.escape("city").split(" ").join("-"));
 
     return this;
   },
