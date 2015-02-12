@@ -63,11 +63,7 @@ body {
   margin: 0;
 }
 
-.thumbnail {
-  border: 0;
-}
-
-.album-item img:hover{
+.album-item .image:hover{
   transform: rotate(-1deg) ;
 }
 

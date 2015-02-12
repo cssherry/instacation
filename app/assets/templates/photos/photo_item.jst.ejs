@@ -1,25 +1,26 @@
-<div class='thumbnail' >
-  <div class="image">
-    <h3 class='caption' id='<%= photo.id %>'>
+<div class="image">
+  <div class="fit-container">
+    <h3 class='caption fitable-text' id='<%= photo.id %>'>
       <% if (photo.escape('caption')) { %>
         <%= photo.escape('caption') %>
       <% } %>
     </h3>
+  </div>
 
+  <div class='thumbnail' >
     <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='link' id='<%= photo.id %>'>
       <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
     </a>
-
-    <p class='location-name'></p>
   </div>
 
-  <% if (editable) { %>
-    <a href="#" class="btn btn-primary delete-photo" role="button"> x </a>
-    <a href='#' class='btn btn-primary edit-photo' role="button"> edit </a>
-
-    <div class='edit-photo-form'>
-    </div>
-
-  <% } %>
-
+  <p class='location-name'></p>
 </div>
+
+<% if (editable) { %>
+  <a href="#" class="btn btn-primary delete-photo" role="button"> x </a>
+  <a href='#' class='btn btn-primary edit-photo' role="button"> edit </a>
+
+  <div class='edit-photo-form'>
+  </div>
+
+<% } %>
