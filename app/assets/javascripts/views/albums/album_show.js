@@ -63,20 +63,24 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
 
     var photoId = $(this.list[index]).attr('id'),
         photo = albumView.model.photos().get(photoId),
+        albumLocation = albumView.model.escape("location_id"),
         map = this.container.find('.google-map')[0];
 
     if (photo.escape('location_id')) {
       $(map).removeClass("hidden");
       albumView.renderMap.call(albumView, map, photo);
+    } else if (albumLocation) {
+      $(map).removeClass("hidden");
+      albumView.renderMap.call(albumView, map, albumView.model);
     } else {
       $(map).addClass("hidden");
     }
   },
 
-  renderMap: function (mapElement, photo) {
+  renderMap: function (mapElement, item) {
     var map = new google.maps.Map(mapElement);
     var service = new google.maps.places.PlacesService(map);
-    service.getDetails({placeId: photo.escape('location_id')}, function (result, status) {
+    service.getDetails({placeId: item.escape('location_id')}, function (result, status) {
                                                           this.renderLocationOnMap(result, status, map);
                                                         }.bind(this));
 },
