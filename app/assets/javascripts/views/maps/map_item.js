@@ -7,6 +7,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
     this.map(options.mapElement);
     this.$el = options.mapElement;
     this.bounds = new google.maps.LatLngBounds();
+    this.locations = {};
 
     google.maps.event.addListenerOnce(this._map, 'idle', this.zoomOrResize.bind(this));
   },
@@ -26,31 +27,52 @@ Instacation.Views.MapItem = Backbone.View.extend({
   renderMap: function (map) {
     var that = this;
     var numberItemWithLocations = 0;
-    this.collection.forEach(function (itemView) {
-      if (itemView.model.escape("owner_id")) {
-        var locationId = itemView.model.escape('location_id');
-      } else {
-        var locationId = itemView.getLocationId();
-      }
+    var index = 0;
+
+    this.collection.forEach(function(itemView ){
+      var locationId = that.getLocationId(itemView);
       if (locationId) {
-        var service = new google.maps.places.PlacesService(map);
-        service.getDetails({placeId: locationId}, function (result, status) {
-          that.renderLocationOnMap(result, status, map, itemView);
-        });
+        if (that.locations[locationId]) {
+          that.locations[locationId].push(itemView);
+        } else {
+          that.locations[locationId] = [itemView];
+        }
         numberItemWithLocations ++;
       }
     });
+
     if (numberItemWithLocations === 0) {
       $(this.$el).addClass("hidden");
+    } else {
+      this.queryGoogle(map);
     }
   },
 
-  renderLocationOnMap: function (results, status, map, itemView) {
+  getLocationId: function (itemView) {
+    if (itemView.model.escape("owner_id")) {
+      return itemView.model.escape('location_id');
+    } else {
+      return itemView.getLocationId();
+    }
+  },
+
+  queryGoogle: function (map) {
+    var that = this;
+    var placeIds = Object.keys(this.locations);
+    placeIds.forEach(function(placeId){
+      var itemsWithPlaceId = that.locations[placeId];
+      var service = new google.maps.places.PlacesService(map);
+      service.getDetails({placeId: placeId}, function (result, status) {
+        that.renderLocationOnMap(result, map, itemsWithPlaceId, status);
+      });
+    });
+  },
+
+  renderLocationOnMap: function (place, map, itemsWithPlaceId, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var place = results;
-
-      this.addMarker(place, map, itemView);
-
+      itemsWithPlaceId.forEach(function(itemView){
+        this.addMarker(place, map, itemView);
+      }.bind(this));
       this.bounds.extend(place.geometry.location);
     }
   },
@@ -61,7 +83,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
       position: place.geometry.location,
     });
 
-    this.markers[place.place_id] = marker;
+    this.markers[itemView.model.id] = marker;
 
     var placeName = $("<strong>").text(place.name);
     var address = $("<p>").text(this.parseAddress(place));
@@ -74,7 +96,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
     var infoWindow = new google.maps.InfoWindow();
     infoWindow.setContent(info[0]);
 
-    this.infoWindows[place.place_id] = infoWindow;
+    this.infoWindows[itemView.model.id] = infoWindow;
     var that = this;
     google.maps.event.addListener(marker, 'click', function() {
       that.collection[0].trigger("selectNewMarker", infoWindow);
@@ -117,7 +139,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
   zoomOrResize: function () {
     this._map.fitBounds(this.bounds);
-    if (Object.keys(this.markers).length <= 1) {
+    if (this.bounds.Ba.j === this.bounds.Ba.k) {
       this._map.setZoom(15);
     }
   }

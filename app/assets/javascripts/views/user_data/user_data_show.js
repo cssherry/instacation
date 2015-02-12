@@ -68,9 +68,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.$('.close-form').toggleClass('open-album-form close-form');
   },
 
-  highlightMarker: function (event) {
-    var place_id = event.escape("location_id");
-    var marker = this.mapView.markers[place_id];
+  highlightMarker: function (model) {
+    var marker = this.mapView.markers[model.id];
     if (marker) {
       var map = this.mapView.map();
       map.setCenter(marker.location);
@@ -79,14 +78,13 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
       marker.setAnimation(google.maps.Animation.BOUNCE);
 
       if(this.openMarker) this.openMarker.close();
-      this.openMarker = this.mapView.infoWindows[place_id];
+      this.openMarker = this.mapView.infoWindows[model.id];
       this.openMarker.open(map, marker);
     }
   },
 
-  unhighlightMarker: function (event) {
-    var place_id = event.escape("location_id");
-    var marker = this.mapView.markers[place_id];
+  unhighlightMarker: function (model) {
+    var marker = this.mapView.markers[model.id];
     if (marker) marker.setAnimation(null);
   },
 

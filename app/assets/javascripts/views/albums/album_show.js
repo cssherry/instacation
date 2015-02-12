@@ -160,8 +160,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
-  highlightMarker: function (placeId) {
-    var marker = this.mapView.markers[placeId];
+  highlightMarker: function (modelId) {
+    var marker = this.mapView.markers[modelId];
     if (marker) {
       var map = this.mapView.map();
       map.setCenter(marker.location);
@@ -169,13 +169,13 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
       marker.setAnimation(google.maps.Animation.BOUNCE);
 
       if(this.openMarker) this.openMarker.close();
-      this.openMarker = this.mapView.infoWindows[placeId];
+      this.openMarker = this.mapView.infoWindows[modelId];
       this.openMarker.open(map, marker);
     }
   },
 
-  unhighlightMarker: function (placeId) {
-    var marker = this.mapView.markers[placeId];
+  unhighlightMarker: function (modelId) {
+    var marker = this.mapView.markers[modelId];
     if (marker) marker.setAnimation(null);
   },
 

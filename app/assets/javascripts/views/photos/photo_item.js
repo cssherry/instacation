@@ -92,13 +92,13 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
 
   triggerMarker: function () {
     if (this.getLocationId()) {
-      this.model.trigger('selectImage', this.getLocationId());
+      this.model.trigger('selectImage', this.model.id);
     }
   },
 
   closeMarker: function () {
     if (this.getLocationId()) {
-      this.model.trigger('unselectImage', this.getLocationId());
+      this.model.trigger('unselectImage', this.model.id);
     }
   },
 });
