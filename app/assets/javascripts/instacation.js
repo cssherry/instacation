@@ -23,6 +23,7 @@ window.Instacation = {
     new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
+    this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
     this.changeHeightForFooter();
     this.resize();
     Backbone.history.start();
@@ -58,6 +59,41 @@ window.Instacation = {
         elem.attachEvent( "on" + type, eventHandle );
     } else {
         elem["on"+type]=eventHandle;
+    }
+  },
+
+  guestLogIn: function () {
+    $username = $("#username");
+    $password = $("#password");
+    $username.attr("readonly", "readonly");
+    $password.attr("readonly", "readonly");
+    $button = $("#signin-button");
+    this.typewriter($username, "worldtraveler", function () {
+      this.typewriter($password, "testtest", function () {
+        $button.click();
+      });
+    }.bind(this));
+  },
+
+  typewriter: function ($el, string, fn) {
+    var stringLength = string.length;
+    var char = 0;
+    $el.val("|");
+    this.type(char, string, $el, fn);
+  },
+
+  type: function (char, content, $el, fn) {
+    if (char < content.length) {
+      var typingSpeed = Math.round(Math.random() * 120) + 10;
+      setTimeout(function(){
+        char++;
+        var type = content.substring(0, char);
+        $el.val(type + "|");
+        this.type(char, content, $el, fn);
+      }.bind(this), typingSpeed);
+    } else {
+      $el.val(content)
+      fn.call();
     }
   },
 };
