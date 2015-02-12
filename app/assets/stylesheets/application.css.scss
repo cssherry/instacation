@@ -30,17 +30,35 @@ body {
   height: 100%;
   // position: relative;
   overflow-y: hidden;
-  background: url(nTr1589kTgyXCOdStCGm_MikaRuusunen.jpg) no-repeat center center fixed;
+  background: image_url('nTr1589kTgyXCOdStCGm_MikaRuusunen.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+.container {
+  padding: 0;
+}
+
 .backdrop {
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+.main {
+  background-color: white;
+}
+
+.navbar {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.navbar-bottom {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .height280{
@@ -51,17 +69,10 @@ body {
   text-align: left !important;
 }
 
-.main {
-  background-color: white;
-}
-
 .login div {
   padding: 0;
 }
 
-.container {
-  padding: 0;
-}
 
 .row {
   margin: 0;
@@ -110,7 +121,6 @@ body {
 .albums-and-create, .photo-and-create {
   height: 100%;
   overflow-y: scroll;
-  // position: absolute;
 }
 
 .fit-container {
@@ -138,16 +148,6 @@ body {
 .blueimp-gallery-controls > .description {
   display: block;
   margin: 20px 0 0 20px;
-}
-
-.navbar {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.navbar-bottom {
-  width: 100%;
-  margin-bottom: 0;
 }
 
 .state {
