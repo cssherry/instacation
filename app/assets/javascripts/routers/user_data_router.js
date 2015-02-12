@@ -42,5 +42,6 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     // put element on page before rendering!
     this.$rootEl.html(newView.$el);
     newView.render();
+    Instacation.resize();
   }
 });

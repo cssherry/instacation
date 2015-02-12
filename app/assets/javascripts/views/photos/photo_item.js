@@ -30,8 +30,6 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
 
     if (this.getLocationHash()) this.$(".location-name").html(this.parseLocation(this.getLocationHash()));
 
-    Instacation.resize();
-
     return this;
   },
 

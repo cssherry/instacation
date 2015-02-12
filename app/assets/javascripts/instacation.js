@@ -24,6 +24,7 @@ window.Instacation = {
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
     this.changeHeightForFooter();
+    this.resize();
     Backbone.history.start();
   },
 
