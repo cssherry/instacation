@@ -54,7 +54,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   addLocationsToHash: function (location) {
     var locationCountry = location.escape("country"),
         locationState = location.escape("state"),
-        locationCity = location.escape("city");
+        locationCity = location.escape("city").split(" ").join("-");
 
     if (!this.locations[locationCountry]) {
       this.locations[locationCountry] = {};
