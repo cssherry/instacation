@@ -4,19 +4,15 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   className: "main",
 
   initialize: function (options) {
-    this.model.fetch({
-      success: function () {
-        this.model.albums().each( function (albumItem) {
-          this.addAlbumItems(albumItem, this.addSubviewEnd);
-        }.bind(this));
-        this.render();
-      }.bind(this)
-    });
+    this.model.albums().each( function (albumItem) {
+      this.addAlbumItems(albumItem, this.addSubviewEnd);
+    }.bind(this));
 
     this.editable = options.editable;
 
     this.listenTo(this.model.albums(), 'add', this.render);
     this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
+
     this.listenTo(this.model.albums(), 'selectImage', this.highlightMarker.bind(this));
     this.listenTo(this.model.albums(), 'unselectImage', this.unhighlightMarker.bind(this));
   },
@@ -42,6 +38,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
   addMapItem: function (mapElement, fn) {
     this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.albums'), mapElement: mapElement});
+    this.listenTo(this.subviews('.albums')[0], 'selectNewMarker', this.closeMarker.bind(this));
     fn.call(this, ".google-map-collection", this.mapView);
   },
 
@@ -91,5 +88,10 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     var place_id = event.escape("location_id");
     var marker = this.mapView.markers[place_id];
     if (marker) marker.setAnimation(null);
+  },
+
+  closeMarker: function(infoWindow){
+    if(this.openMarker) this.openMarker.close();
+    this.openMarker = infoWindow;
   }
 });
