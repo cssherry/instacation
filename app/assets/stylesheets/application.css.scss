@@ -30,12 +30,25 @@ body {
   height: 100%;
   // position: relative;
   overflow-y: hidden;
-  background: image_url('nTr1589kTgyXCOdStCGm_MikaRuusunen.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
+
+.fade-in{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  -webkit-animation: fade-in 1s ease;
+  -moz-animation: fade-in ease-in-out 2s both;
+  -ms-animation: fade-in ease-in-out 2s both;
+  -o-animation: fade-in ease-in-out 2s both;
+  animation: fade-in 2s ease;
+  visibility: visible;
+  -webkit-backface-visibility: hidden;
+}
+
+@-webkit-keyframes fade-in{0%{opacity:0;} 100%{opacity:1;}}
+@-moz-keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
+@-o-keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
+@keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
 
 .container {
   padding: 0;

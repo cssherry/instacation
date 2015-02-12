@@ -4,6 +4,8 @@ window.Instacation = {
   Views: {},
   Routers: {},
   initialize: function() {
+    var $body = $("body");
+    this.addBackground($body);
     var $root = $('#main');
     this.currentUserId = $root.data('current-user');
     new Instacation.Routers.UserData({$rootEl: $root});
@@ -13,6 +15,14 @@ window.Instacation = {
     this.changeHeightForFooter();
     this.resize();
     Backbone.history.start();
+  },
+
+  addBackground: function ($el) {
+    var backgroundArray = ["01bg.jpg", "02bg.jpg", "03bg.jpg", "04bg.jpg", "05bg.jpg", "06bg.jpg", "07bg.jpg"];
+    var i = Math.round(Math.random() * 6);
+    var backgroundImg = backgroundArray[i];
+    $el.css({'background': "image_url(" + backgroundImg + ") no-repeat center center fixed"});
+
   },
 
   // Took so long! But now all tax with the class "fitable-text" will be resized
