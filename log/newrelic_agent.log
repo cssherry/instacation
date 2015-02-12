@@ -1606,3 +1606,4 @@ HINT:  No operator matches the given name and argument type(s). You might need t
 [02/11/15 11:18:28 -0800 Sherrys-MacBook-Pro.local (4504)] INFO : Doing deferred dependency-detection before Rack startup
 [02/11/15 11:18:30 -0800 Sherrys-MacBook-Pro.local (4504)] ERROR : Invalid license key, please contact support@newrelic.com
 [02/11/15 11:18:30 -0800 Sherrys-MacBook-Pro.local (4504)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/11/15 22:58:55 -0800 Sherrys-MacBook-Pro.local (4504)] INFO : Starting Agent shutdown

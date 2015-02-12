@@ -2,7 +2,7 @@
 (Review last week)
 
 - [X] Use your own custom domain (no herokuapps.com subdomain)
-- [ ] Have a guest account (or two, if you need both to demo)
+- [X] Have a guest account (or two, if you need both to demo)
 - [ ] Have well groomed seed data (real world stuff, no lorem ipsum)
 - [ ] Have buttons to fill out complex forms while demoing (with nice seed data)
 - [X] Have a root homepage
