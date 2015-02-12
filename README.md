@@ -73,6 +73,7 @@ Using Google Maps, images and albums will be shown on a map. Albums will be show
 - File upload (Cloudinary)
 - 3rd Party APIs (Google Maps, Google Places)
 - delayed_job
+- Seed Dump to seed data
 - *Considering: ActionMailer/Sendgrid, omniauth*, Pagination
 
 ### JavaScript/Backbone

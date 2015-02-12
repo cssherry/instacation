@@ -16,6 +16,7 @@ gem 'bootstrap-sass'
 gem 'figaro'
 gem 'bcrypt', '~> 3.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'seed_dump'
 
 group :development do
   gem 'better_errors'
