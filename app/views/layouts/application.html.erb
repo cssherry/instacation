@@ -6,7 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application',
                              '//widget.cloudinary.com/global/all.js',
-                             'https://maps.googleapis.com/maps/api/js?libraries=places'%>
+                             'https://maps.googleapis.com/maps/api/js?libraries=places',
+                             "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"%>
 
   <script>
     var cloud_name = "<%= ENV['cloud_name'] %>";
@@ -16,6 +17,8 @@
   </script>
 
   <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css">
+
   <%= csrf_meta_tags %>
 </head>
 <body>

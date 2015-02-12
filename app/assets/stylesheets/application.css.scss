@@ -97,17 +97,13 @@ body {
   width: 200px;
 }
 
-.google-map.hidden {
-  display: hidden;
-}
-
 .google-map-collection {
   left: 0;
   height: 100%;
   position: fixed !important;
 }
 
-.google-map-collection.hidden {
+.hidden {
   display: hidden !important;
 }
 
@@ -152,4 +148,12 @@ body {
 .navbar-bottom {
   width: 100%;
   margin-bottom: 0;
+}
+
+.state {
+  padding-left: 5px;
+}
+
+.city {
+  padding-left: 10px;
 }

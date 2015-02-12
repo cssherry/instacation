@@ -6,9 +6,15 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.editable = options.editable;
 
+    this.locations = {};
+    this.locationAndAlbums = {};
+    this.searchFields = [];
+
     this.model.albums().each( function (albumItem) {
       this.addAlbumItems(albumItem, this.addSubviewEnd);
     }.bind(this));
+
+    this.addLocationItems();
 
     this.listenTo(this.model.albums(), 'add', this.render);
     this.listenTo(this.model.albums(), 'remove', this.removeAlbumItem);
@@ -20,6 +26,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   events: {
     'click .open-album-form': 'createAlbumForm',
     'click .close-form': 'closeAlbumForm',
+    'select2:select .multiple-location-selector': 'searchCollection',
+    'select2:unselect .multiple-location-selector': 'unSearchCollection',
   },
 
   render: function(){
@@ -28,12 +36,74 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.attachSubviews();
     var mapElement = this.$('.google-map-collection')[0];
     this.addMapItem(mapElement, this.addSubviewEnd);
+    $('.multiple-location-selector').select2({placeholder: "Search by location",
+                                              width: '50%'});
     return this;
   },
 
   addAlbumItems: function (albumItem, fn) {
     var albumView = new Instacation.Views.AlbumItem({model: albumItem, editable: this.editable});
+    var location = albumItem.locations().models[0];
+    if (location) {
+      this.addLocationsToHash(location);
+    }
+
     fn.call(this, ".albums", albumView);
+  },
+
+  addLocationsToHash: function (location) {
+    var locationCountry = location.escape("country"),
+        locationState = location.escape("state"),
+        locationCity = location.escape("city");
+
+    if (!this.locations[locationCountry]) {
+      this.locations[locationCountry] = {};
+    }
+
+    if (!this.locations[locationCountry][locationState]) {
+      this.locations[locationCountry][locationState] = {};
+    }
+
+    if (!this.locations[locationCountry][locationState][locationCity]) {
+      this.locations[locationCountry][locationState][locationCity] = {};
+    }
+  },
+
+  addLocationItems: function () {
+    var tab = "&nbsp;&nbsp;&nbsp;&nbsp;";
+    var countries = Object.keys(this.locations);
+    countries.sort().forEach(function(country){
+      if (country !== "") this.addLocationItemViews(country, country, "country");
+
+      var states = Object.keys(this.locations[country]);
+      if (states) states.sort().forEach(function (state) {
+        if (state !== "") this.addLocationItemViews(tab + state, state, "state");
+
+        var cities = Object.keys(this.locations[country][state]);
+        if (cities) cities.sort().forEach(function (city) {
+          if (city !== "") this.addLocationItemViews(tab + tab + city, city, "city");
+        }.bind(this));
+      }.bind(this));
+    }.bind(this));
+  },
+
+  addLocationItemViews: function (locationName, location, tag) {
+    var locationView = new Instacation.Views.LocationItem({locationName: locationName, location: location, tag: tag});
+    this.addSubviewEnd(".multiple-location-selector", locationView);
+  },
+
+  searchCollection: function (event) {
+    var location = event.params.data.id;
+    this.searchFields.push(location);
+    $(".albums .album-item").addClass("hidden");
+    this.searchFields.forEach(function(loc){
+      $(".albums .album-item."+ loc).removeClass("hidden");
+    });
+  },
+
+  unSearchCollection: function (event) {
+    var location = event.params.data.id;
+    $(".albums .album-item."+ location).addClass("hidden");
   },
 
   addMapItem: function (mapElement, fn) {
