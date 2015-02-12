@@ -2,7 +2,8 @@
   <% backgroundArray = ["01bg.jpg", "02bg.jpg", "03bg.jpg", "04bg.jpg", "05bg.jpg", "06bg.jpg", "07bg.jpg"]; %>
   <% i = rand(6); %>
   <% backgroundImg = backgroundArray[i]; %>
-  $("body").prepend($('<img class="fade-in background-image" src="<%=image_url backgroundImg%>">'));
+  $("body").prepend($('<img class="fade-in background-image" id="wrap" src="<%=image_url backgroundImg%>">'));
+  $("body").addClass("modal-opened");
 </script>
 
 <div class="modal-dialog modal-md">
@@ -49,8 +50,8 @@
             <div class="control-group">
               <label class="control-label" for="signin"></label>
               <div class="controls row">
-                <button type="button" class="btn btn-default guest-login col-md-2">Guest Login</button>
-                <button id="signin-button" name="signin" class="btn btn-success col-md-2 col-md-offset-8">Sign In</button>
+                <button type="button" class="btn btn-default guest-login col-md-2 col-md-offset-1">Guest Login</button>
+                <button id="signin-button" name="signin" class="btn btn-success col-md-2 col-md-offset-7">Sign In</button>
               </div>
             </div>
           </form>

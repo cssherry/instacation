@@ -35,6 +35,7 @@ body {
   height: 100%;
   // position: relative;
   overflow-y: hidden;
+  z-index: -1;
 }
 
 .background-image {
@@ -45,10 +46,10 @@ body {
 
 .fade-in {
   -webkit-animation: fade-in 1s ease;
-  -moz-animation: fade-in ease-in-out 2s both;
-  -ms-animation: fade-in ease-in-out 2s both;
-  -o-animation: fade-in ease-in-out 2s both;
-  animation: fade-in 2s ease;
+  -moz-animation: fade-in ease-in-out 1s both;
+  -ms-animation: fade-in ease-in-out 1s both;
+  -o-animation: fade-in ease-in-out 1s both;
+  animation: fade-in 1s ease;
   visibility: visible;
   -webkit-backface-visibility: hidden;
 }
@@ -176,4 +177,12 @@ body {
 
 .city {
   padding-left: 10px;
+}
+
+body.modal-opened #wrap{
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }
