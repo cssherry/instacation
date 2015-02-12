@@ -1,4 +1,8 @@
-fix the photo show to include album views
-fix albums with only one location
-add search
+fix albums with only one location?
+
+add search picture caption
+clicking location shows all photos in same name/state/country
 add pagination
+attach new album, new photo option to navbar
+modal forms
+add header to user page
