@@ -75,8 +75,9 @@ Instacation.Views.MapItem = Backbone.View.extend({
     infoWindow.setContent(info[0]);
 
     this.infoWindows[place.place_id] = infoWindow;
-
+    var that = this;
     google.maps.event.addListener(marker, 'click', function() {
+      that.collection[0].trigger("selectNewMarker", infoWindow);
       infoWindow.setContent(info[0]);
       infoWindow.open(map, this);
     });

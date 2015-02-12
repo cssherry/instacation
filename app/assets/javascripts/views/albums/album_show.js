@@ -13,8 +13,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     // DON'T DO THIS! GOOGLE Maps won't load properly
     // this.render();
 
-    this.openMarker = [];
-
     this.listenTo(this.model.photos(), 'add', this.render);
     this.listenTo(this.model.photos(), 'remove', this.removePhotoItem);
 
@@ -118,6 +116,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
 
   addMapItem: function (mapElement, fn) {
     this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.photos'), mapElement: mapElement});
+    this.listenTo(this.subviews('.photos')[0], 'selectNewMarker', this.closeMarker.bind(this));
     fn.call(this, ".google-map-collection", this.mapView);
   },
 
@@ -169,7 +168,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
 
       marker.setAnimation(google.maps.Animation.BOUNCE);
 
-      if(this.openMarker.length !== 0) this.openMarker.close();
+      if(this.openMarker) this.openMarker.close();
       this.openMarker = this.mapView.infoWindows[placeId];
       this.openMarker.open(map, marker);
     }
@@ -178,5 +177,10 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   unhighlightMarker: function (placeId) {
     var marker = this.mapView.markers[placeId];
     if (marker) marker.setAnimation(null);
+  },
+
+  closeMarker: function(infoWindow){
+    if(this.openMarker) this.openMarker.close();
+    this.openMarker = infoWindow;
   }
 });
