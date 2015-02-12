@@ -71,14 +71,15 @@ Using Google Maps, images and albums will be shown on a map. Albums will be show
 - Partials, helpers
 - Routing
 - File upload (Cloudinary)
-- Pagination
-- 3rd Party APIs
+- 3rd Party APIs (Google Maps, Google Places)
 - delayed_job
-- *Considering: ActionMailer/Sendgrid, omniauth*
+- *Considering: ActionMailer/Sendgrid, omniauth*, Pagination
 
 ### JavaScript/Backbone
 - jQuery
   - jQuery UI: draggable/sortable
+  - Custom jQuery methods to place footer and resize text
 - AJAX
 - Backbone
-- Custom API for Backbone.
+- Custom API for Backbone
+- blueimp for slideshow of images
