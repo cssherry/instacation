@@ -179,10 +179,14 @@ body {
   padding-left: 10px;
 }
 
-body.modal-opened #wrap{
+body.modal-open #wrap{
     -webkit-filter: blur(3px);
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(5px);
+}
+
+.modal-open {
+  overflow: visible !important;
 }
