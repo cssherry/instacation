@@ -24,6 +24,11 @@ html, .container, #main, .main, .main > .row {
   // overflow: hidden;
 }
 
+// Needed to make scrollbar flush on right side
+.main .row, .albums{
+  margin: 0;
+}
+
 body {
   padding-top: 50px;
   width: 100%;
@@ -77,21 +82,18 @@ body {
   margin-bottom: 0;
 }
 
+.navbar-logo {
+  max-height: 40px;
+  width: auto;
+  margin-top: -10px;
+}
+
 .height280{
   height: 280px;
 }
 
 .left-align {
   text-align: left !important;
-}
-
-.login div {
-  padding: 0;
-}
-
-
-.row {
-  margin: 0;
 }
 
 .album-item .image:hover{
@@ -102,16 +104,16 @@ body {
   transform: rotate(2deg) translateY(-20px);
 }
 
-.photos {
-  padding: 20px;
-  height: auto;
-}
-
 .photo-item {
   display: inline-block;
   vertical-align: bottom;
   padding: 20px;
   width: 300px;
+}
+
+.photos {
+  padding: 20px;
+  height: auto;
 }
 
 .center {
@@ -137,6 +139,8 @@ body {
 .albums-and-create, .photo-and-create {
   height: 100%;
   overflow-y: scroll;
+  padding-bottom: 20px;
+  padding-left: 30px;
 }
 
 .fit-container {
