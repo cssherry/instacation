@@ -38,7 +38,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
 
   addMapItem: function (mapElement, fn) {
     this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.albums'), mapElement: mapElement});
-    this.listenTo(this.subviews('.albums')[0], 'selectNewMarker', this.closeMarker.bind(this));
+    if (this.subviews('.albums')[0]) this.listenTo(this.subviews('.albums')[0], 'selectNewMarker', this.closeMarker.bind(this));
     fn.call(this, ".google-map-collection", this.mapView);
   },
 
