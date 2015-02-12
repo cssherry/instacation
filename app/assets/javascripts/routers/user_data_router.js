@@ -9,6 +9,10 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     'users/:userId/albums/:albumId': 'albumShow',
   },
 
+  events: {
+    "click .navigate-back": "navigateBack",
+  },
+
   currentUserShow: function () {
     this.userDataShow(Instacation.currentUserId);
   },
@@ -41,5 +45,11 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     this.$rootEl.html(newView.$el);
     newView.render();
     Instacation.resize();
+  },
+
+  navigateBack: function () {
+    window.history.back();
   }
+
+
 });
