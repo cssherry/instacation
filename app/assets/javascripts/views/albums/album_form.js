@@ -74,9 +74,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     var album = new Instacation.Models.Album();
     album.save(albumParams,{
       success: function(){
+        this.$el.modal("hide");
         album.locations().set(location);
         this.userView.model.albums().add(album);
-        this.$el.modal("hide");
         if (this.photoUrls.length !== 0) {
           this.saveNewAlbumPhotos(photoParams, album);
         } else {
