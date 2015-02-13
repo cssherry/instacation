@@ -179,6 +179,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           this.photoView.remove();
         }
         Instacation.resize();
+        this.$(".alert-warning").addClass("hidden");
         this.$el.modal("hide");
       }.bind(this)
     });

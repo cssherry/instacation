@@ -68,6 +68,18 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
 
   saveNewAlbumModel: function (albumParams, photoParams, location) {
     var album = new Instacation.Models.Album();
+
+    // var errors = [];
+    //
+    // if (params.album_id === "Select an Album") {
+    //   errors.push("Select an Album");
+    // }
+    //
+    // if (errors.length !== 0) {
+    //   this.$(".alert-warning").removeClass("hidden");
+    //   this.$(".error-text").text(errors.join(". "));
+    // }
+
     album.save(albumParams,{
       success: function(){
         album.locations().set(location);
@@ -82,6 +94,12 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
             this.$el.modal("hide");
           }
         }
+        this.$(".alert-warning").addClass("hidden");
+      }.bind(this),
+      error: function () {
+        var errors = JSON.parse(arguments[1].responseText);
+        this.$(".alert-warning").removeClass("hidden");
+        this.$(".error-text").text(errors.join(". "));
       }.bind(this)
     });
   },
@@ -135,6 +153,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
         }
         this.albumView.$('.title').html(album.escape('title'));
         this.$el.modal("hide");
+        this.$(".alert-warning").addClass("hidden");
       }.bind(this)
     });
   },
