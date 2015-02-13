@@ -10,8 +10,8 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
 
   events: {
     'click .delete-album':'destroy',
-    'mouseover .image': 'triggerMarker',
-    'mouseout .image': 'closeMarker',
+    'mouseover .overlay': 'triggerMarker',
+    'mouseout .overlay': 'closeMarker',
   },
 
   render: function(){
