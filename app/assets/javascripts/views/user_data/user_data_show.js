@@ -41,7 +41,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  addAlbumItems: function (albumItem, fn) {
+  addAlbumItems: function (albumItem, fn, modalEl) {
     var albumView = new Instacation.Views.AlbumItem({model: albumItem, editable: this.editable});
     var location = albumItem.locations().models[0];
     if (location) {
@@ -49,6 +49,10 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     }
 
     fn.call(this, ".albums", albumView);
+
+    if (modalEl) modalEl.addClass("hidden");
+    if (modalEl) modalEl.modal("toggle");
+    if (modalEl) modalEl.modal("hide");
   },
 
   addAlbumForm: function () {

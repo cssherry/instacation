@@ -11,9 +11,14 @@ window.Instacation = {
     var router = new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
+    $( "[data-toggle='modal']" ).click(this.makeModalVisible.bind(this));
     this.changeHeightForFooter();
     this.resize();
     Backbone.history.start();
+  },
+
+  makeModalVisible: function (event) {
+    $($(event.target).data("target")).removeClass("hidden");
   },
 
   addBackground: function ($el) {
