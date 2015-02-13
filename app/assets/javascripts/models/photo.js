@@ -27,4 +27,8 @@ Instacation.Models.Photo = Backbone.Model.extend({
     }
     return this._locations;
   },
+
+  getThumbnail: function () {
+    return $.cloudinary.image(this.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
+  },
 });

@@ -20,7 +20,7 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var modelPhotoUrl = this.getThumbnail();
+    var modelPhotoUrl = this.model.getThumbnail();
     var content = this.template({photo: this.model,
                                  editable: this.editable,
                                  photoUrl: modelPhotoUrl,
@@ -31,10 +31,6 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
     if (this.getLocationHash()) this.$(".location-name").prepend(this.parseLocation(this.getLocationHash()));
 
     return this;
-  },
-
-  getThumbnail: function () {
-    return $.cloudinary.image(this.model.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
   },
 
   getLocationHash: function () {

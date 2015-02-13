@@ -5,16 +5,34 @@
   <div class="col-md-4 google-map-collection"></div>
 
   <div class='albums-and-create col-md-8 col-md-offset-4'>
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+      <div class="row panel">
+          <div class="col-md-4 ">
+            <div class="bg_blur ">
+            </div>
+            <div class="pic_button">
+              <button class="open-new-album-form btn btn-default" data-toggle="modal" data-target="#albumFormNew"> New Album</button>
+            </div>
+          </div>
+        <div class="col-md-8  col-xs-12">
+          <div class="header">
+            <h1>
+              <%= user.escape('first_name') + " " + user.escape('last_name') %>
+            </h1>
+              <p class="row"></p>
+              <span>
+              <select class="multiple-location-selector form-control" multiple="multiple">
+                <option></option>
+              </select>
+            </span>
+            <p class="row"></p>
+          </div>
+        </div>
+      </div>
 
-  <h1>
-    <%= user.escape('first_name') + " " + user.escape('last_name') %>
-  </h1>
 
-  <select class="multiple-location-selector form-control" multiple="multiple">
-    <option></option>
-  </select>
-
-  <div class='albums row'></div>
+      <div class='albums row'></div>
+    </div>
   </div>
 
 </div>

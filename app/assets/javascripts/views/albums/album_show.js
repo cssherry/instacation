@@ -29,8 +29,17 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var content = this.template({album: this.model, editable: this.editable, userId: this.userId});
+    var content = this.template({album: this.model});
     this.$el.html(content);
+
+    var index = Math.round(Math.random() * (this.model.photos().length - 1));
+    if (this.model.photos().length !== 0 ) var photoUrl = this.model.photos().models[index].getThumbnail();
+    if (photoUrl) {
+      this.$(".bg_blur").css("background-image", "url("+ photoUrl+ ")");
+    } else {
+      this.$(".bg_blur").css("background-color", '#acbcc9');
+    }
+
     this.attachSubviews();
     this.$('.photos').sortable();
     var mapElement = this.$('.google-map-collection')[0];

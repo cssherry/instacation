@@ -14,7 +14,13 @@
             <p class="text-center"><i>No Images in this Album</i></p>
         <% } %>
           </div>
-        <span class="overlay"><i class="fa fa-picture-o"></i></span>
+        <span class="overlay"><i class="fa fa-picture-o"></i>
+          <div class="row">
+            <% if (album.escape('description')[70]) var periods = "..." %>
+            <% if (!album.escape('description')[70]) var periods = "" %>
+            <h5 class="col-md-10 solid description"> <%= album.escape('description').substring(1, 70) + periods %></h5>
+          </div>
+        </span>
       </a>
   </div>
   <div class="panel-footer">

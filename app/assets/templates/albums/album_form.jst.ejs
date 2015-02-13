@@ -38,6 +38,16 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="control-group  col-md-7">
+              <label class="control-label" for="description">Description</label>
+              <div class="controls">
+                <textarea name="album[description]" rows="2" id="description" placeholder='Add a description' class="form-control"><% if(albumView) { %><%= albumView.model.escape('description') %><% } %></textarea>
+
+              </div>
+            </div>
+          </div>
+
         <% if(!albumView) { %>
           <div class="row">
             <hr>
@@ -54,7 +64,7 @@
                   <div class='chosen-photos'>  </div>
                 </div>
 
-                <div class="controls col-md-4">
+                <div class="controls col-md-4 col-md-offset-2">
                   <input type="text"
                          id="caption"
                          class="form-control input-medium"
@@ -67,6 +77,10 @@
               </div>
             </div>
           <% } %>
+
+          <div class="row">
+            <hr>
+          </div>
 
           <div class="control-group">
             <div class="row">

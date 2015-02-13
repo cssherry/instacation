@@ -34,4 +34,11 @@ Instacation.Models.Album = Backbone.Model.extend({
     }
     return this._locations;
   },
+
+  getThumbnail: function () {
+    if (this.photos().length !== 0) {
+      var cloudinaryId = this.photos().first().get('cloudinary_id');
+      return $.cloudinary.image(cloudinaryId, { width: 300, height: 300, crop: 'fill' })[0].src;
+    }
+  },
 });

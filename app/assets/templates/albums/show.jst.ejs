@@ -1,16 +1,27 @@
 <div class='album-form'></div>
 <div class='photo-form'></div>
 
-<div class="row">
+<div class="row" id="wrap">
   <div class="col-md-4 google-map-collection"></div>
 
   <div class='photo-and-create col-md-8 col-md-offset-4'>
+    <div class="row panel">
+        <div class="col-md-4 ">
+          <div class="bg_blur ">
+          </div>
+          <div class="pic_button">
+            <button class="open-photo-form btn btn-default" data-toggle="modal" data-target="#photoFormNew"> New Photo</button>
+          </div>
+        </div>
+      <div class="col-md-8  col-xs-12">
+        <div class="header">
+          <h1 class="row"><%= album.escape('title') %></h1>
+            <p class="row"><%= album.escape('description') %></p>
+        </div>
+      </div>
+    </div>
 
-    <h1>
-      <%= album.escape('title') %>
-    </h1>
-    
-      <div class='photos' id='links'></div>
+    <div class='photos' id='links'></div>
   </div>
 </div>
 

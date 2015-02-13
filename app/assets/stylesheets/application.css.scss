@@ -25,7 +25,7 @@ html, .container, #main, .main, .main > .row {
 }
 
 // Needed to make scrollbar flush on right side
-.main .row, .albums{
+.main>.row, .albums{
   margin: 0;
   padding-top: 20px;
 }
@@ -184,6 +184,11 @@ body {
   -webkit-opacity: 1;
   filter: alpha(opacity=1);
 }
+
+.panel .panel-body a.zoom:hover span.overlay h5 {
+  color: lightgray;
+}
+
 .panel .panel-footer {
   padding: 8px !important;
   background-color: #f9f9f9 !important;
@@ -291,4 +296,23 @@ body.modal-opener #wrap{
 
 .pac-container {
     z-index: 1051 !important;
+}
+
+.bg_blur {
+    height: 200px;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px #888888;
+}
+
+.pic_button {
+  z-index: 5;
+  position: absolute;
+  top: 75px;
+  left: 75px;
+  box-shadow: 1px 1px 5px #888888;
 }
