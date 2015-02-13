@@ -179,10 +179,14 @@ body {
   padding-left: 10px;
 }
 
-body.modal-open #wrap{
+body.modal-opener #wrap{
     -webkit-filter: blur(7px);
     -moz-filter: blur(15px);
     -o-filter: blur(15px);
     -ms-filter: blur(15px);
     filter: blur(15px);
+}
+
+.pac-container {
+    z-index: 1051 !important;
 }

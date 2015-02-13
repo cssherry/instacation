@@ -10,6 +10,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
       this.addPhotoItems(photoItem, this.addSubviewEnd);
     }.bind(this));
 
+    this.addAlbumForm();
+
     // DON'T DO THIS! GOOGLE Maps won't load properly
     // this.render();
 
@@ -116,6 +118,11 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
       ].join(' ');
     }
     return address;
+  },
+
+  addAlbumForm: function () {
+    var albumForm = new Instacation.Views.AlbumForm({userView: this, id: "albumFormNew"});
+    this.addSubviewEnd(".album-form", albumForm);
   },
 
   addMapItem: function (mapElement, fn) {

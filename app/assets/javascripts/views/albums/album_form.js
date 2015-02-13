@@ -31,6 +31,10 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     return this;
   },
 
+  getData: function (event) {
+    console.log(event)
+  },
+
   setLocationChanged: function (event) {
     this.locationChanged = true;
   },
@@ -72,12 +76,12 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
       success: function(){
         album.locations().set(location);
         this.userView.model.albums().add(album);
+        this.$el.modal("hide");
         if (this.photoUrls.length !== 0) {
           this.saveNewAlbumPhotos(photoParams, album);
         } else {
           this.userView.addAlbumItems(album, this.userView.addSubviewFront);
         }
-        this.userView.hideAlbumForm();
       }.bind(this)
     });
   },
@@ -128,7 +132,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
           this.albumView.$('.location-name').text("");
         }
         this.albumView.$('.title').html(album.escape('title'));
-        this.albumView.hideAlbumForm();
+        this.$el.modal("hide");
       }.bind(this)
     });
   },

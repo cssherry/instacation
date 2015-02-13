@@ -10,8 +10,6 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
 
   events: {
     'click .delete-album':'destroy',
-    'click .edit-album': 'editAlbum',
-    'click .close-album-form': 'closeEditAlbum',
     'mouseover .image': 'triggerMarker',
     'mouseout .image': 'closeMarker',
   },
@@ -21,6 +19,7 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     var modelLocation = this.getLocation();
     var content = this.template({album: this.model, photoUrl: modelPhotoUrl, editable: this.editable, location: modelLocation});
     this.$el.html(content);
+    this.addAlbumForm();
     if (modelLocation) this.$el.
                             addClass(modelLocation.escape("country").split(" ").join("-")).
                             addClass(modelLocation.escape("state").split(" ").join("-")).
@@ -48,24 +47,9 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
     this.model.destroy();
   },
 
-  editAlbum: function (event) {
-    event.preventDefault();
-    var albumForm = new Instacation.Views.AlbumForm({albumView: this});
+  addAlbumForm: function () {
+    var albumForm = new Instacation.Views.AlbumForm({albumView: this, id: "albumFormEdit" + this.model.id });
     this.addSubviewFront(".edit-album-form", albumForm);
-    this.$('.edit-album').html('close form');
-    this.$('.edit-album').toggleClass('edit-album close-album-form');
-  },
-
-  hideAlbumForm: function () {
-    var view = this.subviews('.edit-album-form')[0];
-    this.removeSubview(".edit-album-form", view);
-    this.$('.close-album-form').html('edit');
-    this.$('.close-album-form').toggleClass('edit-album close-album-form');
-  },
-
-  closeEditAlbum: function (event) {
-    event.preventDefault();
-    this.hideAlbumForm();
   },
 
   triggerMarker: function () {
