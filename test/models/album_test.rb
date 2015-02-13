@@ -8,6 +8,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  location_id :string(255)
+#  description :text
 #
 
 require 'test_helper'

@@ -45,7 +45,7 @@ module Api
     end
 
     def album_params
-      params.require(:album).permit(:title, :location_id).merge(owner_id: current_user.id)
+      params.require(:album).permit(:title, :location_id, :description).merge(owner_id: current_user.id)
     end
   end
 end
