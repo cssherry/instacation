@@ -23,7 +23,7 @@
         <a href="#" class="open-new-album-form" data-toggle="modal" data-target="#albumFormNew"> New Album</a>
       </li>
       <li id='add-photos'>
-        <a href="#" class="open-photo-form"> New Photos</a>
+        <a href="#" class="open-photo-form" data-toggle="modal" data-target="#photoFormNew"> New Photos</a>
       </li>
       <li class="divider"></li>
       <li id='navigate-back'>
@@ -50,6 +50,6 @@
 <% if flash[:errors] %>
 <div class="alert alert-warning alert-dismissible" role="alert">
    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-<%= flash[:errors].join("<br>").html_safe %>
+   <%= flash[:errors].join("<br>").html_safe %>
 </div>
 <% end %>

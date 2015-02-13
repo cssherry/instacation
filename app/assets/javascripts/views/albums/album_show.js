@@ -11,6 +11,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     }.bind(this));
 
     this.addAlbumForm();
+    this.addPhotoForm();
 
     // DON'T DO THIS! GOOGLE Maps won't load properly
     // this.render();
@@ -23,8 +24,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click .open-photo-form': 'createPhotoForm',
-    'click .close-form': 'closePhotoForm',
     'sortstop .photos': 'reorderPhotos',
     'click .link': "openGallery"
   },
@@ -87,7 +86,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     service.getDetails({placeId: item.escape('location_id')}, function (result, status) {
                                                           this.renderLocationOnMap(result, status, map);
                                                         }.bind(this));
-},
+  },
 
   renderLocationOnMap: function (results, status, map) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -135,6 +134,11 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     this.addSubviewEnd(".album-form", albumForm);
   },
 
+  addPhotoForm: function () {
+    var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew"});
+    this.addSubviewFront(".photo-form", photoForm);
+  },
+
   addMapItem: function (mapElement, fn) {
     this.mapView = new Instacation.Views.MapItem({collection: this.subviews('.photos'), mapElement: mapElement});
     if (this.subviews('.photos')[0]) this.listenTo(this.subviews('.photos')[0], 'selectNewMarker', this.closeMarker.bind(this));
@@ -150,26 +154,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     var view = _(this.subviews('.photos')).findWhere({ model: photo });
     this.removeSubview(".photos", view);
     this.render();
-  },
-
-  createPhotoForm: function (event) {
-    event.preventDefault();
-    var photoForm = new Instacation.Views.PhotoForm({albumView: this});
-    this.addSubviewFront(".photo-form", photoForm);
-    this.$('.open-photo-form').html('Close form');
-    this.$('.open-photo-form').toggleClass('open-photo-form close-form');
-  },
-
-  closePhotoForm: function (event) {
-    event.preventDefault();
-    this.hidePhotoForm();
-  },
-
-  hidePhotoForm: function () {
-    var view = this.subviews('.photo-form')[0];
-    this.removeSubview(".photo-form", view);
-    this.$('.close-form').html('+ New Photo');
-    this.$('.close-form').toggleClass('open-photo-form close-form');
   },
 
   reorderPhotos: function (event) {

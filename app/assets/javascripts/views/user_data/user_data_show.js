@@ -15,6 +15,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     }.bind(this));
 
     this.addAlbumForm();
+    this.addPhotoForm();
 
     this.addLocationItems();
 
@@ -60,6 +61,12 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   addAlbumForm: function () {
     var albumForm = new Instacation.Views.AlbumForm({userView: this, id: "albumFormNew"});
     this.addSubviewEnd(".album-form", albumForm);
+  },
+
+
+  addPhotoForm: function () {
+    var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew"});
+    this.addSubviewFront(".photo-form", photoForm);
   },
 
   addLocationsToHash: function (location) {

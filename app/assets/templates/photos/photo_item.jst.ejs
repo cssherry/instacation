@@ -1,26 +1,28 @@
-<div class="image">
-  <div class="fit-container">
+<div class='edit-photo-form'></div>
+
+<div class="panel panel-default image">
+  <div class="panel-heading fit-container">
     <h3 class='caption fitable-text' id='<%= photo.id %>'>
       <% if (photo.escape('caption')) { %>
         <%= photo.escape('caption') %>
       <% } %>
     </h3>
   </div>
-
-  <div class='thumbnail' >
-    <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='link' id='<%= photo.id %>'>
-      <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
-    </a>
+  <div class="panel-body">
+      <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='zoom link' id='<%= photo.id %>'>
+        <div class='thumbnail'>
+          <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
+        </div>
+        <span class="overlay"><i class="fa fa-arrows-alt"></i></span>
+      </a>
   </div>
-
-  <p class='location-name'></p>
+  <div class="panel-footer">
+    <p class='location-name pull-left'></p>
+      <span class="pull-right">
+        <% if (editable) { %>
+          <i id="edit-photo" class="fa fa-pencil edit-photo" data-toggle="modal" data-target="<%= "#photoFormEdit" + photo.id %>"></i>
+          <i id="delete-photo" class="fa fa-trash delete-photo"></i>
+        <% } %>
+      </span>
+  </div>
 </div>
-
-<% if (editable) { %>
-  <a href="#" class="btn btn-primary delete-photo" role="button"> x </a>
-  <a href='#' class='btn btn-primary edit-photo' role="button"> edit </a>
-
-  <div class='edit-photo-form'>
-  </div>
-
-<% } %>

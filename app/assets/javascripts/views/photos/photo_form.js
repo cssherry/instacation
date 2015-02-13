@@ -2,7 +2,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
 
   template: JST['photos/photo_form'],
 
-  tagName: 'div="photo-create form-group"',
+  tagName: 'div class="photo-create modal fade"',
 
   initialize: function (options) {
     this.albumView = options.albumView;
@@ -87,6 +87,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
             if (index === 0) {
               this.albumView.hidePhotoForm();
             }
+            Instacation.resize();
           }.bind(this)
         });
     }.bind(this));
@@ -119,9 +120,9 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
         if (location) {
           photo.locations().set(location);
           this.photoView.$('.location-name').html(this.photoView.parseLocation(this.photoView.getLocationHash()));
-        } else if (!photo.escape('location_id') && !this.photoView.getLocationHash) {
+        } else if (!photo.escape('location_id') && !this.photoView.getLocationHash()) {
           this.photoView.$('.location-name').text("");
-        } else if (!photo.escape('location_id') && this.photoView.getLocationHash) {
+        } else if (!photo.escape('location_id') && this.photoView.getLocationHash()) {
           this.photoView.$('.location-name').html(this.photoView.parseLocation(this.photoView.getLocationHash()));
         }
         this.photoView.$('.caption').html(photo.escape('caption'));
@@ -130,6 +131,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           this.photoView.$('img').attr('src', photoUrl);
         }
         this.photoView.hidePhotoForm();
+        Instacation.resize();
       }.bind(this)
     });
   },

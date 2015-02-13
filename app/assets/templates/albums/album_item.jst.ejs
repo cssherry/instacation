@@ -5,7 +5,7 @@
     <h4 class='title fitable-text'><%= album.escape('title') %></h4>
   </div>
   <div class="panel-body">
-      <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" class="zoom" data-type="image">
+      <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" class="zoom" >
         <% if(photoUrl) { %>
           <div class='thumbnail'>
             <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>" />
