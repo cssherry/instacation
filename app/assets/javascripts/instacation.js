@@ -10,11 +10,11 @@ window.Instacation = {
     this.currentUserId = $root.data('current-user');
     var router = new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
-    // this.addEvent(window, "resize", this.resize);
+    this.addEvent(window, "resize", this.resize);
     this.addEvent(window, "resize", this.setThumbnailSize);
     $( "[data-toggle='modal']" ).click(this.makeModalVisible.bind(this));
     this.changeHeightForFooter();
-    // this.resize();
+    this.resize();
     Backbone.history.start();
   },
 
@@ -35,13 +35,13 @@ window.Instacation = {
   },
 
   // Took so long! But now all tax with the class "fitable-text" will be resized
-  // resize: function () {
-  //   $('.fitable-text').each(function (index, textArea) {
-  //     while( $(textArea).height() > $($('.fit-container')[index]).height() ) {
-  //       $(textArea).css('font-size', (parseInt($(textArea).css('font-size')) - 1) + "px" );
-  //     }
-  //   });
-  // },
+  resize: function () {
+    $('.fitable-text').each(function (index, textArea) {
+      while( $(textArea).height() > $($('.fit-container')[index]).height() ) {
+        $(textArea).css('font-size', (parseInt($(textArea).css('font-size')) - 1) + "px" );
+      }
+    });
+  },
 
   changeHeightForFooter: function () {
     var docHeight = $(window).height();

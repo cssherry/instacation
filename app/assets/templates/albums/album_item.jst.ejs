@@ -14,7 +14,7 @@
             <p class="text-center"><i>No Images in this Album</i></p>
         <% } %>
           </div>
-        <span class="overlay"><i class="glyphicon glyphicon-picture"></i></span>
+        <span class="overlay"><i class="fa fa-picture-o"></i></span>
       </a>
   </div>
   <div class="panel-footer">
@@ -25,8 +25,8 @@
     <% } %>
     <span class="pull-right">
       <% if (editable) { %>
-        <i id="edit-album" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="<%= "#albumFormEdit" + album.id %>"></i>
-        <i id="delete-album" class="glyphicon glyphicon-trash delete-album"></i>
+        <i id="edit-album" class="fa fa-pencil" data-toggle="modal" data-target="<%= "#albumFormEdit" + album.id %>"></i>
+        <i id="delete-album" class="fa fa-trash "></i>
       <% } %>
     </span>
     </p>

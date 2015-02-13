@@ -54,6 +54,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     if (modalEl) modalEl.addClass("hidden");
     if (modalEl) modalEl.modal("toggle");
     if (modalEl) modalEl.modal("hide");
+    Instacation.setThumbnailSize();
   },
 
   addAlbumForm: function () {
@@ -62,9 +63,9 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   },
 
   addLocationsToHash: function (location) {
-    var locationCountry = location.escape("country").split(" ").join("-"),
-        locationState = location.escape("state").split(" ").join("-"),
-        locationCity = location.escape("city").split(" ").join("-");
+    var locationCountry = location.escape("country"),
+        locationState = location.escape("state"),
+        locationCity = location.escape("city");
 
     if (!this.locations[locationCountry]) {
       this.locations[locationCountry] = {};
@@ -82,16 +83,17 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   addLocationItems: function () {
     var tab = "&nbsp;&nbsp;&nbsp;&nbsp;";
     var countries = Object.keys(this.locations);
+    this.addLocationItemViews("Albums without location", "no-location", "no-location");
     countries.sort().forEach(function(country){
-      if (country !== "") this.addLocationItemViews(country, country, "country");
+      if (country !== "") this.addLocationItemViews(country, country.split(" ").join("-"), "country");
 
       var states = Object.keys(this.locations[country]);
       if (states) states.sort().forEach(function (state) {
-        if (state !== "") this.addLocationItemViews(tab + state, state, "state");
+        if (state !== "") this.addLocationItemViews(tab + state, state.split(" ").join("-"), "state");
 
         var cities = Object.keys(this.locations[country][state]);
         if (cities) cities.sort().forEach(function (city) {
-          if (city !== "") this.addLocationItemViews(tab + tab + city, city, "city");
+          if (city !== "") this.addLocationItemViews(tab + tab + city, city.split(" ").join("-"), "city");
         }.bind(this));
       }.bind(this));
     }.bind(this));
@@ -146,10 +148,12 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
       if(this.openMarker) this.openMarker.close();
       this.openMarker = this.mapView.infoWindows[model.id];
       this.openMarker.open(map, marker);
+      Instacation.resize();
     }
   },
 
   unhighlightMarker: function (model) {
+    Instacation.resize();
     var marker = this.mapView.markers[model.id];
     if (marker) marker.setAnimation(null);
   },
@@ -157,5 +161,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   closeMarker: function(infoWindow){
     if(this.openMarker) this.openMarker.close();
     this.openMarker = infoWindow;
+    Instacation.resize();
   }
 });
