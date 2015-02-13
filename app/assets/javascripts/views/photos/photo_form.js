@@ -98,6 +98,21 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
 
   saveNewPhotoModel: function (params, location) {
     var photo = new Instacation.Models.Photo();
+    var errors = [];
+
+    if (this.photoUrls.length === 0) {
+      errors.push("Add some photos");
+    }
+
+    if (params.album_id === "Select an Album") {
+      errors.push("Select an Album");
+    }
+
+    if (errors.length !== 0) {
+      this.$(".alert-warning").removeClass("hidden");
+      this.$(".error-text").text(errors.join(". "));
+    }
+
     this.photoUrls.forEach(function (url, index) {
         if (photo.locations()) photo.locations().set(location);
         params.photo_url = url;
@@ -112,6 +127,12 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
               this.albums.get(photo.escape("album_id")).photos().add(photo);
               this.$el.modal("hide");
             }
+            this.$(".alert-warning").addClass("hidden");
+          }.bind(this),
+          error: function () {
+            var errors = arguments[1];
+            this.$(".alert-warning").removeClass("hidden");
+            this.$(".error-text").text(errors);
           }.bind(this)
         });
     }.bind(this));
