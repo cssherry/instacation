@@ -9,7 +9,7 @@
 
         <div class = "row">
           <div class="control-group col-md-7">
-            <label class="control-label" for="album">Choose Album</label>
+            <label class="control-label" for="album">Choose Album <span class="required">*</span></label>
             <div class="controls">
 
               <select name="photo[album_id]" class="selectpicker album-choices"></select>
@@ -56,7 +56,7 @@
         <div class="control-group">
           <div class="row">
             <div class="controls  col-md-3">
-              <button id="chosen-photos" name="choosephoto" class="btn btn-default choose-photo"> Click or Drag Photos Here </button>
+              <button id="chosen-photos" name="choosephoto" class="btn btn-default choose-photo"> Click or Drag Photos Here <span class="required">*</span></button>
               <div class='chosen-photos'>  </div>
             </div>
           </div>
@@ -76,6 +76,7 @@
 
       </form>
       <div class="modal-footer">
+        <p><i><span class="required">*</span> Required fields</i><p>
         <div class="alert alert-warning alert-dismissible hidden" role="alert">
            <button type="button" class="close" data-dismiss="alert">
              <span aria-hidden="true">&times;</span><span class="sr-only">

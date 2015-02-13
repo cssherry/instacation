@@ -223,7 +223,7 @@ body {
   top: 60px;
   left: 0;
   height: 100%;
-  width: 34%;
+  width: 35%;
   position: fixed !important;
 }
 
@@ -289,11 +289,11 @@ body {
 }
 
 body.modal-opener #wrap{
-    -webkit-filter: blur(7px);
-    -moz-filter: blur(15px);
-    -o-filter: blur(15px);
-    -ms-filter: blur(15px);
-    filter: blur(15px);
+  -webkit-filter: blur(7px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
 }
 
 .pac-container {
@@ -301,20 +301,21 @@ body.modal-opener #wrap{
 }
 
 .bg_blur {
-    height: 200px;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-    border-radius: 5px;
-    box-shadow: 10px 5px 5px #888888;
+  height: 200px;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  border-radius: 5px;
+  box-shadow: 10px 5px 5px #888888;
 }
 
-.pic_button {
-  z-index: 5;
-  position: absolute;
-  top: 75px;
-  left: 75px;
-  box-shadow: 1px 1px 5px #888888;
+.offset-up {
+  position: relative;
+  top: -38px;
+}
+
+.required {
+  color: #de2929;
 }

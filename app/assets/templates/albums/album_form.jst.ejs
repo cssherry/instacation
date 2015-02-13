@@ -8,7 +8,7 @@
       <form class="<%= albumView ? 'album-update' : 'album-create' %>" name="contact">
           <div class = "row">
             <div class="control-group col-md-7">
-              <label class="control-label" for="title">Album Name</label>
+              <label class="control-label" for="title">Album Name <span class="required">*</span></label>
               <div class="controls">
                 <input type="text"
                        class="form-control form-control input-medium"
@@ -93,6 +93,7 @@
         </div>
       </form>
       <div class="modal-footer">
+        <p><i><span class="required">*</span> Required fields</i><p>
         <div class="alert alert-warning alert-dismissible hidden" role="alert">
            <button type="button" class="close" data-dismiss="alert">
              <span aria-hidden="true">&times;</span><span class="sr-only">

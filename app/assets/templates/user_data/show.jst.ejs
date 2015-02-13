@@ -10,9 +10,6 @@
           <div class="col-md-4 ">
             <div class="bg_blur ">
             </div>
-            <div class="pic_button">
-              <button class="open-new-album-form btn btn-default" data-toggle="modal" data-target="#albumFormNew"> New Album</button>
-            </div>
           </div>
         <div class="col-md-8  col-xs-12">
           <div class="header">
@@ -20,11 +17,17 @@
               <%= user.escape('first_name') + " " + user.escape('last_name') %>
             </h1>
               <p class="row"></p>
-              <span>
-              <select class="multiple-location-selector form-control" multiple="multiple">
-                <option></option>
-              </select>
-            </span>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <select class="multiple-location-selector form-control" multiple="multiple">
+                    <option></option>
+                  </select>
+                </div>
+                <div class="col-md-offset-6 col-md-2 offset-up">
+                  <button class="open-new-album-form btn btn-default" data-toggle="modal" data-target="#albumFormNew"> <span class="fa fa-plus"></span> Album</button>
+                </div>
+            </div>
             <p class="row"></p>
           </div>
         </div>
