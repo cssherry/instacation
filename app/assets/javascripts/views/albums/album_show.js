@@ -81,6 +81,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
 
   renderMap: function (mapElement, item) {
     var map = new google.maps.Map(mapElement);
+    style = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+    map.setOptions({styles: style});
     var service = new google.maps.places.PlacesService(map);
     service.getDetails({placeId: item.escape('location_id')}, function (result, status) {
                                                           this.renderLocationOnMap(result, status, map);
@@ -95,9 +97,17 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
         map: map,
         position: place.geometry.location,
       });
-
-      var infoWindow = new google.maps.InfoWindow();
-      infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + this.parseAddress(place));
+      var content = '<div id="infobox"><p><strong>' + place.name + '</strong><br>' + this.parseAddress(place) + "</p></div>";
+      var options = {content: content,
+                    disableAutoPan: false,
+                    maxWidth: 150,
+                    zIndex: null,
+                    boxStyle: {background: "'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif' no-repeat",
+                              opacity: 0.75},
+                    closeBoxMargin: "12px 4px 2px 2px",
+                    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+                    infoBoxClearance: new google.maps.Size(1, 1)};
+      var infoWindow = new InfoBox(options);
       infoWindow.open(map, marker);
 
       if (place.geometry.viewport) {
@@ -182,10 +192,12 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
       if(this.openMarker) this.openMarker.close();
       this.openMarker = this.mapView.infoWindows[modelId];
       this.openMarker.open(map, marker);
+      Instacation.resize();
     }
   },
 
   unhighlightMarker: function (modelId) {
+    Instacation.resize();
     var marker = this.mapView.markers[modelId];
     if (marker) marker.setAnimation(null);
   },
@@ -193,5 +205,6 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   closeMarker: function(infoWindow){
     if(this.openMarker) this.openMarker.close();
     this.openMarker = infoWindow;
+    Instacation.resize();
   }
 });

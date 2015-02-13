@@ -31,10 +31,6 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     return this;
   },
 
-  getData: function (event) {
-    console.log(event)
-  },
-
   setLocationChanged: function (event) {
     this.locationChanged = true;
   },

@@ -17,6 +17,8 @@
 //= require jquery.iframe-transport
 //= require jquery.cloudinary
 
+//= require infobox
+
 //= require jquery-ui/sortable
 //= require underscore
 //= require backbone

@@ -27,6 +27,7 @@ html, .container, #main, .main, .main > .row {
 // Needed to make scrollbar flush on right side
 .main .row, .albums{
   margin: 0;
+  padding-top: 20px;
 }
 
 body {
@@ -194,11 +195,11 @@ body {
   font-size: 1.125em;
   cursor: pointer;
 }
-.panel .panel-footer i.glyphicon-pencil {
+.fa-pencil {
   color: #1abc9c;
 }
 
-.panel .panel-footer i.glyphicon-trash {
+.fa-trash {
   color: #e74c3c;
   padding-left: 5px;
 }
@@ -219,6 +220,21 @@ body {
   position: fixed !important;
 }
 
+.infobox-wrapper {
+    display:none;
+}
+
+#infobox {
+    border:1px solid gray;
+    margin-top: 8px;
+    background: white;
+    font-size:12px;
+    padding: 5px;
+    max-width: 150px;
+    border-radius: 5px;
+    text-shadow:0 -1px #000000;
+    box-shadow: 0 0 8px #000;
+}
 .hidden {
   display: hidden !important;
 }

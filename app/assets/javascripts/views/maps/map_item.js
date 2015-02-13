@@ -8,18 +8,20 @@ Instacation.Views.MapItem = Backbone.View.extend({
     this.$el = options.mapElement;
     this.bounds = new google.maps.LatLngBounds();
     this.locations = {};
-
     google.maps.event.addListenerOnce(this._map, 'idle', this.zoomOrResize.bind(this));
   },
 
   render: function(){
     this.renderMap(this.map());
+    Instacation.resize();
     return this;
   },
 
   map: function (mapElement){
     if (!this._map && mapElement) {
       this._map = new google.maps.Map(mapElement);
+      style = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+      this._map.setOptions({styles: style});
     }
     return this._map;
   },
@@ -91,10 +93,17 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
     var itemInfo = this.parseItemInfo(itemView);
 
-    var info = $("<div>").addClass("center").append(itemInfo).append(placeInfo);
+    var info = $("<div id='infobox'>").addClass("center").append(itemInfo).append(placeInfo);
 
-    var infoWindow = new google.maps.InfoWindow();
-    infoWindow.setContent(info[0]);
+    var options = {content: info[0],
+                  disableAutoPan: false,
+                  zIndex: null,
+                  boxStyle: {background: "'http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/examples/tipbox.gif' no-repeat",
+                            opacity: 0.75},
+                  closeBoxMargin: "12px 4px 2px 2px",
+                  closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+                  infoBoxClearance: new google.maps.Size(1, 1)};
+    var infoWindow = new InfoBox(options);
 
     this.infoWindows[itemView.model.id] = infoWindow;
     var that = this;
@@ -108,11 +117,13 @@ Instacation.Views.MapItem = Backbone.View.extend({
   parseItemInfo: function (itemView) {
     if (itemView.model.escape("owner_id")) {
       var albumUrl = $("<a>").attr("href", '#users/' + itemView.model.escape('owner_id') + '/albums/' + itemView.model.id);
-      var albumName = $("<h4>").text(itemView.model.escape("title"));
+      var title = $("<h4 class='fitable-text'>").text(itemView.model.escape("title"));
+      var albumName = $("<div class='fit-container'>").html(title);
       var photo = this.getPhotoUrlOrError(itemView);
       return albumUrl.html(albumName).append(photo);
     } else {
-      var photoCaption = $("<h4>").text(itemView.model.escape("caption"));
+      var caption = $("<h4 class='fitable-text'>").text(itemView.model.escape("caption"));
+      var photoCaption = $("<div class='fit-container'>").html(caption);
       var photo = this.getPhotoUrlOrError(itemView);
       return $("<div>").append(photoCaption).append(photo);
     }
