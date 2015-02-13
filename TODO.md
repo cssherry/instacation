@@ -6,7 +6,7 @@
 - [ ] Have well groomed seed data (real world stuff, no lorem ipsum)
 - [ ] Have buttons to fill out complex forms while demoing (with nice seed data)
 - [X] Have a root homepage
-- [ ] Have a one to three sentences statement on your homepage describing your app ("A Tumblr clone", "A Rap Genius clone to annotate dolphin sounds" etc. Make it painfully obvious what your app does at first glance. You do not have to be witty. Use a big font size. This will look cool and be clear to employers with squirrel attention spans.)
+- [X] Have a one to three sentences statement on your homepage describing your app ("A Tumblr clone", "A Rap Genius clone to annotate dolphin sounds" etc. Make it painfully obvious what your app does at first glance. You do not have to be witty. Use a big font size. This will look cool and be clear to employers with squirrel attention spans.)
 - [ ] It is very important when demoing your app that when you do actions, like save, befriend, delete, modify, etc. something visually happens on the page to acknowledge the action. This is important user feedback and is crucial for any serious web app.
 - [ ] Add flash messages to acknowledge saves, etc.
 - [ ] Add a user notification model if this makes sense for your app (most likely it does!). This will show feedback and results of actions. Think of Facebook notifications for new comments, friend requests, etc. This translates well to most apps (new annotations, new posts, etc.). It is a good technological challenge and demos well. You probably need polymorphic associations.

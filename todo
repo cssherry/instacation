@@ -1,8 +1,11 @@
-fix albums with only one location?
-
-add search picture caption
-clicking location shows all photos in same name/state/country
-add pagination
-attach new album, new photo option to navbar
-modal forms
-add header to user page
+Put all the form on modals.
+search by no location, filter by date, disable locations that already selected
+Add a pretty header to user page. This might just consist of removing the user name and instead making the location selector more prominant.
+Hide markers for hidden locations.
+Maybe update map upon updating album/photo location. This seems like a pain, but could be interesting.
+I really want to add the ability to share links to albums with others.
+Fix view of albums with only one location? I’ve solved this problem already, but sometimes the map won’t zoom properly for some reason.
+Add pagination? This will mess up the current implementation of instant-location search, but it’s worth looking into since Google Maps will reject more than 10 queries a second.
+Consider making links from location descriptions that show all photos/albums in the same name/state/country
+If there’s time, add search for picture captions
+If there’s time, solve the problem of the disappearing navbar in Firefox.
