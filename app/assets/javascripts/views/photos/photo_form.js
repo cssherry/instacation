@@ -45,7 +45,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
     $el.append($("<option>").text("Select an Album"));
     this.albums.forEach(function (album) {
       var option = $("<option>").val(album.id).text(album.escape("title"));
-      if (albumId && albumId === album.id) {
+      if (albumId && parseInt(albumId) === album.id) {
         option.attr("selected", "selected");
       }
       $el.append(option);
@@ -83,7 +83,9 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   saveNewPhoto: function (event) {
     event.preventDefault();
     var params = $(event.currentTarget).serializeJSON().photo;
-    params.album_id = this.albumView.model.id;
+    if (!params.album_id) {
+      params.album_id = this.albumView.model.id;
+    }
     if (this.locationChanged) {
       this.saveLocation(function (location) {
         params['location_id'] = location.escape('place_id');
@@ -97,15 +99,19 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   saveNewPhotoModel: function (params, location) {
     var photo = new Instacation.Models.Photo();
     this.photoUrls.forEach(function (url, index) {
-        photo.locations().set(location);
+        if (photo.locations()) photo.locations().set(location);
         params.photo_url = url;
         params.cloudinary_id = this.public_id[index];
         photo.save(params,{
           success: function(){
-            this.albumView.model.photos().add(photo);
-            this.albumView.addPhotoItems(photo, this.albumView.addSubviewFront);
-            Instacation.resize();
-            this.$el.modal("hide");
+            if (this.albumView.model.escape("owner_id")) {
+              this.albumView.model.photos().add(photo);
+              this.albumView.addPhotoItems(photo, this.albumView.addSubviewFront, this.$el);
+              Instacation.resize();
+            } else {
+              this.albums.get(photo.escape("album_id")).photos().add(photo);
+              this.$el.modal("hide");
+            }
           }.bind(this)
         });
     }.bind(this));
@@ -149,7 +155,7 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           this.photoView.$('img').attr('src', photoUrl);
         }
         if (this.currentAlbumId !== photo.escape("album_id")) {
-
+          this.photoView.remove();
         }
         Instacation.resize();
         this.$el.modal("hide");

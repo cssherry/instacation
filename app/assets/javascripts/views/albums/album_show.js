@@ -150,9 +150,14 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     fn.call(this, ".google-map-collection", this.mapView);
   },
 
-  addPhotoItems: function (photoItem, fn) {
+  addPhotoItems: function (photoItem, fn, $modal) {
     var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId, albumView: this});
     fn.call(this, ".photos", photoView);
+    if ($modal) {
+      $modal.modal("hide");
+      $modal.modal("toggle");
+      $modal.modal("hide");
+    }
   },
 
   removePhotoItem: function (photo) {
