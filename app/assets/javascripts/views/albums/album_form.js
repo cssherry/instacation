@@ -2,7 +2,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
 
   template: JST['albums/album_form'],
 
-  tagName: 'div="album-create"',
+  tagName: 'div class="album-create modal fade"',
 
   initialize: function (options) {
     this.userView = options.userView;

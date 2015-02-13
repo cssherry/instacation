@@ -1,20 +1,17 @@
-<div class="row">
+<div class='album-form'></div>
+
+<div class="row" id="wrap">
   <div class="col-md-4 google-map-collection"></div>
 
   <div class='albums-and-create col-md-8 col-md-offset-4'>
 
   <h1>
     <%= user.escape('first_name') + " " + user.escape('last_name') %>
-    <% if (editable) { %>
-      <a href='#' class="btn btn-primary open-album-form" role="button">+ New Album</a>
-    <% } %>
   </h1>
 
   <select class="multiple-location-selector form-control" multiple="multiple">
     <option></option>
   </select>
-
-  <div class='album-form'></div>
 
   <div class='albums row'></div>
   </div>

@@ -8,10 +8,14 @@ window.Instacation = {
     this.addBackground($body);
     var $root = $('#main');
     this.currentUserId = $root.data('current-user');
-    new Instacation.Routers.UserData({$rootEl: $root});
+    var router = new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
-    this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
+    // this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
+    // this.addEvent($(".navigate-back")[0], "click", router.navigateBack.bind(router));
+    // this.addEvent($(".open-album-form")[0], "click", router.createAlbumForm.bind(router));
+    // this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
+    // this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
     this.changeHeightForFooter();
     this.resize();
     Backbone.history.start();

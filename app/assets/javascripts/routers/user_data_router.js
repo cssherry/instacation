@@ -9,10 +9,6 @@ Instacation.Routers.UserData = Backbone.Router.extend({
     'users/:userId/albums/:albumId': 'albumShow',
   },
 
-  events: {
-    "click .navigate-back": "navigateBack",
-  },
-
   currentUserShow: function () {
     this.userDataShow(Instacation.currentUserId);
   },
@@ -49,7 +45,26 @@ Instacation.Routers.UserData = Backbone.Router.extend({
 
   navigateBack: function () {
     window.history.back();
-  }
+  },
+
+  createAlbumForm: function (event) {
+    event.preventDefault();
+    $target = $(event.target);
+
+    if ($target.attr("class") === "open-album-form") {
+      var albumForm = new Instacation.Views.AlbumForm({userView: this._oldview});
+      this._oldview.addSubviewFront(".album-form", albumForm);
+
+      $target.toggleClass('open-album-form close-form');
+    }
+  },
+
+  closeAlbumForm: function ($target) {
+    var view = this._oldview.subviews('.album-form')[0];
+    this._oldview.removeSubview(".album-form", view);
+    $target$('.close-form').html('New Album');
+    t$target$('.close-form').toggleClass('open-album-form close-form');
+  },
 
 
 });

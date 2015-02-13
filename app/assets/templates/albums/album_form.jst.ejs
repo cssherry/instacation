@@ -1,27 +1,77 @@
-<form class='<%= albumView ? 'album-update' : 'album-create' %>'>
-  <input type="text"
-         name="album[title]"
-         placeholder='Album Name'
-         <% if(albumView) { %>
-           value='<%= albumView.model.escape('title') %>'
-         <% } %> >
-  <br>
+<div class="modal-dialog modal-md">
+  <div class="modal-content">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Create a new Album</h3>
+    </div>
+    <div class="modal-body">
+      <form class="<%= albumView ? 'album-update' : 'album-create' %>" name="contact">
+          <div class = "row">
+            <div class="control-group col-md-7">
+              <label class="control-label" for="title">Album Name</label>
+              <div class="controls">
+                <input type="text"
+                       class="form-control form-control input-medium"
+                       id="title"
+                       name="album[title]"
+                       <% if(albumView) { %>
+                         value='<%= albumView.model.escape('title') %>'
+                       <% } %>
+                       placeholder='Album Name'>
+              </div>
+            </div>
+          </div>
 
-  <input type="text"
-         name="location"
-         class="location-picker"
-         placeholder="Add location tag"
-         <% if(albumView) { %>
-           value='<%= location %>'
-         <% } %> >
-  <br>
-  <% if(!albumView) { %>
+          <div class="row">
+            <div class="control-group  col-md-7">
+              <label class="control-label" for="location">Location</label>
+              <div class="controls">
+                <input type="text"
+                       class="location-picker form-control input-medium"
+                       id="location"
+                       name="location"
+                       <% if(albumView) { %>
+                         value='<%= location %>'
+                       <% } %>
+                       placeholder='Add location tag'>
+              </div>
+            </div>
+          </div>
 
-    <a href='#' class='btn btn-primary choose-photo' role="button"> Click or Drag Photos Here </a>
-    <div class='chosen-photos'>  </div>
+        <% if(!albumView) { %>
+          <div class="row">
+            <hr>
+          </div>
 
-    <input type="text" name="photo[caption]" placeholder='Photo Caption'>
+          <div class="control-group">
+            <div class="row">
+              <label class="control-label col-md-6" for="location">Add Some Pictures</label>
+            </div>
 
-  <% } %>
-  <button><%= albumView ? 'Edit Album' : 'Create Album' %></button>
-</form>
+              <div class="row">
+                <div class="controls  col-md-3">
+                  <button id="chosen-photos" name="choosephoto" class="btn btn-default choose-photo"> Choose Photos </button>
+                  <div class='chosen-photos'>  </div>
+                </div>
+
+                <div class="controls col-md-4">
+                  <input type="text"
+                         id="caption"
+                         class="form-control input-medium"
+                         name="photo[caption]"
+                         <% if(albumView) { %>
+                           value='<%= location %>'
+                         <% } %>
+                         placeholder='Photo Caption'>
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </form>
+    <div class="modal-footer">
+        <input class="btn btn-success" type="submit" value="<%= albumView ? 'Update Album' : 'Create Album' %>" id="submit">
+    </div>
+
+  </div>
+</div>

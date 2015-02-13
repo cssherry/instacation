@@ -14,6 +14,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
       this.addAlbumItems(albumItem, this.addSubviewEnd);
     }.bind(this));
 
+    this.addAlbumForm();
+
     this.addLocationItems();
 
     this.listenTo(this.model.albums(), 'add', this.render);
@@ -24,8 +26,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click .open-album-form': 'createAlbumForm',
-    'click .close-form': 'closeAlbumForm',
     'select2:select .multiple-location-selector': 'searchCollection',
     'select2:unselect .multiple-location-selector': 'unSearchCollection',
   },
@@ -49,6 +49,11 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     }
 
     fn.call(this, ".albums", albumView);
+  },
+
+  addAlbumForm: function () {
+    var albumForm = new Instacation.Views.AlbumForm({userView: this, id: "albumFormNew"});
+    this.addSubviewEnd(".album-form", albumForm);
   },
 
   addLocationsToHash: function (location) {
@@ -122,26 +127,6 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     var view = _(this.subviews('.albums')).findWhere({ model: album });
     this.removeSubview(".albums", view);
     this.render();
-  },
-
-  createAlbumForm: function (event) {
-    event.preventDefault();
-    var albumForm = new Instacation.Views.AlbumForm({userView: this});
-    this.addSubviewFront(".album-form", albumForm);
-    this.$('.open-album-form').html('Close form');
-    this.$('.open-album-form').toggleClass('open-album-form close-form');
-  },
-
-  closeAlbumForm: function (event) {
-    event.preventDefault();
-    this.hideAlbumForm();
-  },
-
-  hideAlbumForm: function () {
-    var view = this.subviews('.album-form')[0];
-    this.removeSubview(".album-form", view);
-    this.$('.close-form').html('+ New Album');
-    this.$('.close-form').toggleClass('open-album-form close-form');
   },
 
   highlightMarker: function (model) {
