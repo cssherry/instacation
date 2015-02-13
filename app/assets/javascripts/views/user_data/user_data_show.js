@@ -63,9 +63,8 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.addSubviewEnd(".album-form", albumForm);
   },
 
-
   addPhotoForm: function () {
-    var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew"});
+    var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew", albums: this.model.albums()});
     this.addSubviewFront(".photo-form", photoForm);
   },
 

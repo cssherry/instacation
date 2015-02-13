@@ -135,8 +135,13 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   addPhotoForm: function () {
-    var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew"});
-    this.addSubviewFront(".photo-form", photoForm);
+    var user = new Instacation.Models.UserDatum({id: this.userId});
+    user.fetch({
+      success: function () {
+        var photoForm = new Instacation.Views.PhotoForm({albumView: this, id: "photoFormNew", albums: user.albums()});
+        this.addSubviewFront(".photo-form", photoForm);
+      }.bind(this)
+    });
   },
 
   addMapItem: function (mapElement, fn) {
@@ -146,7 +151,7 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
   },
 
   addPhotoItems: function (photoItem, fn) {
-    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId, album: this.model});
+    var photoView = new Instacation.Views.PhotoItem({model: photoItem, editable: this.editable, userId: this.userId, albumView: this});
     fn.call(this, ".photos", photoView);
   },
 

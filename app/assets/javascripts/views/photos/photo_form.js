@@ -7,6 +7,8 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   initialize: function (options) {
     this.albumView = options.albumView;
     this.photoView = options.photoView;
+    this.albums = options.albums;
+    if (this.photoView) this.currentAlbumId = this.photoView.model.escape("album_id");
     this.photoUrls = [];
     this.public_id = [];
   },
@@ -27,10 +29,28 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
 
     var content = this.template({photoView: this.photoView, location: photoLocation, locationPlaceholder: albumLocation});
     this.$el.html(content);
+    this.addAlbums(this.$(".album-choices"));
     var input = this.$('.location-picker')[0];
     this.autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(this.autocomplete, 'place_changed', this.setLocationChanged.bind(this));
     return this;
+  },
+
+  addAlbums: function ($el) {
+    if (this.photoView) {
+      var albumId = this.photoView.model.escape("album_id");
+    } else if (this.albumView.model.escape("owner_id")) {
+      var albumId = this.albumView.model.id;
+    }
+    $el.append($("<option>").text("Select an Album"));
+    this.albums.forEach(function (album) {
+      var option = $("<option>").val(album.id).text(album.escape("title"));
+      if (albumId && albumId === album.id) {
+        option.attr("selected", "selected");
+      }
+      $el.append(option);
+    }.bind(this));
+    return $el;
   },
 
   setLocationChanged: function (event) {
@@ -84,10 +104,8 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           success: function(){
             this.albumView.model.photos().add(photo);
             this.albumView.addPhotoItems(photo, this.albumView.addSubviewFront);
-            if (index === 0) {
-              this.albumView.hidePhotoForm();
-            }
             Instacation.resize();
+            this.$el.modal("hide");
           }.bind(this)
         });
     }.bind(this));
@@ -130,8 +148,11 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           var photoUrl = $.cloudinary.image(this.public_id[0], { width: 300, height: 300, crop: 'fill' })[0].src;
           this.photoView.$('img').attr('src', photoUrl);
         }
-        this.photoView.hidePhotoForm();
+        if (this.currentAlbumId !== photo.escape("album_id")) {
+
+        }
         Instacation.resize();
+        this.$el.modal("hide");
       }.bind(this)
     });
   },

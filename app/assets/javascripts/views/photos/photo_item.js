@@ -5,15 +5,15 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.editable = options.editable;
     this.userId = options.userId;
-    this.album = options.album;
+    this.albumView = options.albumView;
+    this.album = options.albumView.model;
+    this.addPhotoEditForm();
   },
 
   tagName: 'div class="photo-item"',
 
   events: {
     'click .delete-photo':'destroy',
-    'click .edit-photo': 'editPhoto',
-    'click .close-photo-form': 'closeEditPhoto',
     'mouseover .image': 'triggerMarker',
     'mouseout .image': 'closeMarker',
 
@@ -68,24 +68,14 @@ Instacation.Views.PhotoItem = Backbone.CompositeView.extend({
     this.model.destroy();
   },
 
-  editPhoto: function (event) {
-    event.preventDefault();
-    var photoForm = new Instacation.Views.PhotoForm({photoView: this});
-    this.addSubviewFront(".edit-photo-form", photoForm);
-    this.$('.edit-photo').html('close form');
-    this.$('.edit-photo').toggleClass('edit-photo close-photo-form');
-  },
-
-  hidePhotoForm: function () {
-    var view = this.subviews('.edit-photo-form')[0];
-    this.removeSubview(".edit-photo-form", view);
-    this.$('.close-photo-form').html('edit');
-    this.$('.close-photo-form').toggleClass('edit-photo close-photo-form');
-  },
-
-  closeEditPhoto: function (event) {
-    event.preventDefault();
-    this.hidePhotoForm();
+  addPhotoEditForm: function (event) {
+    var user = new Instacation.Models.UserDatum({id: this.userId});
+    user.fetch({
+      success: function () {
+        var photoForm = new Instacation.Views.PhotoForm({photoView: this, id: "photoFormEdit" + this.model.id, albums: user.albums()});
+        this.addSubviewFront(".edit-photo-form", photoForm);
+      }.bind(this)
+    });
   },
 
   triggerMarker: function () {

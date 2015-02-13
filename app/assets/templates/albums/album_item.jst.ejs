@@ -18,17 +18,17 @@
       </a>
   </div>
   <div class="panel-footer">
-    <p class='location-name'>
+    <p class='location-name  pull-left'>
     <% if (location) {%>
       <b><%= location.escape('name')%></b>
       <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
     <% } %>
+    </p>
     <span class="pull-right">
       <% if (editable) { %>
         <i id="edit-album" class="fa fa-pencil" data-toggle="modal" data-target="<%= "#albumFormEdit" + album.id %>"></i>
         <i id="delete-album" class="fa fa-trash delete-album"></i>
       <% } %>
     </span>
-    </p>
   </div>
 </div>

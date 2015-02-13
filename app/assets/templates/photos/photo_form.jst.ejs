@@ -6,58 +6,71 @@
     </div>
     <div class="modal-body">
       <form class="<%= photoView ? 'photo-update' : 'photo-create' %>" name="contact">
-          <div class = "row">
-            <div class="control-group col-md-7">
-              <label class="control-label" for="caption">Caption</label>
-              <div class="controls">
-                <input type="text"
-                       class="form-control form-control input-medium"
-                       id="caption"
-                       name="photo[caption]"
-                       <% if(photoView) { %>
-                         value='<%= photoView.model.escape('caption') %>'
-                       <% } %>
-                       placeholder='Caption'>
-              </div>
+
+        <div class = "row">
+          <div class="control-group col-md-7">
+            <label class="control-label" for="album">Choose Album</label>
+            <div class="controls">
+              <select name="photo[album_id]" class="selectpicker album-choices"></select>
             </div>
           </div>
-
-          <div class="row">
-            <div class="control-group  col-md-7">
-              <label class="control-label" for="location">Location</label>
-              <div class="controls">
-                <input type="text"
-                       class="location-picker form-control input-medium"
-                       id="location"
-                       name="location"
-                       <% if(photoView) { %>
-                         value='<%= location %>'
-                       <% } %>
-                       placeholder='Add location tag'>
-              </div>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <div class="row">
-              <div class="controls  col-md-3">
-                <button id="chosen-photos" name="choosephoto" class="btn btn-default choose-photo"> Click or Drag Photos Here </button>
-                <div class='chosen-photos'>  </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <hr>
-          </div>
-
-          <div class="control-group">
-            <div class="row">
-              <input class="btn btn-success col-md-3" type="submit" value="<%= photoView ? 'Edit Photo' : 'Create Photo' %>" id="submit">
-            </div>
-          </div>
-
         </div>
+
+        <div class = "row">
+          <div class="control-group col-md-7">
+            <label class="control-label" for="caption">Caption</label>
+            <div class="controls">
+              <input type="text"
+                     class="form-control form-control input-medium"
+                     id="caption"
+                     name="photo[caption]"
+                     <% if(photoView) { %>
+                       value='<%= photoView.model.escape('caption') %>'
+                     <% } %>
+                     placeholder='Caption'>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="control-group  col-md-7">
+            <label class="control-label" for="location">Location</label>
+            <div class="controls">
+              <input type="text"
+                     class="location-picker form-control input-medium"
+                     id="location"
+                     name="location"
+                     <% if (photoView && location) { %>
+                       value='<%= location.escape("name") %>'
+                       placeholder='Add location tag'>
+                     <% } else if (locationPlaceholder) { %>
+                       placeholder='<%= locationPlaceholder.escape("name") %>'
+                     <% } else { %>
+                       placeholder='Add location tag'>
+                    <% } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="row">
+            <div class="controls  col-md-3">
+              <button id="chosen-photos" name="choosephoto" class="btn btn-default choose-photo"> Click or Drag Photos Here </button>
+              <div class='chosen-photos'>  </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <hr>
+        </div>
+
+        <div class="control-group">
+          <div class="row">
+            <input class="btn btn-success col-md-3" type="submit" value="<%= photoView ? 'Edit Photo' : 'Create Photo' %>" id="submit">
+          </div>
+        </div>
+
       </form>
       <div class="modal-footer">
 
