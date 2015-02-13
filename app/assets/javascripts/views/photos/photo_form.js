@@ -76,7 +76,11 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
       this.public_id = [results[0].public_id];
     }
 
-    var uploadedFiles = $("<p>").text(this.public_id.join(", "));
+    var uploadedFiles = $("<p>");
+    this.public_id.forEach(function (pubId) {
+      uploadedFiles.append($("<p class='label label-success'>").text(pubId));
+      uploadedFiles.append($("<span>").text("  "));
+    });
     this.$(".chosen-photos").html(uploadedFiles);
   },
 
@@ -208,5 +212,9 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
     var location = locations.fetchOrCreateByPlaceID(locationTag, function (location) {
       callback.call({}, location);
     }.bind(this));
+  },
+
+  clearFields: function () {
+
   },
 });

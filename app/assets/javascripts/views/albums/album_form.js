@@ -48,7 +48,12 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
                 this.photoUrls.push(result.url);
                 this.public_id.push(result.public_id);
               }.bind(this));
-    var uploadedFiles = $("<p>").text(this.public_id.join(", "));
+
+    var uploadedFiles = $("<p>");
+    this.public_id.forEach(function (pubId) {
+      uploadedFiles.append($("<p class='label label-success'>").text(pubId));
+      uploadedFiles.append($("<span>").text("  "));
+    });
     this.$(".chosen-photos").html(uploadedFiles);
   },
 
@@ -68,17 +73,6 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
 
   saveNewAlbumModel: function (albumParams, photoParams, location) {
     var album = new Instacation.Models.Album();
-
-    // var errors = [];
-    //
-    // if (params.album_id === "Select an Album") {
-    //   errors.push("Select an Album");
-    // }
-    //
-    // if (errors.length !== 0) {
-    //   this.$(".alert-warning").removeClass("hidden");
-    //   this.$(".error-text").text(errors.join(". "));
-    // }
 
     album.save(albumParams,{
       success: function(){
