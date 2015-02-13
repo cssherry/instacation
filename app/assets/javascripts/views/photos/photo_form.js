@@ -125,13 +125,14 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
           success: function(){
             if (this.albumView.model.escape("owner_id")) {
               this.albumView.model.photos().add(photo);
+              this.$el.addClass("hidden");
               this.albumView.addPhotoItems(photo, this.albumView.addSubviewFront, this.$el);
               Instacation.resize();
             } else {
               this.albums.get(photo.escape("album_id")).photos().add(photo);
               this.$el.modal("hide");
             }
-            this.$(".alert-warning").addClass("hidden");
+            this.clearFields();
           }.bind(this),
           error: function () {
             var errors = arguments[1];
@@ -215,6 +216,8 @@ Instacation.Views.PhotoForm = Backbone.View.extend({
   },
 
   clearFields: function () {
-
+    if (!this.albumView.model.escape("owner_id")) this.$("option").prop("selected", false);
+    this.$("input").val("");
+    this.$(".chosen-photos").empty();
   },
 });

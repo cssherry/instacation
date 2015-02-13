@@ -89,6 +89,7 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
           }
         }
         this.$(".alert-warning").addClass("hidden");
+        this.clearFields();
       }.bind(this),
       error: function () {
         var errors = JSON.parse(arguments[1].responseText);
@@ -175,5 +176,11 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
     var location = locations.fetchOrCreateByPlaceID(locationTag, function (location) {
       callback.call({}, location);
     }.bind(this));
-  }
+  },
+
+  clearFields: function () {
+    this.$("input").val("");
+    this.$("textarea").val("");
+    this.$(".chosen-photos").empty();
+  },
 });
