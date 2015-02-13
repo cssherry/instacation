@@ -38,8 +38,10 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     var index = Math.round(Math.random() * (this.model.albums().length - 1));
     if (this.model.albums().length !== 0) var albumPhotoUrl = this.model.albums().models[index].getThumbnail();
     if (albumPhotoUrl) {
-      this.$(".bg_blur").css("background-image", "url("+ albumPhotoUrl+ ")");
-    } else {
+        this.$(".bg_blur").css("background-image", "url("+ albumPhotoUrl+ ")");
+        this.$(".bg_blur").css("background-size", "100%");
+        this.$(".bg_blur").css("background-repeat", "no-repeat");    }
+    else {
       this.$(".bg_blur").css("background-color", '#acbcc9');
     }
 

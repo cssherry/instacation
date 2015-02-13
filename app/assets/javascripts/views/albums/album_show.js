@@ -36,6 +36,8 @@ Instacation.Views.AlbumShow = Backbone.CompositeView.extend({
     if (this.model.photos().length !== 0 ) var photoUrl = this.model.photos().models[index].getThumbnail();
     if (photoUrl) {
       this.$(".bg_blur").css("background-image", "url("+ photoUrl+ ")");
+      this.$(".bg_blur").css("background-size", "100%");
+      this.$(".bg_blur").css("background-repeat", "no-repeat");
     } else {
       this.$(".bg_blur").css("background-color", '#acbcc9');
     }

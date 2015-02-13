@@ -15,6 +15,7 @@ window.Instacation = {
     this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
     $( "[data-toggle='modal']" ).click(this.makeModalVisible.bind(this));
     this.changeHeightForFooter();
+    this.setThumbnailSize();
     this.resize();
     Backbone.history.start();
   },

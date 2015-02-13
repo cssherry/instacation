@@ -18,7 +18,7 @@
           <div class="row">
             <% if (album.escape('description')[70]) var periods = "..." %>
             <% if (!album.escape('description')[70]) var periods = "" %>
-            <h5 class="col-md-10 solid description"> <%= album.escape('description').substring(1, 70) + periods %></h5>
+            <h5 class="col-md-10 col-md-offset-1 solid description"> <%= album.escape('description').substring(0, 70) + periods %></h5>
           </div>
         </span>
       </a>

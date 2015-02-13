@@ -224,6 +224,7 @@ body {
   left: 0;
   height: 100%;
   width: 35%;
+  z-index: 5;
   position: fixed !important;
 }
 
@@ -301,7 +302,8 @@ body.modal-opener #wrap{
 }
 
 .bg_blur {
-  height: 200px;
+  min-height: 200px;
+  height: 100%;
   -webkit-filter: blur(5px);
   -moz-filter: blur(10px);
   -o-filter: blur(10px);
