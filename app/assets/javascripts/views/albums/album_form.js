@@ -100,11 +100,9 @@ Instacation.Views.AlbumForm = Backbone.View.extend({
         success: function(){
           album.photos().add(photo);
           if (index === 0 && this.userView.model.albums) {
-            if (this.userView.model.albums) {
               this.userView.addAlbumItems(album, this.userView.addSubviewFront, this.$el);
-            } else {
+          } else {
               this.$el.modal("hide");
-            }
           }
         }.bind(this)
       });
