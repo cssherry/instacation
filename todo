@@ -1,5 +1,7 @@
-Put all the form on modals.
-search by no location, filter by date, disable locations that already selected
+empty form inputs
+error field display
+seed data
+filter by date, disable locations that already selected
 Add a pretty header to user page. This might just consist of removing the user name and instead making the location selector more prominant.
 Hide markers for hidden locations.
 Maybe update map upon updating album/photo location. This seems like a pain, but could be interesting.
