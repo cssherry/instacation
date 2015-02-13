@@ -6,25 +6,21 @@
 
   <div class='photo-and-create col-md-8 col-md-offset-4'>
     <div class="row panel">
-      <div class="col-md-4 thumbnail no-image">
-        <div class="bg_blur ">
-        </div>
-        <div class="pic_button">
-        </div>
-      </div>
-      <div class="col-md-8  col-xs-12 thumbnail">
-        <div class="header">
+      <div class="container col-md-12">
+        <div class="bg_blur thumbnail no-image"></div>
+        <div class="header position-absolute thumbnail">
           <h1 class="row">
             <div class="col-md-10">
               <%= album.escape('title') %>
             </div>
-            <div class="col-md-2 offset-up">
+            <div class="col-md-2">
               <button class="open-photo-form btn btn-default" data-toggle="modal" data-target="#photoFormNew"> <span class="fa fa-plus"></span> Photo</button>
             </div>
           </h1>
-          <div class="row">
-            <p class="col-md-12"><%= album.escape('description') %></p>
-          </div>
+        </div>
+
+        <div class="row">
+          <p class="col-md-12"><%= album.escape('description') %></p>
         </div>
       </div>
     </div>

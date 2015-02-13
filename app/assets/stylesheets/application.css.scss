@@ -30,6 +30,11 @@ html, .container, #main, .main, .main > .row {
   padding-top: 20px;
 }
 
+.panel {
+  margin: 0 !important;
+  padding-left: 10px;
+}
+
 body {
   padding-top: 50px;
   width: 100%;
@@ -315,9 +320,17 @@ body.modal-opener #wrap{
 
 .offset-up {
   position: relative;
-  top: -38px;
+  top: -40px;
 }
 
 .required {
   color: #de2929;
+}
+
+.position-absolute {
+  position: absolute !important;
+  top: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  text-shadow: -2px 0 grey, 0 2px grey, 2px 0 grey, 0 -2px grey;
 }
