@@ -12,6 +12,7 @@ window.Instacation = {
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
     this.addEvent(window, "resize", this.setThumbnailSize);
+    this.addEvent($(".guest-login")[0], "click", this.guestLogIn.bind(this));
     $( "[data-toggle='modal']" ).click(this.makeModalVisible.bind(this));
     this.changeHeightForFooter();
     this.resize();
