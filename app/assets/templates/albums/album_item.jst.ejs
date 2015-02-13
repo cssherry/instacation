@@ -7,11 +7,12 @@
     </div>
 
   <div class='image'>
-      <div class='thumbnail height280'>
-        <% if(photoUrl) { %>
-          <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>"/></a>
-        <% } else { %>
-          <p><i>No Images in this Album</i></p>
+    <% if(photoUrl) { %>
+      <div class='thumbnail'>
+        <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>"/></a>
+    <% } else { %>
+      <div class='thumbnail no-image'>
+        <p class="text-center"><i>No Images in this Album</i></p>
         <% } %>
       </div>
     </a>

@@ -38,6 +38,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.addMapItem(mapElement, this.addSubviewEnd);
     $('.multiple-location-selector').select2({placeholder: "Search by location",
                                               width: '50%'});
+    Instacation.setThumbnailSize();
     return this;
   },
 

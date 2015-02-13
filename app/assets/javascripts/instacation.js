@@ -11,10 +11,15 @@ window.Instacation = {
     var router = new Instacation.Routers.UserData({$rootEl: $root});
     this.addEvent(window, "resize", this.changeHeightForFooter);
     this.addEvent(window, "resize", this.resize);
+    this.addEvent(window, "resize", this.setThumbnailSize);
     $( "[data-toggle='modal']" ).click(this.makeModalVisible.bind(this));
     this.changeHeightForFooter();
     this.resize();
     Backbone.history.start();
+  },
+
+  setThumbnailSize: function () {
+    $(".no-image").css("height", $(".thumbnail:not('.no-image')").height() + 10);
   },
 
   makeModalVisible: function (event) {
