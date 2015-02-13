@@ -1,32 +1,34 @@
 <div class='edit-album-form'></div>
 
-<div>
-  <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" >
-    <div class='fit-container'>
-      <h3 class='title fitable-text'><%= album.escape('title') %></h3>
-    </div>
-
-  <div class='image'>
-    <% if(photoUrl) { %>
-      <div class='thumbnail'>
-        <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>"/></a>
-    <% } else { %>
-      <div class='thumbnail no-image'>
-        <p class="text-center"><i>No Images in this Album</i></p>
+<div class="panel panel-default">
+  <div class="panel-heading fit-container">
+    <h4 class='title fitable-text'><%= album.escape('title') %></h4>
+  </div>
+  <div class="panel-body">
+      <a href="<%= '#users/' + album.escape('owner_id') + '/albums/' + album.id %>" class="zoom" data-type="image">
+        <% if(photoUrl) { %>
+          <div class='thumbnail'>
+            <img src="<%= photoUrl %>" alt="Photos in <%= album.escape('title') %>" />
+        <% } else { %>
+          <div class='thumbnail no-image'>
+            <p class="text-center"><i>No Images in this Album</i></p>
         <% } %>
-      </div>
-    </a>
-
+          </div>
+        <span class="overlay"><i class="glyphicon glyphicon-picture"></i></span>
+      </a>
+  </div>
+  <div class="panel-footer">
     <p class='location-name'>
-      <% if (location) {%>
-        <b><%= location.escape('name')%></b>
-        <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
+    <% if (location) {%>
+      <b><%= location.escape('name')%></b>
+      <i><%= " (" + location.escape('state') + ", " + location.escape('country') + ")"%></i>
+    <% } %>
+    <span class="pull-right">
+      <% if (editable) { %>
+        <i id="edit-album" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="<%= "#albumFormEdit" + album.id %>"></i>
+        <i id="delete-album" class="glyphicon glyphicon-trash delete-album"></i>
       <% } %>
+    </span>
     </p>
   </div>
-
-  <% if (editable) { %>
-    <a href="#" class="btn btn-default delete-album"> x </a>
-    <a href='#' class='btn btn-default' role="button" data-toggle="modal" data-target="<%= "#albumFormEdit" + album.id %>"> edit </a>
-  <% } %>
 </div>
