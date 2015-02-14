@@ -15,7 +15,7 @@ Instacation.Views.AlbumItem = Backbone.CompositeView.extend({
   },
 
   render: function(){
-    var modelPhotoUrl = this.model.getThumbnail();
+    var modelPhotoUrl = this.model.getThumbnail()["thumbnail"];
     var modelLocation = this.getLocation();
     var content = this.template({album: this.model, photoUrl: modelPhotoUrl, editable: this.editable, location: modelLocation});
     this.$el.html(content);

@@ -9,9 +9,9 @@
     </h3>
   </div>
   <div class="panel-body">
-      <a href="<%= photo.escape('photo_url') %>" title="<%= photo.escape('caption') %>" class='zoom link' id='<%= photo.id %>'>
+      <a href="<%= photoUrl["scaledImage"] %>" title="<%= photo.escape('caption') %>" class='zoom link' id='<%= photo.id %>'>
         <div class='thumbnail'>
-          <img src="<%= photoUrl %>" alt="<%= photo.escape('caption') %>" />
+          <img src="<%= photoUrl["thumbnail"] %>" alt="<%= photo.escape('caption') %>" />
         </div>
         <span class="overlay"><i class="fa fa-arrows-alt"></i></span>
       </a>

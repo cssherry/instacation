@@ -130,8 +130,8 @@ Instacation.Views.MapItem = Backbone.View.extend({
   },
 
   getPhotoUrlOrError: function (itemView) {
-    if (itemView.model.getThumbnail()) {
-      return $("<p>").html($("<img>").attr({'src': itemView.model.getThumbnail(), 'width': '75px', 'height': '75px'}));
+    if (itemView.model.getThumbnail()["thumbnail"]) {
+      return $("<p>").html($("<img>").attr({'src': itemView.model.getThumbnail()["thumbnail"], 'width': '75px', 'height': '75px'}));
     } else {
       return $("<p>").text("No Photos Yet");
     }

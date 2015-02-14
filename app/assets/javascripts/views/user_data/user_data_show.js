@@ -36,7 +36,7 @@ Instacation.Views.UserDataShow = Backbone.CompositeView.extend({
     this.$el.html(content);
 
     var index = Math.round(Math.random() * (this.model.albums().length - 1));
-    if (this.model.albums().length !== 0) var albumPhotoUrl = this.model.albums().models[index].getThumbnail();
+    if (this.model.albums().length !== 0) var albumPhotoUrl = this.model.albums().models[index].getThumbnail()["thumbnail"];
     if (albumPhotoUrl) {
         this.$(".bg_blur").css("background-image", "url("+ albumPhotoUrl+ ")");
         this.$(".bg_blur").css("background-size", "100%");

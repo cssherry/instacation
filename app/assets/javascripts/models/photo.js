@@ -29,6 +29,8 @@ Instacation.Models.Photo = Backbone.Model.extend({
   },
 
   getThumbnail: function () {
-    return $.cloudinary.image(this.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
+    var thumbnail =  $.cloudinary.image(this.get('cloudinary_id'), { width: 300, height: 300, crop: 'fill'})[0].src;
+    var scaledImage = $.cloudinary.image(this.get('cloudinary_id'), { width: 600, height: 600, crop: 'limit'})[0].src;
+    return {thumbnail: thumbnail, scaledImage: scaledImage};
   },
 });
