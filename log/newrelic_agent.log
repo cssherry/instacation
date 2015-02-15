@@ -1881,3 +1881,4 @@ HINT:  No operator matches the given name and argument type(s). You might need t
 [02/14/15 18:10:08 -0800 DN0a2327bd.SUNet (40364)] INFO : Doing deferred dependency-detection before Rack startup
 [02/14/15 18:10:16 -0800 DN0a2327bd.SUNet (40364)] ERROR : Invalid license key, please contact support@newrelic.com
 [02/14/15 18:10:16 -0800 DN0a2327bd.SUNet (40364)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/14/15 18:45:26 -0800 DN0a2327bd.SUNet (40364)] INFO : Starting Agent shutdown
