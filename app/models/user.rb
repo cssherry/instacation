@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
   before_save :capitalize_name, :downcase_username
+  after_create :create_seed_album
 
   has_many :albums,
     class_name: 'Album',
@@ -83,5 +84,22 @@ private
   def capitalize_name
     self.first_name.capitalize!
     self.last_name.capitalize!
+  end
+
+  def create_seed_album
+    demo_album = albums.create!(title: 'Demo Album',
+                                location_id: 'ChIJ60u11Ni3xokRwVg-jNgU9Yk',
+                                description: 'You can add a description of your album here!')
+    demo_album.photos.create!([{ caption: 'Photos can have caption!',
+                          order: 0,
+                          photo_url: 'http://res.cloudinary.com/devybncp2/image/upload/v1423862869/2185-1274886479COqR_f4ty41.jpg',
+                          cloudinary_id: '2185-1274886479COqR_f4ty41',
+                          location_id: 'ChIJHa4yoSf0t1IR53T-C55D0yY' },
+                        { caption: "Drag this photo!",
+                          order: 0,
+                          photo_url: "http://res.cloudinary.com/devybncp2/image/upload/v1423862870/chickadee_y45tbd.jpg",
+                          cloudinary_id: "chickadee_y45tbd",
+                          location_id: nil
+                        }])
   end
 end
