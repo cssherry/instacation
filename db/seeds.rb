@@ -1,3 +1,6 @@
+user = User.find_by(username: 'worldtraveler')
+user.destroy()
+
 Album.create!([
   {owner_id: 1, title: "Philadelphia - The Journey Begins!", location_id: "ChIJ60u11Ni3xokRwVg-jNgU9Yk", description: "May 21-July 31, 1804\r\n\r\nHaving started upstream on the Missouri River from their St. Louis-area camp—where they had been preparing for the expedition since fall 1803—on May 14, William Clark and nearly four dozen other men met up with Meriwether Lewis on May 20. The Lewis and Clark expedition—\"the Corps of Discovery\"—began making its way up the Missouri aboard a 55-foot-long (17-meter-long) keelboat and two smaller pirogues. As they traveled, Clark spent most of his time on the keelboat, charting the course and making maps, while Lewis was often ashore, studying the rock formations, soil, animals, and plants along the way.\r\n\r\nAlways the members of the expedition were on the lookout for Indians, hoping they would be peaceable, armed in case they weren't. For security, Lewis and Clark made camp on river islands whenever possible and posted guards at night. By the end of July they had traveled more than 600 miles (1,110 kilometers) up the river. Still they had not met a single Indian."},
   {owner_id: 1, title: "The Great Plains - Heading Into Danger", location_id: "ChIJHa4yoSf0t1IR53T-C55D0yY", description: "August 01-31, 1804\r\n\r\nAt sunset on August 2, a party of Oto and Missouri Indians arrived at the expedition's camp. This first Indian encounter went well, the two sides exchanging greetings and gifts. But the captains realized that things would be different when they met the Sioux. President Jefferson had specifically mentioned the need to make a friendly impression on this powerful tribe.\r\n\r\nDuring this time, Sergeant Charles Floyd became the first U.S. soldier to die west of the Mississippi when he died on August 20, probably of appendicitis. He was the only member of the Corps to die along the journey.\r\n\r\nBy the final week of August, Lewis and Clark had reached the eastern edge of the Great Plains, a virtual Eden abounding in elk, deer, buffalo, and beaver. They were now heading toward the heart of Sioux territory.\r\n\r\nThe expedition first encountered the Yankton Sioux, a more peaceable people than their neighbors farther up the Missouri, the Teton Sioux. The Yankton were somewhat disappointed by the gifts they received—a mere five medals—and warned the Americans about the reception they would receive upriver."},
@@ -46,6 +49,18 @@ Photo.create!([
   {album_id: 4, caption: "", order: 0, photo_url: "http://res.cloudinary.com/devybncp2/image/upload/v1423866708/train-car_h5nozo.jpg", cloudinary_id: "train-car_h5nozo", location_id: nil},
   {album_id: 4, caption: "", order: 0, photo_url: "http://res.cloudinary.com/devybncp2/image/upload/v1423866712/winding-wyoming-stream_jakq0g.jpg", cloudinary_id: "winding-wyoming-stream_jakq0g", location_id: nil}
 ])
+
 User.create!([
   {first_name: "Lewis", last_name: "Clark", username: "worldtraveler", password_digest: "$2a$10$TV6qOQc3v/wtrCXfdcPfnOzhFBedIqZkU1CTK/WRKPPOOylwvwYWm", session_token: "Dd5ZPQ7iPzNUHskqjjKIDw"}
 ])
+
+user = User.find_by(username: 'worldtraveler')
+user.update(id: '1')
+user = Album.find_by(title: 'Philadelphia - The Journey Begins!')
+user.update(id: '1')
+user = Album.find_by(title: 'The Great Plains - Heading Into Danger')
+user.update(id: '2')
+user = Album.find_by(title: "Dakota - Racing Against Winter's Approach")
+user.update(id: '3')
+user = Album.find_by(title: 'Rockies - Rockies in Sight')
+user.update(id: '4')
