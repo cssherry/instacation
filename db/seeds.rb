@@ -1,5 +1,5 @@
 user = User.find_by(username: 'worldtraveler')
-user.destroy()
+user.destroy if user
 
 Album.create!([
   {owner_id: 1, title: "Philadelphia - The Journey Begins!", location_id: "ChIJ60u11Ni3xokRwVg-jNgU9Yk", description: "May 21-July 31, 1804\r\n\r\nHaving started upstream on the Missouri River from their St. Louis-area camp—where they had been preparing for the expedition since fall 1803—on May 14, William Clark and nearly four dozen other men met up with Meriwether Lewis on May 20. The Lewis and Clark expedition—\"the Corps of Discovery\"—began making its way up the Missouri aboard a 55-foot-long (17-meter-long) keelboat and two smaller pirogues. As they traveled, Clark spent most of his time on the keelboat, charting the course and making maps, while Lewis was often ashore, studying the rock formations, soil, animals, and plants along the way.\r\n\r\nAlways the members of the expedition were on the lookout for Indians, hoping they would be peaceable, armed in case they weren't. For security, Lewis and Clark made camp on river islands whenever possible and posted guards at night. By the end of July they had traveled more than 600 miles (1,110 kilometers) up the river. Still they had not met a single Indian."},
