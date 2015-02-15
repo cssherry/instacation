@@ -1,6 +1,7 @@
 add warning if block JavaScript
+improve display of special characters
 seed data
-download data
+download data or access full image
 filter by date, disable locations that already selected
 Add a pretty header to user page. This might just consist of removing the user name and instead making the location selector more prominant.
 Hide markers for hidden locations.
