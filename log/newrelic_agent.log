@@ -1919,3 +1919,4 @@ HINT:  No operator matches the given name and argument type(s). You might need t
 [02/14/15 18:55:13 -0800 DN0a2327bd.SUNet (41131)] INFO : Installing Rails 4 view instrumentation
 [02/14/15 18:55:13 -0800 DN0a2327bd.SUNet (41131)] INFO : Installing Rails 4 Error instrumentation
 [02/14/15 18:55:13 -0800 DN0a2327bd.SUNet (41131)] INFO : Finished instrumentation
+[02/14/15 19:00:21 -0800 DN0a2327bd.SUNet (41120)] INFO : Starting Agent shutdown
