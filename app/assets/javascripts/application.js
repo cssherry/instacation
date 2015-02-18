@@ -16,6 +16,11 @@
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.cloudinary
+//= require cloudinary-widget-all
+
+//= require select2.min
+
+//= require jquery.blueimp-gallery.min
 
 //= require infobox
 

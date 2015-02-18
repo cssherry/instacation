@@ -5,9 +5,7 @@
 
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places',
-                             'application',
-                             '//widget.cloudinary.com/global/all.js',
-                             "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/js/select2.min.js"%>
+                             'application'%>
 
   <script>
     var cloud_name = "<%= ENV['cloud_name'] %>";
@@ -15,11 +13,6 @@
     var api_key = "<%= ENV['cloudinary_api'] %>";
     $.cloudinary.config({ cloud_name: cloud_name, api_key: api_key })
   </script>
-
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-beta.3/css/select2.min.css">
 
   <%= csrf_meta_tags %>
 </head>
@@ -32,7 +25,6 @@
     <a href="http://www.cssherry.com/">Contact</a> | <a href="https://github.com/zhoux10/instacation">Visit on Github</a> | © 2015 - Today
 </footer>
 
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

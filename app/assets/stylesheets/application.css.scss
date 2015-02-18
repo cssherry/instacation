@@ -12,11 +12,15 @@
  *
  *= require_tree .
  *= require_self
+ *= require blueimp-gallery.min
+ *= require select2.min
  *= require jquery-ui/sortable
  */
 
 @import "bootstrap-sprockets";
 @import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 html, .container, #main, .main, .main > .row {
   height: 100%;
