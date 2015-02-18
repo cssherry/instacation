@@ -1961,3 +1961,4 @@ HINT:  No operator matches the given name and argument type(s). You might need t
 [02/18/15 12:01:53 -0800 Sherrys-MBP.att.net (61812)] INFO : Doing deferred dependency-detection before Rack startup
 [02/18/15 12:01:57 -0800 Sherrys-MBP.att.net (61812)] ERROR : Invalid license key, please contact support@newrelic.com
 [02/18/15 12:01:57 -0800 Sherrys-MBP.att.net (61812)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[02/18/15 12:09:14 -0800 Sherrys-MBP.att.net (61812)] INFO : Starting Agent shutdown
