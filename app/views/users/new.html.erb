@@ -6,7 +6,7 @@
   $("body").addClass("modal-opener");
 </script>
 
-<div class="modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal">
 <div class="modal-dialog modal-md">
   <div class="modal-content">
       <div class="bs-login bs-login-tabs">
@@ -52,7 +52,7 @@
               <label class="control-label" for="signin"></label>
               <div class="controls row">
                 <button type="button" class="btn btn-default guest-login col-md-2 col-md-offset-1">Guest Login</button>
-                <button id="signin-button" name="signin" class="btn btn-success col-md-2 col-md-offset-7">Sign In</button>
+                <button id="signin-button" name="signin" class="btn btn-success col-md-2 col-md-offset-6">Sign In</button>
               </div>
             </div>
           </form>
@@ -119,3 +119,7 @@
   </div>
 </div>
 </div>
+
+<script>
+  $(".modal").modal("show");
+</script>
