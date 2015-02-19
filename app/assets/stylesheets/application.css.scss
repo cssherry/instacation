@@ -306,6 +306,10 @@ body.modal-opener #wrap{
   filter: blur(15px);
 }
 
+.modal-content {
+  margin-top: 50px;
+}
+
 .pac-container {
     z-index: 1051 !important;
 }
