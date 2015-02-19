@@ -150,7 +150,7 @@ Instacation.Views.MapItem = Backbone.View.extend({
 
   zoomOrResize: function () {
     this._map.fitBounds(this.bounds);
-    if (this.bounds.Ba.j === this.bounds.Ba.k) {
+    if (!this.bounds.Ca || this.bounds.Ca.j === this.bounds.Ca.k) {
       this._map.setZoom(15);
     }
   }
