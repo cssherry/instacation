@@ -2,7 +2,7 @@
 
 [Heroku link to be deployed][heroku]
 
-[heroku]: http://www.cssherry.com/
+[heroku]: http://instacation.cssherry.com/session/new
 
 ## Minimum Viable Product
 Instacation is a clone of Instagram built on Rails and Backbone. Users can:
